@@ -1,276 +1,338 @@
-# The Varied — Website Spec
+# The Varied — Website Spec v2
 # thevaried.co
-# Built by: Codex (Beaumont leading design, Kyd leading copy, Webster leading build)
+# Reference: Tool of North America, Biscuit Filmworks, Partizan, Stink Films, Caviar Content
+# Rule: Production company sites don't explain themselves. The work does.
 
 ---
 
-## Brand & Positioning
+## THE CORE PRINCIPLE
 
-**The Varied** is a production company and creative services studio operating at the intersection of high-end commercial production and AI-integrated operations.
+Production company sites are not landing pages. They are:
+1. A portfolio with the work front and center
+2. A contact card
+3. A credibility signal
 
-NOT: a tech startup, an AI company, a generic agency
-IS: a production company that runs on craft, experience, and operational intelligence
-
-**Tagline options (use one in hero):**
-- "Production craft. Operational intelligence."
-- "We make the work. We run the room."
-- "Real production. Built different."
-
-**One-line description:**
-"We produce high-end commercial and branded content — and we've built the operational infrastructure to do it better than anyone."
-
-**The AI angle:** Woven in as capability, not as identity. We don't say "AI company." We say "We've integrated AI into every layer of how we operate — from pre-production to wrap." It's a differentiator, not the headline.
+They do NOT have: feature lists, value propositions, "why choose us", bullet points of services, stock photography, or marketing copy. Every sentence should earn its place or be cut.
 
 ---
 
-## Client List (use these exact names — real credits)
-
-Pizza Hut · Netflix · Toyota · BTS · UberEats · Hello Fresh · Notion · Atlassian · Sonos · Drizly · Burger King · Keke Palmer · One Republic · Seventh Generation · Anderson .Paak · Lil Dicky · Resy · Amex · Del Real · Rabbit · Angelisco Tequila · M&M's · Totino's
-
----
-
-## Design Direction
-
-**Aesthetic:** Dark, editorial, cinematic. Think: Tool of North America, Anonymous Content, Ridley Scott Associates — production company gravitas, not startup energy.
-
-**NOT:** Emoji, gradient buttons, dashboard-style charts, stock photography, generic hero images
-
-**Color palette:**
-```
---bg-primary:   #0a0a08  /* near-black, warm */
---bg-surface:   #111110  /* card/section bg */
---bg-elevated:  #1a1a18  /* hover states */
---text-primary: #f0ede6  /* warm off-white */
---text-muted:   #8a8680  /* muted warm gray */
---text-dim:     #4a4845  /* very muted */
---accent:       #c8a97e  /* warm gold — the one accent color */
---accent-hover: #d4b78a
---border:       rgba(240,237,230,0.08)
---border-hover: rgba(240,237,230,0.15)
-```
-
-**Typography:**
-- Display/hero: "Cormorant Garamond" or "Playfair Display" — editorial, cinematic serif. Load from Google Fonts.
-- Body: Inter — clean, invisible
-- Mono/data: JetBrains Mono — only for technical details
-- All caps + wide letter-spacing for labels/section markers (Inter, 11px, --text-dim)
-- NO DM Sans, NO Source Serif 4 (those are OPA brand, not The Varied)
-
-**Spacing:** Generous. This site breathes. Sections have padding-top/bottom of min 120px.
-
-**Animation:** Subtle. Fade-in on scroll (IntersectionObserver, no library needed). No bouncing, no parallax overflow. Think editorial magazine, not SaaS landing page.
-
-**Mobile:** Fully responsive. Single column on mobile, max-width 1400px on desktop.
-
----
-
-## Site Architecture
-
-Single page with smooth scroll + fixed minimal nav. OR separate pages — builder's choice based on content volume.
-
-### Nav (fixed, minimal)
-```
-THE VARIED                    Work  Services  Contact
-```
-- Logo: "THE VARIED" in Cormorant Garamond, tracked wide, 18px
-- Links: Inter, 13px, uppercase, tracked
-- Transparent over hero, dark bg on scroll
-- Mobile: hamburger → full-screen overlay menu
-
----
-
-## Sections
-
-### 1. HERO (full viewport)
-
-**Visual:** Dark background, large typography. NO stock photo hero. Consider: subtle grain texture overlay on near-black bg.
-
-**Content:**
-```
-THE VARIED
-
-Production craft.
-Operational intelligence.
-
-[small line — muted]
-Los Angeles — Commercial · Music Video · Branded Content
-```
-
-Headline in Cormorant Garamond, 90-120px, line-height 0.95, left-aligned or centered. Feels like a magazine cover.
-
-Optional: Subtle looping video reel in background at very low opacity (15-20%) — just texture, not distracting. If Brendan has a reel file, link it. Otherwise skip.
-
-CTA: Two ghost buttons — "View Work ↓" and "Get in Touch →"
-
----
-
-### 2. CLIENTS / BRAND WALL
-
-Section label: "SELECTED CLIENTS" — small, muted, tracked
-
-Layout: Single horizontal scrolling row of client names in text (not logos — cleaner, more editorial). Typography: Cormorant Garamond italic, 24px, warm off-white, spaced with · separators. On hover: gold accent color.
-
-```
-Pizza Hut · Netflix · Toyota · BTS · UberEats · Notion · Atlassian · Sonos · Burger King · Drizly · Hello Fresh · Amex · Rabbit · Seventh Generation
-```
-
-Auto-scroll animation (CSS marquee, smooth, pausable on hover). This establishes credibility immediately.
-
----
-
-### 3. WHAT WE DO
-
-Section label: "SERVICES"
-
-Three columns, each with:
-- Number marker: "01", "02", "03" in mono, small, muted
-- Title in Cormorant Garamond, 32px
-- Description in Inter, 16px, muted
-- No icons, no checkmarks
-
-**Column 1: Commercial Production**
-"We produce high-end commercials, music videos, and branded content. Real crews. Real locations. Real results. From concept through wrap."
-
-**Column 2: Creative Direction**
-"Director treatments. Visual development. Pre-production strategy. We help ideas become shootable realities — and we make sure they're shot the right way."
-
-**Column 3: AI-Integrated Operations**
-"We've built AI into every layer of how we operate. Production management, crew coordination, budget intelligence. The same infrastructure that runs our own productions is available to our clients."
-
----
-
-### 4. THE WORK (selected projects)
-
-Section label: "SELECTED WORK"
-
-Grid of project cards, 2-3 columns.
-Each card:
-- Dark bg with subtle border
-- Project title (large, Cormorant Garamond)
-- Client name (small, muted)
-- Type badge (COMMERCIAL · MUSIC VIDEO · BRANDED CONTENT)
-- On hover: gold border highlight + "View →" text appears
-
-Use real projects from brendanlynch.co:
-1. Pizza Hut × Anderson .Paak — Music Video
-2. BTS — Permission To Dance — Music Video
-3. Netflix — Farewell To DVDs — Commercial
-4. Toyota × NFL — We Roll Deep — Commercial
-5. Notion — For Your Life's Work — Commercial
-6. Atlassian — High Velocity — Commercial
-7. Sonos Move 2 — Commercial
-8. UberEats × Burger King — Commercial
-
-For now: cards link to # (placeholder). Later: individual project pages or Vimeo links.
-
----
-
-### 5. DIRECTOR TREATMENTS
-
-Section label: "TREATMENTS"
-
-Simple section explaining the director treatment service:
-"We write, design, and produce director treatments for commercial and music video productions. Visual language, concept development, and creative execution — documented."
-
-Single CTA button: "View Treatments →" → links to /treatments or the existing /docs page on dashboard (or a new page on this site)
-
----
-
-### 6. ABOUT
-
-Section label: "ABOUT"
-
-Split layout: Left = text, Right = subtle visual (could be a dark gradient texture or a styled image placeholder)
-
-**Copy:**
-```
-We are a production company.
-
-We've spent years on set, in production offices, and in edit bays building the instincts that make work good — and the systems that make it sustainable.
-
-The Varied is the infrastructure we've always wanted. A production operation built on craft, grounded in experience, and optimized with every tool available — including AI.
-
-Founded by Brendan Lynch, line producer and production manager with credits across Netflix, Toyota, BTS, Notion, and more.
-
-Los Angeles · Available worldwide.
+## Install
+```bash
+npm install framer-motion
+npm install @next/font
 ```
 
 ---
 
-### 7. CONTACT
+## Design System
 
-Section label: "LET'S TALK"
+### Colors
+```css
+:root {
+  --black:        #080808;   /* true base — the stage */
+  --black-soft:   #0f0f0d;   /* card backgrounds */
+  --black-lift:   #181816;   /* hover states */
+  --cream:        #e8e4db;   /* primary text */
+  --cream-muted:  #8a8479;   /* secondary text */
+  --cream-dim:    #3d3b36;   /* borders, dividers */
+  --gold:         #c5a46e;   /* ONE accent color — use sparingly */
+  --gold-hover:   #d4b882;
+}
+```
 
-Simple. Dark. Two-column: left = text, right = form (or just email).
+**Rule: No other accent colors. No blue. No green. No red. Only gold.**
+
+### Typography
+```
+Display (hero, project titles):   Cormorant Garamond, 400/700 italic
+Headings (nav, section labels):   Inter, 400, tracked, uppercase, 11px
+Body:                             Inter, 400, 15-16px
+Data/mono (dates, IDs):           JetBrains Mono — sparingly
+```
+
+Load from Google Fonts. Set up in app/layout.tsx with next/font/google.
+
+### Spacing
+- Sections: min 160px top/bottom padding — let it breathe
+- Container: max-width 1280px, padding 0 40px
+- Mobile: padding 0 24px
+
+### Grain texture
+Add a subtle film grain overlay to the entire site:
+```css
+/* Pseudo-element on body — CSS grain, no image needed */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,..."); /* SVG noise */
+}
+```
+Use an SVG feTurbulence filter for grain. Subtle — almost invisible but felt.
+
+---
+
+## Navigation
+
+Fixed. Transparent over hero section, transitions to dark bg on scroll.
+
+```
+[THE VARIED]                    Work  Director  About  Contact
+```
+
+- Logo: "THE VARIED" — Inter, 13px, letter-spacing: 0.25em, --cream
+- Links: Inter, 11px, letter-spacing: 0.15em, uppercase, --cream-muted
+- On scroll (>100px): adds background rgba(8,8,8,0.95) + blur(12px) backdrop
+- Mobile: hamburger icon → full-screen overlay (black bg, centered links, large)
+- Active link: --cream (full opacity)
+
+---
+
+## Section 1: HERO (full viewport)
+
+**Dark. Minimal. Typographic.**
+
+No image. No video (save that for when a real reel exists). Just text on black.
+
+Layout: vertically centered, left-aligned.
+
+```
+                                       ← top: 60px nav spacer
+[spacer]
+
+THE VARIED                             ← Inter 11px, tracked, --cream-dim (small, above headline)
+
+Production craft.                      ← Cormorant Garamond, 88px desktop / 52px mobile
+Operational intelligence.              ← same, italic, --cream
+
+[spacer 40px]
+
+Los Angeles · Commercial · Music Video · Branded Content   ← Inter 13px, --cream-muted
+
+[spacer 60px]
+
+Pizza Hut · Netflix · Toyota · BTS · Notion · Atlassian · Sonos ← Inter 12px, --cream-dim
+UberEats · Hello Fresh · Drizly · Rabbit · Seventh Generation
+```
+
+Subtle: on load, text fades in with a 0.8s opacity + 20px upward translate. Staggered by line (0, 0.15s, 0.3s delays). Use Framer Motion.
+
+Bottom of hero: a thin gold horizontal line (1px, 80% width) and a small "↓" in gold.
+
+---
+
+## Section 2: SELECTED WORK
+
+Section label: "WORK" — Inter 11px, tracked, --cream-dim — top left
+
+**Layout: 2-column grid on desktop, 1 column mobile**
+
+Each project card:
+- Background: --black-soft
+- Border: 1px solid --cream-dim
+- Padding: 48px
+- On hover: border-color transitions to --gold (200ms), overlay with subtle gold tint (rgba(197,164,110,0.04))
+
+Card content:
+```
+[CLIENT NAME]                     ← Cormorant Garamond, 38px, --cream
+[Project Name / Description]      ← Inter, 14px, --cream-muted, tracking
+                                  
+COMMERCIAL · 2025                 ← Inter, 11px, --cream-dim, tracked
+```
+
+On hover: show a small "↗" in gold, top right corner of card
+
+No fake thumbnails. Text-based cards look MORE premium than fake images.
+
+**Project list (8 cards, in this order):**
+1. BTS — Permission To Dance | Music Video · 2021
+2. Netflix — Farewell To DVDs | Commercial · 2023
+3. Toyota × NFL — We Roll Deep | Commercial · 2022
+4. Notion — For Your Life's Work | Commercial · 2024
+5. Atlassian — High Velocity | Commercial · 2023
+6. Sonos — Move 2 | Commercial · 2023
+7. Pizza Hut × Anderson .Paak | Music Video · 2022
+8. UberEats × Burger King | Commercial · 2021
+
+Cards link to # for now (future: individual project pages or Vimeo).
+
+---
+
+## Section 3: DIRECTOR
+
+Section label: "DIRECTOR" — Inter 11px, tracked, --cream-dim
+
+Split layout: Left (60%) = text, Right (40%) = photo
 
 **Left:**
 ```
-New project? Partnership?
-Just say hello.
+Brendan Lynch                     ← Cormorant Garamond, 56px, --cream
 
-ops@useopa.com
-[or: hello@thevaried.co — Brendan to confirm]
+Line Producer · Director          ← Inter, 14px, --cream-muted, tracked
 
-Los Angeles, CA
+[spacer]
+
+Los Angeles-based line producer and director with a decade of experience
+in commercial and branded content. Credits include Netflix, Toyota, BTS,
+Notion, Atlassian, and more.                   ← Inter, 16px, --cream-muted, line-height 1.8
+
+[spacer]
+
+Reel →                            ← gold link, inter 13px — link to Vimeo placeholder (#)
+Contact →                         ← cream-muted link
 ```
 
-**Right:** Simple contact form — Name, Email, Message, Send. Or just a mailto link if no backend needed.
+**Right:**
+- A styled placeholder for Brendan's headshot
+- Use a dark rectangle (--black-soft) with his initials "BL" in Cormorant Garamond, 64px, --cream-dim
+- When Brendan replaces with real photo: drop an `<img>` with object-fit: cover
+- Image aspect ratio: 3:4 (portrait)
+- No border radius — square crop
 
 ---
 
-### 8. FOOTER
+## Section 4: ABOUT
 
-Minimal dark footer:
+Section label: "ABOUT" — Inter 11px, tracked, --cream-dim
+
+Single column, centered, max-width 640px.
+
 ```
-THE VARIED                               © 2026 The Varied. All rights reserved.
-thevaried.co
-Los Angeles
+The Varied is a commercial production company operating at the intersection of craft
+and operational intelligence. We produce high-end commercials, music videos, and branded
+content — and we've built the systems to run productions better than anyone.
+
+Founded in Los Angeles. Available worldwide.
+```
+
+That's it. No bullets. No feature lists. Two sentences + a location. Trust the work above.
+
+---
+
+## Section 5: TREATMENTS (optional — if building now)
+
+Section label: "TREATMENTS" — Inter 11px, tracked, --cream-dim
+
+Brief line:
+```
+We write and produce director treatments for commercial and music video productions.
+```
+
+Single CTA: "View Treatments →" → links to /treatments page
+
+---
+
+## Section 6: CONTACT
+
+Section label: "CONTACT" — Inter 11px, tracked, --cream-dim
+
+Large, centered:
+```
+Let's make something.             ← Cormorant Garamond, 72px, italic, --cream
+
+hello@thevaried.co                ← Inter, 18px, --gold, link (mailto)
+Los Angeles                       ← Inter, 13px, --cream-muted
+```
+
+No contact form needed. Email link is cleaner.
+
+---
+
+## Footer
+
+Minimal. Two rows:
+```
+THE VARIED                                          © 2026 The Varied
+thevaried.co · Los Angeles
 ```
 
 ---
 
-## Technical Requirements
+## Page: /treatments
 
-**Stack:**
-- Next.js 14, App Router, TypeScript
-- Tailwind CSS
-- Framer Motion (for scroll animations — worth adding for this site)
-- Google Fonts: Cormorant Garamond + Inter + JetBrains Mono
+Simple dark page listing director treatments.
 
-**Install:**
-```bash
-npm install framer-motion
+```
+[Nav]
+
+DIRECTOR TREATMENTS               ← section label style
+
+Treatment cards:
+- Treatment name (Cormorant Garamond, 32px)
+- Client / project (Inter, 14px, muted)
+- "View →" link
 ```
 
-**Pages:**
-- `/` — Main site (all sections, smooth scroll)
-- `/treatments` — Director treatments list (can be a simple page for now)
-
-**Performance:**
-- No heavy images (use CSS backgrounds/gradients for hero)
-- Client name marquee: pure CSS animation
-- Scroll animations: IntersectionObserver or Framer Motion `whileInView`
-
-**SEO:**
-- Title: "The Varied — Production Craft. Operational Intelligence."
-- Description: "Los Angeles production company. Commercial, music video, and branded content. AI-integrated operations."
-- OG image: dark bg with "THE VARIED" wordmark
+For now: one treatment card for "Blow Away" linking to the existing treatment doc on the dashboard.
+Add more as treatments are created.
 
 ---
 
-## Deployment
+## Technical Implementation
 
-1. Connect to GitHub: git remote add origin https://github.com/MarloweOps/the-varied
-2. Push to main
-3. Create Vercel project → import from GitHub → auto-deploy
-4. Add domain: thevaried.co (Brendan updates DNS at Namecheap → CNAME to cname.vercel-dns.com)
+### app/globals.css
+- CSS variables for all colors
+- Base styles (bg: --black, color: --cream, font: Inter)
+- SVG grain overlay on body::after
+- Smooth scroll: html { scroll-behavior: smooth; }
+- Selection color: rgba(197,164,110,0.3)
+
+### app/layout.tsx
+- Google Fonts: Cormorant Garamond (400, 400i, 700i) + Inter (400) + JetBrains Mono (400)
+- Metadata: title, description, OG image
+- Include grain overlay, nav, footer
+
+### tailwind.config.ts
+- Custom colors matching CSS variables
+- Custom fonts (cormorant, inter, mono)
+- Container settings
+
+### app/page.tsx
+- Nav component (with scroll-triggered bg)
+- All 6 sections
+- Framer Motion: fade-in on scroll with whileInView, initial={{ opacity: 0, y: 24 }}, animate={{ opacity: 1, y: 0 }}
+
+### components/Nav.tsx
+- Client component (useScrollPosition)
+- Transparent → solid transition
+
+### components/ProjectCard.tsx
+- The work grid card
+
+### app/treatments/page.tsx
+- Simple list of treatments
 
 ---
 
-## Completion Signal
+## Build & Deploy
 
-When done:
-1. Run: `npm run build` — must be 0 errors
-2. Commit all files
-3. Push to GitHub (origin main)
-4. Run: `openclaw system event --text "Done: The Varied website built — ready for Vercel deploy and domain connection" --mode now`
+1. `npm run build` — must be 0 errors
+2. `git add -A && git commit -m "feat: The Varied — production company site"`
+3. `git push origin main`
+4. Vercel auto-deploys
+5. Run: `openclaw system event --text "Done: The Varied website built and deployed to Vercel" --mode now`
+
+---
+
+## What NOT to do
+- No hero image or video (text-only hero is more confident when the reel isn't ready)
+- No stock photography anywhere
+- No gradients on buttons or backgrounds (flat black only)
+- No rounded corners on project cards (square = editorial)
+- No emoji
+- No "Learn More" buttons
+- No "Our Services" section with bullet points
+- No dashboard-style UI elements (this is not a product)
+- No startup language ("leverage", "streamline", "innovative")
+- The word "AI" should appear ZERO times on this site
+
+---
+
+## Note on AI
+The AI integration is a business differentiator, not a marketing message.
+Sophisticated clients don't need to be told "we use AI." They'll feel the operational
+quality. If it ever comes up, it's a conversation — not a website section.

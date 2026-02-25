@@ -1,65 +1,178 @@
-import Image from "next/image";
+import Nav from "@/components/Nav";
+import ProjectCard from "@/components/ProjectCard";
+import HeroIntro from "@/components/HeroIntro";
+
+const projects = [
+  {
+    client: "BTS",
+    project: "Permission To Dance",
+    type: "Music Video",
+    year: "2021",
+  },
+  {
+    client: "Netflix",
+    project: "Farewell to DVDs",
+    type: "Commercial",
+    year: "2023",
+  },
+  {
+    client: "Toyota",
+    project: "We Roll Deep",
+    type: "Commercial",
+    year: "2022",
+  },
+  {
+    client: "Notion",
+    project: "For Your Life's Work",
+    type: "Commercial",
+    year: "2024",
+  },
+  {
+    client: "Atlassian",
+    project: "High Velocity",
+    type: "Commercial",
+    year: "2023",
+  },
+  {
+    client: "Sonos",
+    project: "Move 2",
+    type: "Commercial",
+    year: "2023",
+  },
+  {
+    client: "Pizza Hut",
+    project: "Anderson .Paak",
+    type: "Music Video",
+    year: "2022",
+  },
+  {
+    client: "UberEats",
+    project: "Burger King",
+    type: "Commercial",
+    year: "2021",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <Nav />
+
+      <main>
+        <HeroIntro />
+
+        <section id="work" className="mx-auto max-w-[1280px] px-10 py-40 md:px-16">
+          <p className="section-label">WORK</p>
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={`${project.client}-${project.project}`}
+                client={project.client}
+                project={project.project}
+                type={project.type}
+                year={project.year}
+                href="#"
+                delay={index * 0.08}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="director"
+          className="mx-auto max-w-[1280px] border-t border-[var(--border)] px-10 py-40 md:px-16"
+        >
+          <p className="section-label">DIRECTOR</p>
+          <div className="gap-16 md:grid md:grid-cols-5">
+            <div className="md:col-span-3">
+              <h2 className="font-cormorant text-[56px] leading-none text-[var(--text-primary)]">
+                Brendan Lynch
+              </h2>
+              <p className="mt-3 font-inter text-sm uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                Line Producer · Director
+              </p>
+
+              <p className="mt-8 max-w-[480px] font-inter text-[15px] leading-[1.9] text-[var(--text-muted)]">
+                Los Angeles-based line producer and director with over a decade in
+                commercial and branded content. Credits include Netflix, Toyota,
+                BTS, Notion, Atlassian, and more than twenty global brands.
+              </p>
+
+              <div className="mt-10 flex items-center">
+                <a
+                  href="#"
+                  className="font-inter text-sm text-[var(--accent)] transition-colors hover:text-[var(--accent-hover)]"
+                >
+                  Reel ↗
+                </a>
+                <a
+                  href="#contact"
+                  className="ml-8 font-inter text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
+                >
+                  Contact →
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-12 md:col-span-2 md:mt-0">
+              <div className="flex aspect-[3/4] items-center justify-center border border-[var(--border)] bg-[var(--bg-surface)]">
+                <div className="text-center">
+                  <p className="font-cormorant text-[64px] leading-none text-[var(--text-dim)]">
+                    BL
+                  </p>
+                  <p className="mt-2 font-inter text-[10px] tracking-wide text-[var(--text-dim)]">
+                    ← replace with headshot
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="about"
+          className="mx-auto max-w-[640px] border-t border-[var(--border)] px-10 py-40 md:px-16"
+        >
+          <p className="section-label">ABOUT</p>
+          <p className="mt-6 font-inter text-[16px] leading-[1.9] text-[var(--text-muted)]">
+            The Varied is a commercial production company operating at the
+            intersection of craft and systems. We produce high-end commercials,
+            music videos, and branded content — and we have built the
+            infrastructure to run productions with precision.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+          <p className="mt-4 font-inter text-[16px] leading-[1.9] text-[var(--text-muted)]">
+            Founded in Los Angeles. Available worldwide.
+          </p>
+        </section>
+
+        <section
+          id="contact"
+          className="mx-auto max-w-[1280px] border-t border-[var(--border)] px-10 py-40 text-center md:px-16"
+        >
+          <p className="section-label text-center">CONTACT</p>
+          <h2 className="mt-6 font-cormorant text-[72px] leading-none text-[var(--text-primary)] italic md:text-[88px]">
+            Let&apos;s make something.
+          </h2>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:hello@thevaried.co"
+            className="mt-8 block font-inter text-lg text-[var(--accent)] transition-colors hover:text-[var(--accent-hover)]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            hello@thevaried.co
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          <p className="mt-3 font-inter text-[13px] tracking-wide text-[var(--text-dim)]">
+            Los Angeles
+          </p>
+        </section>
       </main>
-    </div>
+
+      <footer className="mx-auto flex max-w-[1280px] items-center justify-between border-t border-[var(--border)] px-10 py-10 md:px-16">
+        <p className="font-inter text-xs tracking-[0.25em] text-[var(--text-dim)]">
+          THE VARIED
+        </p>
+        <p className="font-inter text-xs text-[var(--text-dim)]">
+          © 2026 The Varied
+        </p>
+      </footer>
+    </>
   );
 }
