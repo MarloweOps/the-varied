@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CursorEffects from "@/components/CursorEffects";
 
 export const metadata: Metadata = {
   title: "The Varied",
@@ -28,7 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-bg-primary text-text-primary antialiased">
-        {children}
+        <CursorEffects />
+        {/* Content sits above spotlight layer */}
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          {children}
+        </div>
       </body>
     </html>
   );
