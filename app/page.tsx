@@ -2,55 +2,63 @@ export default function Home() {
   return (
     <main
       style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '10vh 8vw 10vh',
-        position: 'relative',
+        position: 'fixed',
+        inset: 0,
+        overflow: 'hidden',
       }}
     >
-      {/* THE VARIED — RX100, fills the room */}
-      <h1
+      {/* THE — top-left */}
+      <span
         style={{
           fontFamily: '"RX100", sans-serif',
-          fontSize: 'clamp(80px, 21vw, 420px)',
+          fontSize: 'clamp(80px, 22vw, 480px)',
           fontWeight: 400,
-          lineHeight: 0.85,
+          lineHeight: 1,
           letterSpacing: '-0.02em',
           color: 'var(--text-primary)',
-          margin: 0,
+          position: 'absolute',
+          top: '6vh',
+          left: '6vw',
           userSelect: 'none',
         }}
       >
-        THE<br />VARIED
-      </h1>
+        THE
+      </span>
 
-      {/* Tagline + cursor — quiet, beneath */}
-      <p
+      {/* VARIED + cursor — bottom-left */}
+      <span
         style={{
-          fontFamily: '"Cormorant Garamond", serif',
-          fontSize: 'clamp(18px, 2vw, 30px)',
-          fontStyle: 'italic',
+          fontFamily: '"RX100", sans-serif',
+          fontSize: 'clamp(80px, 22vw, 480px)',
           fontWeight: 400,
-          color: 'var(--text-muted)',
           lineHeight: 1,
-          marginTop: '4vh',
+          letterSpacing: '-0.02em',
+          color: 'var(--text-primary)',
+          position: 'absolute',
+          bottom: '6vh',
+          left: '6vw',
+          userSelect: 'none',
           display: 'flex',
           alignItems: 'center',
         }}
       >
-        Work. Ongoing.
-        <span className="cursor-bar" />
-      </p>
+        VARIED
+        <span
+          className="cursor-bar"
+          style={{ height: '0.65em', width: '3px', marginLeft: '0.06em' }}
+        />
+      </span>
 
-      {/* Branch links */}
+      {/* Branch links — top-right */}
       <nav
         style={{
-          marginTop: '5vh',
+          position: 'absolute',
+          top: '6vh',
+          right: '6vw',
           display: 'flex',
           flexDirection: 'column',
-          gap: '14px',
+          alignItems: 'flex-end',
+          gap: '12px',
         }}
       >
         <a
@@ -71,14 +79,14 @@ export default function Home() {
         </a>
       </nav>
 
-      {/* Contact — anchored bottom-left */}
+      {/* Contact — bottom-right */}
       <a
         className="varied-link"
         href="mailto:hello@thevaried.co"
         style={{
           position: 'absolute',
-          bottom: '5vh',
-          left: '8vw',
+          bottom: '6vh',
+          right: '6vw',
         }}
       >
         hello@thevaried.co
