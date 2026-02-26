@@ -77,6 +77,14 @@ export default function Home() {
         >
           OPA
         </a>
+        <a
+          className="varied-link"
+          href="https://marlowe.thevaried.co"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Marlowe
+        </a>
       </nav>
 
       {/* Contact — bottom-right */}
