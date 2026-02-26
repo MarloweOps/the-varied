@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The Varied — Production Craft. Operational Intelligence.",
-  description:
-    "Los Angeles production company. Commercial, music video, and branded content. Commercial production for brands that demand precision.",
+  title: "The Varied",
+  description: "A creative entity. Los Angeles.",
   openGraph: {
-    title: "The Varied — Production Craft. Operational Intelligence.",
-    description:
-      "Los Angeles production company. Commercial, music video, and branded content. Commercial production for brands that demand precision.",
+    title: "The Varied",
+    description: "A creative entity. Los Angeles.",
     type: "website",
     siteName: "The Varied",
     images: [
