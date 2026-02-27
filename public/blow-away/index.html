@@ -297,12 +297,78 @@ body::after {
   padding-top: 16px;
 }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE — MOBILE ── */
 @media (max-width: 768px) {
-  .slide { grid-template-columns: 1fr; }
-  .image-panel { display: none; }
-  .slide.full-bleed .text-panel { max-width: 100%; }
-  .text-panel { padding: 10vh 8vw 14vh; }
+
+  /* Stack slides: image top, text below */
+  .slide {
+    grid-template-columns: 1fr;
+    grid-template-rows: 42vh 1fr;
+    overflow-y: auto;
+  }
+
+  /* Show image on mobile, full width at top */
+  .image-panel {
+    display: block !important;
+    width: 100%;
+    height: 42vw;
+    min-height: 220px;
+    max-height: 45vh;
+    order: -1;
+  }
+  .image-panel img {
+    height: 100%;
+  }
+  .image-panel::after {
+    background: linear-gradient(to bottom, transparent 50%, rgba(13,11,9,0.6) 100%);
+  }
+
+  .text-panel {
+    padding: 5vw 7vw 20vw;
+    border-right: none;
+    border-top: 1px solid var(--warm-gray);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Full-bleed on mobile: stack same way */
+  .slide.full-bleed {
+    grid-template-rows: 42vw 1fr;
+    overflow-y: auto;
+  }
+  .slide.full-bleed .image-panel {
+    position: relative;
+    height: 42vw;
+    min-height: 220px;
+    max-height: 45vh;
+    z-index: 0;
+  }
+  .slide.full-bleed .text-panel {
+    position: relative;
+    max-width: 100%;
+    background: var(--bg);
+    z-index: 2;
+    padding: 5vw 7vw 20vw;
+  }
+
+  .slide-title {
+    font-size: clamp(22px, 6vw, 36px);
+    margin-bottom: 3vw;
+  }
+  .slide-body {
+    font-size: clamp(14px, 3.8vw, 18px);
+    line-height: 1.75;
+  }
+  .slide-meta {
+    margin-bottom: 3vw;
+  }
+
+  #header { padding: 0 6vw; }
+  #nav { gap: 20px; }
+  .nav-btn { padding: 8px 10px; font-size: 10px; }
+
+  #cover h1 { font-size: clamp(56px, 16vw, 100px); }
+  #cover { padding: 0 10vw; }
 }
 </style>
 </head>
@@ -642,8 +708,10 @@ body::after {
         <p>True to SoCal and true to Caitlin — a nineteen-year-old who's more interesting than the world she's chosen to orbit, shot on film that already knows what she doesn't yet.</p>
         <br>
         <p>The video makes you want to move. And somewhere underneath all that movement, you feel the stillness coming.</p>
+        <br>
+        <p>We'd love to shoot this on 35. We're working with <strong>Acid Media</strong> to produce — which means the operations match the vision. Lean, owner-run, no compromises between the concept and what ends up on film.</p>
       </div>
-      <p class="credit">Treatment by Brendan Lynch &nbsp;·&nbsp; The Varied</p>
+      <p class="credit">Treatment by Brendan Lynch &nbsp;·&nbsp; Acid Media / The Varied</p>
     </div>
   </div>
 
@@ -700,6 +768,23 @@ cover.addEventListener('click', () => {
   cover.classList.add('hidden');
   setTimeout(() => cover.style.display = 'none', 800);
 });
+
+// Swipe support for mobile
+let touchStartX = 0;
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = touchStartX - e.changedTouches[0].clientX;
+  const dy = touchStartY - e.changedTouches[0].clientY;
+  // Only trigger on horizontal swipes (not vertical scrolling)
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+    if (dx > 0) goTo(current + 1);
+    else goTo(current - 1);
+  }
+}, { passive: true });
 
 // Init
 goTo(0);
