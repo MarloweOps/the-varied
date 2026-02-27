@@ -2,67 +2,86 @@ export default function Home() {
   return (
     <main
       style={{
-        position: 'fixed',
-        inset: 0,
-        overflow: 'hidden',
+        minHeight: '100dvh',
+        display: 'grid',
+        gridTemplateRows: '1fr auto',
+        padding: 'var(--page-margin)',
+        maxWidth: 'var(--page-max)',
+        margin: '0 auto',
+        width: '100%',
+        boxSizing: 'border-box',
       }}
     >
-      {/* THE — top-left */}
-      <span
+      {/* ── BODY ── */}
+      <div
         style={{
-          fontFamily: '"RX100", sans-serif',
-          fontSize: 'clamp(80px, 22vw, 480px)',
-          fontWeight: 400,
-          lineHeight: 1,
-          letterSpacing: '-0.02em',
-          color: 'var(--text-primary)',
-          position: 'absolute',
-          top: '6vh',
-          left: '6vw',
-          userSelect: 'none',
-        }}
-      >
-        THE
-      </span>
-
-      {/* VARIED + cursor — bottom-left */}
-      <span
-        style={{
-          fontFamily: '"RX100", sans-serif',
-          fontSize: 'clamp(80px, 22vw, 480px)',
-          fontWeight: 400,
-          lineHeight: 1,
-          letterSpacing: '-0.02em',
-          color: 'var(--text-primary)',
-          position: 'absolute',
-          bottom: '6vh',
-          left: '6vw',
-          userSelect: 'none',
           display: 'flex',
-          alignItems: 'center',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          paddingBottom: '5rem',
         }}
       >
-        VARIED
-        <span
-          className="cursor-bar"
-          style={{ height: '0.65em', width: '3px', marginLeft: '0.06em' }}
+        {/* Orange accent line */}
+        <div
+          style={{
+            width: '2.5rem',
+            height: '3px',
+            background: 'var(--accent-orange)',
+            marginBottom: '1.5rem',
+          }}
         />
-      </span>
 
-      {/* Branch links — top-right (hidden for now) */}
+        {/* Wordmark */}
+        <h1
+          style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(3.75rem, 10vw, 7.5rem)',
+            fontWeight: 400,
+            lineHeight: 0.9,
+            letterSpacing: '-0.04em',
+            color: 'var(--text-primary)',
+            marginBottom: '2rem',
+          }}
+        >
+          The Varied
+        </h1>
 
-      {/* Contact — bottom-right */}
-      <a
-        className="varied-link"
-        href="mailto:hello@thevaried.co"
+        {/* Descriptor */}
+        <p
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.8125rem',
+            fontWeight: 300,
+            color: 'var(--text-tertiary)',
+            letterSpacing: '0.01em',
+          }}
+        >
+          Creative agency and production company.
+        </p>
+      </div>
+
+      {/* ── FOOTER ── */}
+      <footer
         style={{
-          position: 'absolute',
-          bottom: '6vh',
-          right: '6vw',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          paddingTop: '2rem',
+          borderTop: '1px solid var(--border)',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.75rem',
+          fontWeight: 300,
+          color: 'var(--text-muted)',
         }}
       >
-        hello@thevaried.co
-      </a>
+        <span>Los Angeles</span>
+        <a
+          href="mailto:hello@thevaried.co"
+          className="contact-link"
+        >
+          hello@thevaried.co
+        </a>
+      </footer>
     </main>
-  )
+  );
 }
