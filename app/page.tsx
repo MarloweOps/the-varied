@@ -49,36 +49,7 @@ export default function Home() {
         />
       </span>
 
-      {/* Branch links — top-right */}
-      <nav
-        style={{
-          position: 'absolute',
-          top: '6vh',
-          right: '6vw',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '12px',
-        }}
-      >
-        <a
-          className="varied-link"
-          href="https://acid.thevaried.co"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Acid Media
-        </a>
-        <a
-          className="varied-link"
-          href="https://useopa.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          OPA
-        </a>
-
-      </nav>
+      {/* Branch links — top-right (hidden for now) */}
 
       {/* Contact — bottom-right */}
       <a
