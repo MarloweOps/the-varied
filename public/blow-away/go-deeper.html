@@ -408,6 +408,111 @@ a { color: inherit; text-decoration: none; }
 </head>
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="gate" style="
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #FAFAF9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+">
+  <div style="
+    width: 2rem;
+    height: 3px;
+    background: #C44D18;
+    margin-bottom: 0.5rem;
+  "></div>
+  <div style="
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    letter-spacing: -0.03em;
+    color: #0C0A09;
+    line-height: 1;
+  ">The Varied</div>
+  <div style="
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #A8A29E;
+  ">Enter password to continue</div>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; width: 100%; max-width: 280px;">
+    <input
+      id="gate-input"
+      type="password"
+      placeholder="password"
+      autocomplete="off"
+      style="
+        width: 100%;
+        background: #EEEEEC;
+        border: 1px solid #D6D3D1;
+        border-radius: 0;
+        padding: 0.75rem 1rem;
+        font-family: 'DM Mono', monospace;
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: #0C0A09;
+        outline: none;
+        text-align: center;
+        letter-spacing: 0.1em;
+      "
+    />
+    <div id="gate-error" style="
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6875rem;
+      color: #C44D18;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.2s;
+    ">Incorrect password</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var PW = 'byk';
+  var KEY = 'tv-blow-away-auth';
+  var gate = document.getElementById('gate');
+  var input = document.getElementById('gate-input');
+  var error = document.getElementById('gate-error');
+
+  if (sessionStorage.getItem(KEY) === '1') {
+    gate.style.display = 'none';
+    return;
+  }
+
+  document.body.style.overflow = 'hidden';
+
+  function attempt() {
+    if (input.value.trim().toLowerCase() === PW) {
+      sessionStorage.setItem(KEY, '1');
+      gate.style.transition = 'opacity 0.3s';
+      gate.style.opacity = '0';
+      setTimeout(function() {
+        gate.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 300);
+    } else {
+      error.style.opacity = '1';
+      input.value = '';
+      setTimeout(function() { error.style.opacity = '0'; }, 2000);
+    }
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') attempt();
+  });
+
+  setTimeout(function() { input.focus(); }, 100);
+})();
+</script>
+
 <!-- NAV -->
 <nav class="nav">
   <a href="/blow-away" class="nav-back">← Treatment</a>
