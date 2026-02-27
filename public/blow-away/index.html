@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blow Away — Director's Treatment</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0D0B09;
+  --cream: #EDE4D4;
+  --muted: #7A7060;
+  --amber: #C8844A;
+  --warm-gray: #2E2820;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Film grain */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── DECK ── */
+#deck {
+  width: 100%; height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute; inset: 0;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.slide.full-bleed {
+  grid-template-columns: 1fr;
+}
+
+/* ── TEXT PANEL ── */
+.text-panel {
+  background: var(--bg);
+  padding: 8vh 6vw 12vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-right: 1px solid var(--warm-gray);
+}
+
+.slide-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 4vh;
+}
+.slide-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--amber);
+  letter-spacing: 0.2em;
+}
+.slide-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.slide-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 52px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.0;
+  color: var(--cream);
+  margin-bottom: 3vh;
+  letter-spacing: -0.01em;
+}
+
+.slide-body {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.05vw, 17px);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 520px;
+}
+.slide-body strong {
+  color: var(--cream);
+  font-weight: 400;
+}
+.slide-body ul {
+  list-style: none;
+  padding: 0;
+}
+.slide-body ul li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--warm-gray);
+  font-size: clamp(13px, 1vw, 16px);
+}
+.slide-body ul li:last-child { border-bottom: none; }
+.slide-body ul li strong {
+  color: var(--amber);
+  font-style: italic;
+}
+
+/* ── IMAGE PANEL ── */
+.image-panel {
+  position: relative;
+  overflow: hidden;
+}
+.image-panel img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.1) contrast(1.02);
+}
+.image-panel::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(13,11,9,0.3) 0%, transparent 40%);
+}
+/* warm film tint overlay */
+.image-panel::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(180, 120, 60, 0.06);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── FULL BLEED VARIANTS ── */
+.slide.full-bleed .image-panel {
+  position: absolute; inset: 0;
+  z-index: 0;
+}
+.slide.full-bleed .text-panel {
+  position: relative; z-index: 2;
+  background: linear-gradient(to right, rgba(13,11,9,0.92) 60%, rgba(13,11,9,0.4) 100%);
+  border-right: none;
+  grid-column: 1;
+  max-width: 55%;
+}
+
+/* ── HEADER BAR ── */
+#header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(13,11,9,0.95) 0%, transparent 100%);
+}
+#header .brand {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+#header .header-right {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── NAVIGATION ── */
+#nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  z-index: 100;
+  background: linear-gradient(to top, rgba(13,11,9,0.9) 0%, transparent 100%);
+}
+
+.nav-btn {
+  background: none; border: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 8px 16px;
+  letter-spacing: 0.15em;
+  transition: color 0.2s;
+  outline: none;
+}
+.nav-btn:hover { color: var(--cream); }
+.nav-btn:disabled { opacity: 0.2; cursor: default; }
+
+#counter {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Progress bar */
+#progress {
+  position: fixed;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: var(--amber);
+  z-index: 101;
+  transition: width 0.4s ease;
+}
+
+/* ── COVER (SLIDE 0) ── */
+#cover {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 10vw;
+  transition: opacity 0.8s ease;
+  cursor: pointer;
+}
+#cover.hidden { opacity: 0; pointer-events: none; }
+#cover h1 {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 9vw, 140px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 0.9;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+  margin-bottom: 4vh;
+}
+#cover .cover-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 8vh;
+}
+#cover .cover-start {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--amber);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ── FINAL SLIDE CREDIT ── */
+.credit {
+  margin-top: 4vh;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--warm-gray);
+  padding-top: 16px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .slide { grid-template-columns: 1fr; }
+  .image-panel { display: none; }
+  .slide.full-bleed .text-panel { max-width: 100%; }
+  .text-panel { padding: 10vh 8vw 14vh; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div id="cover">
+  <h1>Blow<br>Away</h1>
+  <p class="cover-sub">Director's Treatment &nbsp;·&nbsp; Caitlin Byk</p>
+  <p class="cover-start">Click to open ↓</p>
+</div>
+
+<!-- Header -->
+<div id="header">
+  <span class="brand">Blow Away — Caitlin Byk</span>
+  <span class="header-right">Director's Treatment</span>
+</div>
+
+<!-- Deck -->
+<div id="deck">
+
+  <!-- SLIDE 1 — THE FEEL (full bleed) -->
+  <div class="slide full-bleed active" data-index="0">
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">01 / 15</span>
+        <span class="slide-label">The Feel</span>
+      </div>
+      <h2 class="slide-title">The most alive you've ever been inside something that's already disappearing.</h2>
+      <div class="slide-body">
+        <p>Caitlin isn't sad here. She's radiant — running barefoot on hot concrete, laughing, completely wrapped up in a world that revolves around a skater boy who doesn't deserve the framing he gets.</p>
+        <br>
+        <p>The song bounces. The visuals bounce with it. But 35mm film is doing the quiet work underneath — every frame already feels like a memory.</p>
+        <br>
+        <p>We're not telling a tragedy. We're living inside a summer that doesn't know it's the last one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 — CINEMATIC CONSTRAINTS -->
+  <div class="slide" data-index="1">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">02 / 15</span>
+        <span class="slide-label">Cinematic Constraints</span>
+      </div>
+      <h2 class="slide-title">Five words that govern every decision.</h2>
+      <div class="slide-body">
+        <ul>
+          <li><strong>Kinetic</strong> &nbsp;— the camera moves like it's in love</li>
+          <li><strong>Warm</strong> &nbsp;— SoCal golden, not graded, not faked</li>
+          <li><strong>35mm Film</strong> &nbsp;— Kodak Vision3, grain is real</li>
+          <li><strong>Intimate</strong> &nbsp;— long lens, close, always finding her</li>
+          <li><strong>Heightened reality</strong> &nbsp;— Venice at its most Venice</li>
+        </ul>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 3 — THE WORLD -->
+  <div class="slide" data-index="2">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">03 / 15</span>
+        <span class="slide-label">The World</span>
+      </div>
+      <h2 class="slide-title">Venice, unfiltered.</h2>
+      <div class="slide-body">
+        <p>Not the real estate version — the version where the sidewalk is cracked and a shirtless guy with a boa constrictor walks past a twelve-year-old doing kickflips and nobody blinks.</p>
+        <br>
+        <p>Saturated but honest color — the way Kodak 500T renders SoCal when you don't correct it. Teal shadows, amber skin, blown-out whites on concrete. Walls are tagged. Palm trees are dead at the tips. Everything is beautiful because it's real.</p>
+        <br>
+        <p>We move from the crowded boardwalk to abandoned valley houses to an empty pool at night. Each space breathes differently.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1536697246787-1f7ae568d89a?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 4 — THE STORY WITHOUT A STORY -->
+  <div class="slide" data-index="3">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">04 / 15</span>
+        <span class="slide-label">The Story (Without a Story)</span>
+      </div>
+      <h2 class="slide-title">Stay in the eternal present of being nineteen.</h2>
+      <div class="slide-body">
+        <p>The lyrics track a relationship from 17 to 41 — decades of slow decay. We're not doing that. The track is reggae-pop that makes you want to move. If we show pill bottles and black eyes, we're fighting the song's energy.</p>
+        <br>
+        <p>Instead: Caitlin and the Bowl Chaser — skateparks, boardwalk chaos, breaking into abandoned valley houses to skate empty pools.</p>
+        <br>
+        <p>The darkness only lives in the subtext. Flowers that scatter and never get picked up. Smoke drifting out of frame. A cheap ring nobody mentions. The audience feels the doom without being told about it.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 5 — CAITLIN'S ROLE -->
+  <div class="slide" data-index="4">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">05 / 15</span>
+        <span class="slide-label">Caitlin's Role</span>
+      </div>
+      <h2 class="slide-title">The centerpiece of every frame. Not driving.</h2>
+      <div class="slide-body">
+        <p>She sits on the lip of the bowl watching him skate. She gets pulled down the boardwalk on a skateboard. She follows him through a fence into someone else's backyard.</p>
+        <br>
+        <p>She's choosing to be a passenger — and she's happy about it, which is what makes it ache. Think Priscilla vibes.</p>
+        <br>
+        <p>The camera sees what she can't: she's the remarkable thing here. He gets the hero angles because that's how she sees him. We frame her with more honesty, more light. The gap between how she sees herself and how the camera sees her — that's where the weight lives.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 6 — THE BOWL CHASER -->
+  <div class="slide" data-index="5">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">06 / 15</span>
+        <span class="slide-label">The Bowl Chaser</span>
+      </div>
+      <h2 class="slide-title">The kind of face you'd follow into an empty pool at 2am.</h2>
+      <div class="slide-body">
+        <p>He's beautiful with a definite edge. He skates, he's impulsive, he shows up with an absurdly huge bouquet of flowers because he saw it in a movie.</p>
+        <br>
+        <p>We shoot him the way she experiences him — wide, low, heroic. He gets the god-angles in the bowl.</p>
+        <br>
+        <p>But the camera doesn't love him the way it loves her. It <em>admires</em> him. It <em>recognizes</em> her. That distinction is everything.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 7 — CAMERA & FILM -->
+  <div class="slide" data-index="6">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">07 / 15</span>
+        <span class="slide-label">Camera & Film</span>
+      </div>
+      <h2 class="slide-title">35mm. No discussion.</h2>
+      <div class="slide-body">
+        <p>Kodak Vision3 — 250D for daylight, 500T for night. The grain isn't an effect, it's the texture of memory forming in real time. Film doesn't record — it <em>absorbs.</em></p>
+        <br>
+        <p>Anamorphic 2.39:1 widescreen because Venice is horizontal and pools are wide curved voids. The anamorphic breathing, the oval bokeh, the natural flares when Caitlin stands backlit at golden hour — that's not a look, that's physics.</p>
+        <br>
+        <p>24fps base with selective 48fps overcranking for the flowers scattering, a kickflip at its apex, her hair whipping on the boardwalk. Slow motion as punctuation, not a crutch.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 8 — CAMERA MOVEMENT -->
+  <div class="slide" data-index="7">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">08 / 15</span>
+        <span class="slide-label">Camera Movement</span>
+      </div>
+      <h2 class="slide-title">In love the way you're in love at nineteen — all motion and impulse.</h2>
+      <div class="slide-body">
+        <p><strong>Boardwalk:</strong> bobs and grooves with the reggae-pop bounce, follows Caitlin but gets distracted by Venice weirdness, whips back to find her laughing.</p>
+        <br>
+        <p><strong>Skate park:</strong> drops low, swings wide through the Bowl Chaser's carves, then stills to a gentle breathing hold when it finds Caitlin watching.</p>
+        <br>
+        <p><strong>Abandoned house:</strong> conspiratorial — following them through a gap in a fence, discovering the drained pool like a secret.</p>
+        <br>
+        <p><strong>Night:</strong> floats. Slow orbits around Caitlin as projector light washes the concrete walls.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1504383633899-1b32e97b6c14?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 9 — THE BOUQUET -->
+  <div class="slide" data-index="8">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">09 / 15</span>
+        <span class="slide-label">The Bouquet</span>
+      </div>
+      <h2 class="slide-title">The most important prop in the video.</h2>
+      <div class="slide-body">
+        <p>He gives her this massive bouquet — it fills the anamorphic frame with color. It's <strong>character</strong> (impulsive skater romance). It's the <strong>turn</strong> (when the flowers spill and scatter in slow motion across hot pavement, petals ghosting through Venice like confetti at a parade nobody called). And it <strong>echoes the title</strong> without saying it.</p>
+        <br>
+        <p>The flowers blow away. We never underline it. The image does the work.</p>
+        <br>
+        <p>When the track says "till they blow away," the audience already knows what that looks like — something gorgeous falling apart in the golden light.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1490750967868-88df5691cc5e?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 10 — THE PLEXIGLASS SHOT -->
+  <div class="slide" data-index="9">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">10 / 15</span>
+        <span class="slide-label">The Plexiglass Shot</span>
+      </div>
+      <h2 class="slide-title">We're beneath her, looking up. Hair falling. Sky behind her.</h2>
+      <div class="slide-body">
+        <p>Caitlin slides down the curve of the bowl and lands directly over the lens. It's a physical arrival, not a static setup.</p>
+        <br>
+        <p>We return to it three times:</p>
+        <br>
+        <p><strong>Midday</strong> — half-smile, teasing, direct eye contact.<br>
+        <strong>Golden hour</strong> — eyes closed, singing, anamorphic flare streaking the glass.<br>
+        <strong>Night</strong> — projector light throwing cyan and magenta across her face, expression unreadable.</p>
+        <br>
+        <p>Same composition, different light. It's the subtlest time device in a video that otherwise lives in an eternal present. The only moment she performs directly to camera — which makes it powerful because it's rare.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 11 — VISUAL MOTIFS -->
+  <div class="slide" data-index="10">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">11 / 15</span>
+        <span class="slide-label">Visual Motifs</span>
+      </div>
+      <h2 class="slide-title">The details that do the thematic work.</h2>
+      <div class="slide-body">
+        <ul>
+          <li><strong>Smoke</strong> &nbsp;— never the subject, always in the periphery. An exhale that becomes indistinguishable from sun flare. Always leaving.</li>
+          <li><strong>The Pull</strong> &nbsp;— Caitlin towed slowly down the boardwalk. Laughing. Literally a passenger.</li>
+          <li><strong>CZ Ring</strong> &nbsp;— his hand on hers, a flash of light off cubic zirconia, then gone.</li>
+          <li><strong>Empty vs. Full</strong> &nbsp;— the overflowing boardwalk against the drained pools. Life spilling over, then concrete voids where nothing stays.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 12 — NIGHT POOL -->
+  <div class="slide" data-index="11">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">12 / 15</span>
+        <span class="slide-label">Night Pool & Projector</span>
+      </div>
+      <h2 class="slide-title">Its own sealed world.</h2>
+      <div class="slide-body">
+        <p>Projector light washes the curved concrete walls with color — cyan, magenta, warm amber. The frenetic energy of the day sequences gives way to something suspended.</p>
+        <br>
+        <p>The song's bounce is still there but the visual rhythm expands, like a lung taking a deep breath.</p>
+        <br>
+        <p>Caitlin in the pool with projected light moving across her. The Bowl Chaser skating the walls in colored shadows. This is the closest we get to sensing that all of this will blow away.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 13 — FINAL IMAGE (full bleed) -->
+  <div class="slide full-bleed" data-index="12">
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">13 / 15</span>
+        <span class="slide-label">Final Image</span>
+      </div>
+      <h2 class="slide-title">We don't see her blow away. We feel the wind starting.</h2>
+      <div class="slide-body">
+        <p>Night. The empty pool. Projector light has gone soft, colors bleeding across concrete like a watercolor left in the rain.</p>
+        <br>
+        <p>Caitlin is sitting on the curved floor, alone. Knees up, arms wrapped around them, looking at something we can't see. The Bowl Chaser's board is on its side nearby — wheels still spinning, barely.</p>
+        <br>
+        <p>The camera is above her and begins to rise. The pool widens. She gets smaller. She doesn't look up. The wheels stop spinning. The grain swallows the image before it cuts to black.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 14 — WHY THIS APPROACH -->
+  <div class="slide" data-index="13">
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">14 / 15</span>
+        <span class="slide-label">Why This Approach</span>
+      </div>
+      <h2 class="slide-title">Match the energy. Let the words haunt the margins.</h2>
+      <div class="slide-body">
+        <p>The song is upbeat and fun. The lyrics are dark and slow-burning. Most directors would pick a side — match the energy or match the words. We're doing something harder: we match the energy and let the words haunt the margins.</p>
+        <br>
+        <p>Everything on screen is golden, kinetic, alive. The doom is subtext only. That's what makes it cinematic instead of just illustrative.</p>
+        <br>
+        <p>35mm film isn't nostalgia — it's functional. The grain, the highlight roll-off, the way it handles SoCal backlight. It makes Venice feel like a place you once knew, not a location you scouted. The medium is doing thematic work the whole time.</p>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+  </div>
+
+  <!-- SLIDE 15 — TONE (full bleed) -->
+  <div class="slide full-bleed" data-index="14">
+    <div class="image-panel">
+      <img src="https://images.unsplash.com/photo-1531927557220-a02523c1fd31?auto=format&fit=crop&w=1800&q=85" alt="">
+    </div>
+    <div class="text-panel">
+      <div class="slide-meta">
+        <span class="slide-num">15 / 15</span>
+        <span class="slide-label">Tone</span>
+      </div>
+      <h2 class="slide-title">Fun. Not sullen. Raw. Not try-hard.</h2>
+      <div class="slide-body">
+        <p>True to SoCal and true to Caitlin — a nineteen-year-old who's more interesting than the world she's chosen to orbit, shot on film that already knows what she doesn't yet.</p>
+        <br>
+        <p>The video makes you want to move. And somewhere underneath all that movement, you feel the stillness coming.</p>
+      </div>
+      <p class="credit">Treatment by Brendan Lynch &nbsp;·&nbsp; The Varied</p>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<div id="nav">
+  <button class="nav-btn" id="prev">← prev</button>
+  <span id="counter">01 / 15</span>
+  <button class="nav-btn" id="next">next →</button>
+</div>
+<div id="progress"></div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+
+const counter = document.getElementById('counter');
+const progress = document.getElementById('progress');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const cover = document.getElementById('cover');
+
+function pad(n) { return String(n).padStart(2,'0'); }
+
+function goTo(n) {
+  slides[current].classList.remove('active');
+  current = Math.max(0, Math.min(total - 1, n));
+  slides[current].classList.add('active');
+  counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
+  progress.style.width = `${((current + 1) / total) * 100}%`;
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === total - 1;
+}
+
+prevBtn.addEventListener('click', () => goTo(current - 1));
+nextBtn.addEventListener('click', () => goTo(current + 1));
+
+document.addEventListener('keydown', e => {
+  if (cover.style.display !== 'none' && !cover.classList.contains('hidden')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+});
+
+// Click anywhere on slide to advance
+document.getElementById('deck').addEventListener('click', (e) => {
+  if (e.target.closest('#nav')) return;
+  goTo(current + 1);
+});
+
+// Cover
+cover.addEventListener('click', () => {
+  cover.classList.add('hidden');
+  setTimeout(() => cover.style.display = 'none', 800);
+});
+
+// Init
+goTo(0);
+progress.style.width = `${(1 / total) * 100}%`;
+prevBtn.disabled = true;
+</script>
+</body>
+</html>
