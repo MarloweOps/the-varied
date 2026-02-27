@@ -3,27 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blow Away — Go Deeper</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300;1,400&family=Barlow+Condensed:wght@300;400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<title>Blow Away — Storyline & Shot List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo+Black&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:             #09090B;
+  --bg-subtle:      #18181B;
+  --border:         #27272A;
+  --border-subtle:  #1C1C1F;
+  --text-primary:   #EDEDEF;
+  --text-secondary: #A1A1AA;
+  --text-tertiary:  #71717A;
+  --text-muted:     #52525B;
+  --orange:         #D4551E;
+  --orange-muted:   #8C3A15;
+  --font-serif:     'Instrument Serif', Georgia, serif;
+  --font-impact:    'Archivo Black', 'Arial Black', sans-serif;
+  --font-mono:      'DM Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
   font-size: 16px;
-  -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: #080808;
-  color: #f0ebe0;
-  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
   font-weight: 300;
   font-size: 0.9375rem;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/* ── NAV ─────────────────────────────────────── */
+::selection { background: var(--orange); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -31,302 +53,262 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 40px;
-  background: rgba(8,8,8,0.92);
+  padding: 1.25rem 2.5rem;
+  background: rgba(9,9,11,0.92);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(240,235,224,0.06);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .nav-back {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   font-weight: 400;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.4);
-  text-decoration: none;
+  color: var(--text-muted);
   transition: color 0.2s;
 }
-.nav-back:hover { color: #f0ebe0; }
-.nav-back::before { content: '← '; }
+.nav-back:hover { color: var(--text-primary); }
 
-.nav-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   font-weight: 400;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.25);
+  color: var(--text-muted);
 }
 
-/* ── LAYOUT ──────────────────────────────────── */
-.container {
-  max-width: 860px;
+/* ── LAYOUT ── */
+.page {
+  max-width: 760px;
   margin: 0 auto;
-  padding: 120px 40px 100px;
+  padding: 100px 2.5rem 8rem;
 }
 
 @media (max-width: 600px) {
-  .nav { padding: 20px 24px; }
-  .container { padding: 100px 24px 80px; }
+  .nav { padding: 1.25rem 1.5rem; }
+  .page { padding: 90px 1.5rem 6rem; }
 }
 
-/* ── PAGE HEADER ─────────────────────────────── */
-.page-header {
-  padding-bottom: 60px;
-  border-bottom: 1px solid rgba(240,235,224,0.1);
-  margin-bottom: 80px;
+/* ── HEADER ── */
+.header {
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4rem;
 }
 
-.page-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+.header-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.3);
-  margin-bottom: 20px;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
 }
 
-.page-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 200;
-  font-size: clamp(52px, 7vw, 88px);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: #f0ebe0;
-  margin-bottom: 28px;
+.header-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
 }
 
-.page-meta {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
+.header-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
   font-weight: 300;
-  color: rgba(240,235,224,0.35);
+  color: var(--text-muted);
   line-height: 2;
-  letter-spacing: 0.02em;
 }
 
-/* ── SECTION ─────────────────────────────────── */
+/* ── SECTION ── */
 .section {
-  margin-bottom: 100px;
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
 }
+.section:last-of-type { border-bottom: none; }
 
 .section-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.3);
-  margin-bottom: 36px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(240,235,224,0.08);
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
 }
 
 .section-heading {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(32px, 4vw, 48px);
-  line-height: 1.0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  color: #f0ebe0;
-  margin-bottom: 32px;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
 }
 
-/* ── CHARACTER DIRECTION ─────────────────────── */
-.char-refs {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 18px;
-  color: rgba(240,235,224,0.55);
-  margin-bottom: 36px;
-  letter-spacing: -0.01em;
-}
-
-.char-body {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
+.body-text {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
   font-weight: 300;
   line-height: 1.85;
-  color: rgba(240,235,224,0.75);
-  max-width: 72ch;
-  margin-bottom: 28px;
+  color: var(--text-secondary);
+  max-width: 64ch;
 }
+.body-text p { margin-bottom: 1rem; }
+.body-text p:last-child { margin-bottom: 0; }
+.body-text strong { color: var(--text-primary); font-weight: 400; }
 
-.char-body strong {
-  color: #f0ebe0;
-  font-weight: 400;
-}
-
-.char-split {
+/* ── IS / IS NOT ── */
+.char-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin: 40px 0;
+  gap: 2.5rem;
+  margin-top: 2rem;
 }
+@media (max-width: 580px) { .char-grid { grid-template-columns: 1fr; } }
 
-@media (max-width: 640px) {
-  .char-split { grid-template-columns: 1fr; }
-}
-
-.char-col-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
+.char-col-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.35);
-  margin-bottom: 16px;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
 }
 
 .char-list {
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
-
 .char-list li {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
   font-weight: 300;
-  color: rgba(240,235,224,0.65);
+  color: var(--text-secondary);
   line-height: 1.7;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(240,235,224,0.06);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border-subtle);
 }
-
-.char-list li::before {
-  content: '— ';
-  color: rgba(240,235,224,0.25);
-}
-
-.char-list--is li { color: rgba(240,235,224,0.75); }
+.char-list li:last-child { border-bottom: none; }
+.char-list li::before { content: '— '; color: var(--text-muted); }
+.char-list--is li { color: var(--text-primary); }
 
 .char-note {
-  margin-top: 36px;
-  padding: 24px;
-  border: 1px solid rgba(240,235,224,0.08);
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
   font-weight: 300;
-  color: rgba(240,235,224,0.5);
+  color: var(--text-secondary);
   line-height: 1.8;
+  max-width: 64ch;
 }
+.char-note strong { color: var(--text-primary); font-weight: 400; }
 
-.char-note strong {
-  color: rgba(240,235,224,0.8);
-  font-weight: 400;
-}
-
-/* ── BEAT / STORYLINE ────────────────────────── */
+/* ── BEATS ── */
 .beat {
-  padding: 40px 0;
-  border-bottom: 1px solid rgba(240,235,224,0.06);
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border-subtle);
 }
-
 .beat:last-child { border-bottom: none; }
 
 .beat-header {
   display: flex;
   align-items: baseline;
-  gap: 20px;
-  margin-bottom: 16px;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
   flex-wrap: wrap;
 }
 
 .beat-time {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 400;
-  color: rgba(240,235,224,0.3);
-  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
 .beat-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: clamp(20px, 2.5vw, 26px);
+  font-family: var(--font-impact);
+  font-size: 0.8125rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: #f0ebe0;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
   line-height: 1;
 }
 
 .beat-format {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.15em;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.25);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
   margin-left: auto;
 }
 
 .beat-lyrics {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 300;
-  font-size: 15px;
-  color: rgba(240,235,224,0.4);
-  line-height: 1.6;
-  margin-bottom: 20px;
-  padding-left: 16px;
-  border-left: 1px solid rgba(240,235,224,0.12);
+  font-size: 0.9375rem;
+  color: var(--text-tertiary);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
 }
 
 .beat-body {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
   font-weight: 300;
+  color: var(--text-secondary);
   line-height: 1.85;
-  color: rgba(240,235,224,0.7);
-  max-width: 72ch;
+  max-width: 64ch;
 }
-
-.beat-body p { margin-bottom: 16px; }
+.beat-body p { margin-bottom: 0.75rem; }
 .beat-body p:last-child { margin-bottom: 0; }
+.beat-body strong { color: var(--text-primary); font-weight: 400; }
 
-.beat-body strong {
-  color: #f0ebe0;
-  font-weight: 400;
-}
+/* ── SHOT TABLE ── */
+.location-block { margin-bottom: 3rem; }
 
-.beat-callout {
-  display: inline-block;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+.location-name {
+  font-family: var(--font-impact);
+  font-size: 0.875rem;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.5);
-  border: 1px solid rgba(240,235,224,0.12);
-  padding: 4px 10px;
-  margin: 8px 0;
-}
-
-/* ── SHOT LIST ───────────────────────────────── */
-.location-block {
-  margin-bottom: 60px;
-}
-
-.location-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #f0ebe0;
-  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
 }
 
 .location-format {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 300;
-  color: rgba(240,235,224,0.3);
-  letter-spacing: 0.05em;
-  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
 }
 
 .shot-table {
@@ -334,152 +316,119 @@ body {
   border-collapse: collapse;
 }
 
-.shot-table thead tr {
-  border-bottom: 1px solid rgba(240,235,224,0.15);
-}
-
 .shot-table th {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
   font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.3);
+  color: var(--text-muted);
   text-align: left;
-  padding: 8px 12px 8px 0;
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .shot-table td {
-  font-family: 'DM Mono', monospace;
-  font-size: 11.5px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
   font-weight: 300;
-  color: rgba(240,235,224,0.65);
-  padding: 12px 12px 12px 0;
-  border-bottom: 1px solid rgba(240,235,224,0.05);
+  color: var(--text-secondary);
+  padding: 0.875rem 0.75rem 0.875rem 0;
+  border-bottom: 1px solid var(--border-subtle);
   vertical-align: top;
   line-height: 1.6;
 }
 
 .shot-table td:first-child {
-  color: rgba(240,235,224,0.25);
-  width: 2.5rem;
-  font-size: 10px;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  width: 2rem;
 }
 
 .shot-table td strong {
-  color: rgba(240,235,224,0.85);
+  color: var(--text-primary);
   font-weight: 400;
   display: block;
-  margin-bottom: 2px;
 }
 
 .shot-table td em {
   font-style: normal;
-  color: rgba(240,235,224,0.4);
-  font-size: 11px;
+  color: var(--text-tertiary);
+  font-size: 0.75rem;
 }
 
-.shot-table th:nth-child(4),
-.shot-table td:nth-child(4) {
-  display: none;
+/* hide notes col on mobile */
+.shot-table .col-notes { display: table-cell; }
+@media (max-width: 680px) {
+  .shot-table .col-notes { display: none; }
+  .shot-table .col-lens { display: none; }
 }
 
-@media (max-width: 768px) {
-  .shot-table th:nth-child(3),
-  .shot-table td:nth-child(3) { display: none; }
-}
-
-/* ── SUMMARY ─────────────────────────────────── */
+/* ── ARC SUMMARY ── */
 .arc-summary {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 300;
-  font-size: clamp(18px, 2vw, 22px);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
   line-height: 1.65;
-  color: rgba(240,235,224,0.75);
-  max-width: 64ch;
-  padding: 40px 0;
-  border-top: 1px solid rgba(240,235,224,0.08);
-  border-bottom: 1px solid rgba(240,235,224,0.08);
+  color: var(--text-secondary);
+  max-width: 58ch;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-/* ── COLOPHON ────────────────────────────────── */
-.colophon {
-  margin-top: 80px;
-  padding-top: 40px;
-  border-top: 1px solid rgba(240,235,224,0.1);
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 300;
-  color: rgba(240,235,224,0.25);
-  line-height: 2;
-}
-
-/* ── ANCHOR NAV ──────────────────────────────── */
-.anchor-nav {
-  position: fixed;
-  right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
+/* ── FOOTER ── */
+.footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 50;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-muted);
 }
-
-.anchor-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(240,235,224,0.2);
-  display: block;
-  transition: background 0.2s;
-}
-
-.anchor-dot:hover { background: rgba(240,235,224,0.6); }
-
-@media (max-width: 1100px) {
-  .anchor-nav { display: none; }
-}
+.footer a { color: var(--text-muted); transition: color 0.2s; }
+.footer a:hover { color: var(--text-primary); }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="treatment-visual.html" class="nav-back">Treatment</a>
-  <span class="nav-title">Blow Away — Go Deeper</span>
+  <a href="/blow-away" class="nav-back">← Treatment</a>
+  <span class="nav-label">Storyline &amp; Shot List</span>
 </nav>
 
-<div class="container">
+<div class="page">
 
-  <!-- PAGE HEADER -->
-  <header class="page-header">
-    <p class="page-eyebrow">Director's Extended Notes</p>
-    <h1 class="page-title">Go Deeper.</h1>
-    <div class="page-meta">
-      Blow Away · Caitlin Byk · Dir. Brendan Lynch<br>
-      Runtime: 2:40 · Format: 35mm → Alexa Mini LF · Anamorphic 2.39:1<br>
-      Locations: Venice Skate Park · Venice Boardwalk · Abandoned Valley House · Car
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-eyebrow">Blow Away — Extended Notes</div>
+    <h1 class="header-title">Storyline &amp; Shot List</h1>
+    <div class="header-meta">
+      Caitlin Byk · Dir. Brendan Lynch<br>
+      Runtime: 2:40 · 35mm → Alexa Mini LF · Anamorphic 2.39:1<br>
+      Venice Skate Park · Venice Boardwalk · Abandoned Valley House · Car
     </div>
   </header>
 
   <!-- CHARACTER DIRECTION -->
-  <section class="section" id="character">
-    <div class="section-label">Character Direction</div>
-    <h2 class="section-heading">Caitlin.</h2>
+  <div class="section">
+    <div class="section-label">Character Direction — Caitlin</div>
+    <h2 class="section-heading">Back to Black-era Amy meets Priscilla.</h2>
 
-    <p class="char-refs">Back to Black-era Amy Winehouse meets Priscilla (Sofia Coppola version)</p>
+    <div class="body-text">
+      <p>Caitlin is herself with the volume turned up slightly. Not a character — just a sharper version of who she already is. The girl who'd actually follow a skater boy into an abandoned house at midnight. She's fun, a little messy, the most magnetic person in every frame — and she's giving all that energy to a boy who doesn't fully see it.</p>
+      <p><strong>The Priscilla side:</strong> She starts the video inside someone else's world and she genuinely loves it there. She's the passenger who's more interesting than the driver, but she has no idea. Her gaze shifts across the piece — worship early, observation in the middle, quiet recognition by the end. That shift is never performed or announced. It happens behind her eyes. The camera catches it. She doesn't.</p>
+      <p><strong>The Back to Black side:</strong> Amy wasn't a victim. She was fun and reckless and clearly the most alive person in the room, and she chose to orbit someone who didn't match her. She knew and didn't care — or she cared and stayed anyway, which is worse and more honest. Caitlin carries that same energy. She's not fragile. She claps when he drops into the pool. She gasps at the fake proposal. She pulls his arm when he tries to leave.</p>
+    </div>
 
-    <p class="char-body">Caitlin is herself with the volume turned up slightly. Not a character — just a sharper version of who she already is. The girl who'd actually follow a skater boy into an abandoned house at midnight. The girl who smokes his jay and gets pouty when he wants to leave. She's fun, a little messy, the most magnetic person in every frame — and she's giving all that energy to a boy who doesn't fully see it.</p>
-
-    <p class="char-body"><strong>The Priscilla side:</strong> She starts the video inside someone else's world and she genuinely loves it there. She's the passenger who's more interesting than the driver, but she has no idea. Her gaze shifts across the piece — worship early, observation in the middle, quiet recognition by the end. That shift is never performed or announced. It happens behind her eyes. The camera catches it. She doesn't.</p>
-
-    <p class="char-body"><strong>The Back to Black side:</strong> Amy wasn't a victim. She was fun and reckless and clearly the most alive person in the room, and she chose to orbit someone who didn't match her. She knew and didn't care — or she cared and stayed anyway, which is worse and more honest. Caitlin carries that same energy. There's a slight recklessness to her — not self-destruction, just that nineteen-year-old thing where you're one beer past caring and everything is either the best night of your life or the worst.</p>
-
-    <div class="char-split">
+    <div class="char-grid">
       <div>
-        <div class="char-col-title">She is NOT</div>
+        <div class="char-col-label">She is NOT</div>
         <ul class="char-list">
           <li>A sad girl. Not moping. Not waiting around looking wounded.</li>
           <li>A music video pop star. No posing, no "serving looks," no choreo that feels like a reel.</li>
@@ -487,7 +436,7 @@ body {
         </ul>
       </div>
       <div>
-        <div class="char-col-title">She IS</div>
+        <div class="char-col-label">She IS</div>
         <ul class="char-list char-list--is">
           <li>The most interesting person at the skate park and the last one to know it.</li>
           <li>Genuinely happy in the beginning. Not faking it. The worship is real.</li>
@@ -498,22 +447,19 @@ body {
     </div>
 
     <div class="char-note">
-      <strong>The important thing:</strong> She doesn't become sad. She becomes present. The fun doesn't drain out of her — it stops being attached to someone else. The final pool scene isn't grief. It's the first time she's alone with herself, and she's fine. That's the Priscilla landing. Not heartbreak. <strong>Sovereignty.</strong>
-      <br><br>
-      <strong>Wardrobe:</strong> Normal. High school girl who raided her own closet. Tank top, shorts, maybe a flannel tied at the waist. Sneakers or barefoot. If it looks like a stylist picked it, it's wrong. The Back to Black edge comes from her energy, not her clothes.
+      <strong>The important thing:</strong> She doesn't become sad. She becomes present. The fun doesn't drain out of her — it stops being attached to someone else. The final pool scene isn't grief. It's the first time she's alone with herself, and she's fine. Not heartbreak. <strong>Sovereignty.</strong>
     </div>
 
-    <div class="char-note" style="margin-top: 16px; border-color: rgba(240,235,224,0.12);">
-      <strong>Choreographer note (Syd):</strong> On set for all bowl performance setups. The goal isn't choreography in a pop sense — it's helping Caitlin move with intention and confidence so every performance beat feels mature and natural, not stiff or self-conscious.
+    <div class="char-note" style="margin-top: 1rem;">
+      <strong>Wardrobe:</strong> Normal. Tank top, shorts, maybe a flannel tied at the waist. Sneakers or barefoot. If it looks like a stylist picked it, it's wrong. The Back to Black edge comes from her energy, not her clothes.<br><br>
+      <strong>Choreographer (Syd):</strong> On set for all bowl performance setups. Goal isn't pop choreo — it's intention and confidence. She moves like herself, dialed in.
     </div>
-  </section>
+  </div>
 
   <!-- BEAT BY BEAT -->
-  <section class="section" id="storyline">
+  <div class="section">
     <div class="section-label">Storyline — Beat by Beat</div>
-    <h2 class="section-heading">The arc in motion.</h2>
 
-    <!-- COLD OPEN -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">0:00–0:06</span>
@@ -522,12 +468,10 @@ body {
       </div>
       <div class="beat-body">
         <p>Morning Venice. The world before anyone's awake in it. Empty boardwalk, long shadows, the concrete still cool. A skater rolls through frame in the distance. A palm tree catches early light. The ocean is flat and silver.</p>
-        <p>Quick cuts, all texture: tagged walls, a bicycle chained to nothing, a coffee cup on the edge of a bench, the Venice sign catching sun. The track hasn't kicked in yet. We're breathing.</p>
-        <p>At 0:06, the beat drops and we snap into motion.</p>
+        <p>Quick cuts, all texture: tagged walls, a bicycle chained to nothing, a coffee cup on the edge of a bench, the Venice sign catching sun. The track hasn't kicked in yet. We're breathing. At 0:06, the beat drops and we snap into motion.</p>
       </div>
     </div>
 
-    <!-- THE ARRIVAL -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">0:06–0:20</span>
@@ -535,43 +479,37 @@ body {
         <span class="beat-format">35mm</span>
       </div>
       <div class="beat-body">
-        <p>Venice fully alive. The skate park is buzzing. We're handheld, moving through the crowd, matching the energy of the track's opening bounce.</p>
-        <p><strong>Hero Skater pulls up.</strong> He walks into the park and it rearranges around him. We shoot through the group of friends that greet him — hands slapped, someone tosses him a board, the easy magnetism of a guy who owns this space. The camera finds him through the crowd the way everyone finds him.</p>
-        <p><strong>But it keeps drifting to Caitlin.</strong> She's right there, one step outside the circle, watching the way the boys treat him like a local king. She's glowing. Not performing it — genuinely, honestly proud to be next to this.</p>
-        <p>We hang on Caitlin for a beat. The camera holds on her face — the admiration, the pride, the full-body buy-in. <strong>This is our emotional baseline.</strong> Everything we see from here forward, we measure against this look on her face.</p>
+        <p>Venice fully alive. Hero Skater pulls up to the park and it rearranges around him. We shoot through the group of friends that greet him — hands slapped, someone tosses him a board. The camera finds him through the crowd the way everyone finds him.</p>
+        <p><strong>But it keeps drifting to Caitlin.</strong> She's right there, one step outside the circle, watching the way the boys treat him like a local king. She's glowing. We hang on her face — the admiration, the pride, the full-body buy-in. <strong>This is our emotional baseline.</strong> Everything we see from here forward, we measure against this look.</p>
       </div>
     </div>
 
-    <!-- VERSE 1A -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">0:20–0:30</span>
-        <span class="beat-title">Verse 1A — "17, klepto queen"</span>
+        <span class="beat-title">"17, klepto queen"</span>
         <span class="beat-format">35mm</span>
       </div>
-      <div class="beat-lyrics">17, klepto queen<br>Met him with a bottle and a fake ID</div>
+      <div class="beat-lyrics">17, klepto queen / Met him with a bottle and a fake ID</div>
       <div class="beat-body">
-        <p>Caitlin performing in front of the bowl. Wide angle. Skaters dropping in behind her, carving the bowl as she sings. She's playing to camera — confident, cool, owning the space. The contrast between her and the chaos behind her is the frame. She's still, they're in motion. She's the center of gravity.</p>
-        <p>B-roll intercuts: close-up of a hand grabbing a bottle, a fake ID getting flashed (playful, not serious). Details that nod to the lyrics without being literal.</p>
+        <p>Caitlin performing in front of the bowl. Wide angle, skaters dropping in behind her. She plays to camera — confident, cool, owning the space. She's still, they're in motion. She's the center of gravity.</p>
+        <p>B-roll intercuts: hand grabbing a bottle, a fake ID getting flashed. Details that nod to the lyrics without being literal.</p>
       </div>
     </div>
 
-    <!-- VERSE 1B -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">0:30–0:38</span>
-        <span class="beat-title">Verse 1B — "23, friday night degree"</span>
+        <span class="beat-title">"23, friday night degree"</span>
         <span class="beat-format">35mm</span>
       </div>
-      <div class="beat-lyrics">23, friday night degree<br>He's on one knee with a CZ ring</div>
+      <div class="beat-lyrics">23, friday night degree / He's on one knee with a CZ ring</div>
       <div class="beat-body">
-        <p>Back to narrative. <strong>The fake proposal:</strong> One of Hero Skater's friends drops to one knee in front of Caitlin — mocking Hero Skater. Caitlin plays into it, gasps dramatically. Hero Skater playfully shoves the friend with his board. It's pure friend-group energy. Genuine and chaotic.</p>
-        <p>Cut to: Caitlin and Hero Skater sitting on the edge of the bowl, legs dangling. She leans into him. He watches the session. She's watching him watch the session. The camera catches this — her looking at him while he looks elsewhere. The first quiet hint of the dynamic.</p>
-        <p>Detail shot: Flash of the CZ ring on her finger. Light catches it for a frame. We don't linger.</p>
+        <p>Back to narrative. <strong>The fake proposal:</strong> one of Hero Skater's friends drops to one knee. Caitlin gasps dramatically. Hero Skater shoves the friend with his board, laughing. Pure friend-group chaos.</p>
+        <p>Cut to: Caitlin and Hero Skater sitting on the edge of the bowl, legs dangling. She leans into him. He watches the session. She's watching him watch the session — the camera catches it. The first quiet hint of the dynamic. Detail shot: CZ ring on her finger. Quick. We don't linger.</p>
       </div>
     </div>
 
-    <!-- PRE-CHORUS 1 -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">0:38–0:50</span>
@@ -580,61 +518,52 @@ body {
       </div>
       <div class="beat-lyrics">They'd go all night long / riding the rising sun seeing their life slip away<br>Now they're night-swimming laps in the ashtray / And they're sleeping all day</div>
       <div class="beat-body">
-        <p>Caitlin at the edge of the bowl. Tighter framing. She sings the ashtray line and the camera catches smoke — a cigarette, a jay — curling into the golden-hour light behind her.</p>
-        <p><strong>Big skateboard transition:</strong> A skater drops into the bowl and the camera follows the board down the curve — we ride the momentum of the drop and use it as a wipe/transition into:</p>
-        <p><strong>The Bouquet.</strong> Hero Skater appears with this absurdly massive bouquet of flowers. Way too big. He presents it to Caitlin with full dumb confidence. She takes it, holds it against her chest like a trophy, laughing. It fills the anamorphic frame with color. For a beat, they're the most romantic thing in Venice.</p>
+        <p>Caitlin at the edge of the bowl, tighter. She sings the ashtray line and smoke curls into the golden-hour light behind her.</p>
+        <p><strong>Big skateboard transition:</strong> a skater drops into the bowl, camera follows the board down the curve — we ride the momentum into: <strong>The Bouquet.</strong> Hero Skater appears with this absurdly massive bouquet. Way too big. She holds it against her chest like a trophy, laughing. For a beat, they're the most romantic thing in Venice.</p>
       </div>
     </div>
 
-    <!-- CHORUS 1 -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">0:50–1:15</span>
         <span class="beat-title">Chorus 1 — "She don't wanna go"</span>
         <span class="beat-format">35mm → digital transition</span>
       </div>
-      <div class="beat-lyrics">She don't wanna go / He don't wanna stay<br>Drinking all the time / Hairs are turning gray<br>She just wanna talk / He don't got nothin' to say<br>Smoking all the time / till they blow away</div>
+      <div class="beat-lyrics">She don't wanna go / He don't wanna stay / Drinking all the time / Hairs are turning gray<br>She just wanna talk / He don't got nothin' to say / Smoking all the time / till they blow away</div>
       <div class="beat-body">
-        <p>The chorus opens up. Intercut between three performance setups:</p>
-        <p><span class="beat-callout">Perf A</span> Standing in front of bowl — wide, full body. Skaters behind her.<br>
-        <span class="beat-callout">Perf B</span> Sitting on edge of bowl — intimate, handheld, singing directly to camera.<br>
-        <span class="beat-callout">Perf C — Plexiglass #1</span> First plexiglass hit. Caitlin slides down the curve and lands over the lens. We're beneath her, looking up. Hair falling, midday sky behind her. Half-smile, teasing. She's fully in the spell.</p>
-        <p>"Smoking all the time / till they blow away" — <strong>The Smoke Transition:</strong> Camera tracks the smoke upward, keeps going, spins in the sky — the world rotates — and comes back down to land on:</p>
+        <p>Intercut three performance setups: standing wide at bowl, sitting on edge, and <strong>Plexiglass #1</strong> — Caitlin slides down the curve and lands over the lens. We're beneath her, looking up. Hair falling, midday sky. Half-smile, teasing. She's fully in the spell.</p>
+        <p>"Smoking all the time" — <strong>The Smoke Transition:</strong> camera tracks smoke upward, keeps going, spins in the sky, comes back down to land on...</p>
       </div>
     </div>
 
-    <!-- VERSE 2A -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">1:15–1:25</span>
-        <span class="beat-title">Verse 2A — "34, uni are at the door"</span>
+        <span class="beat-title">"34, uni are at the door"</span>
         <span class="beat-format">Digital — Alexa Mini LF</span>
       </div>
-      <div class="beat-lyrics">34, uni are at the door<br>Black eye blues / Orange bottles on the floor</div>
+      <div class="beat-lyrics">34, uni are at the door / Black eye blues / Orange bottles on the floor</div>
       <div class="beat-body">
-        <p>Caitlin driving. Windows down. Hero Skater in the passenger seat. Valley streets — residential, dry hills, flat SoCal sprawl that looks nothing like Venice. The grain is gone. The image is sharper, cleaner. The audience may not clock it yet, but they feel it.</p>
-        <p>Caitlin sings to the windshield, to the road. He's looking at his phone or out the window. She glances at him. He doesn't look back. <strong>A small, almost invisible beat — but the camera catches it.</strong></p>
-        <p>Detail shots as they drive: overgrown hedges, a sun-bleached FOR SALE sign, a chain-link fence around a dead lawn. The valley in decay.</p>
+        <p>Caitlin driving. Windows down, valley streets. The grain is gone. The image is sharper, cleaner. The audience may not clock it yet, but they feel it.</p>
+        <p>She sings to the windshield. He's on his phone. She glances at him — he doesn't look back. <strong>A small, almost invisible beat. The camera catches what he misses.</strong></p>
+        <p>Detail shots: overgrown hedges, sun-bleached FOR SALE signs, chain-link around a dead lawn. The valley in decay.</p>
       </div>
     </div>
 
-    <!-- VERSE 2B -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">1:25–1:35</span>
-        <span class="beat-title">Verse 2B — "41, never had a son"</span>
+        <span class="beat-title">"41, never had a son"</span>
         <span class="beat-format">Digital</span>
       </div>
-      <div class="beat-lyrics">41, never had a son<br>One last chance / She's too busy having fun</div>
+      <div class="beat-lyrics">41, never had a son / One last chance / She's too busy having fun</div>
       <div class="beat-body">
-        <p>They pull up to the abandoned valley house. Sun-beaten, dead yard, a real estate sign face-down in the weeds.</p>
-        <p><strong>The break-in.</strong> The camera gets sneaky. We follow them through a gap in the fence, around the side. Push through a dark hallway, past peeling wallpaper and dusty light, and discover:</p>
-        <p><strong>The empty swimming pool.</strong> Drained, curved, cracked concrete. A perfect bowl. The camera holds on it for a beat — this void in the middle of someone's abandoned backyard. Beautiful and desolate at the same time.</p>
-        <p>"She's too busy having fun" — Caitlin is already climbing down into the pool, exploring, touching the walls. She's not thinking about what this place means. She's just here.</p>
+        <p>They pull up to the abandoned valley house. Sun-beaten, dead yard, real estate sign face-down in the weeds.</p>
+        <p><strong>The break-in.</strong> Camera gets sneaky. We follow through a gap in the fence, around the side, through a dark hallway — and discover: <strong>the empty swimming pool.</strong> Drained, curved, cracked concrete. A perfect bowl. The camera holds on it. Beautiful and desolate at the same time.</p>
+        <p>Caitlin is already climbing down, exploring, touching the walls. She's not thinking about what this place means. She's just here.</p>
       </div>
     </div>
 
-    <!-- PRE-CHORUS 2 -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">1:35–1:50</span>
@@ -643,30 +572,26 @@ body {
       </div>
       <div class="beat-lyrics">They'd go all night long / Riding the rising sun / Seeing their life slip away<br>Now they're night-swimming laps in the ashtray / And they're sleeping all day</div>
       <div class="beat-body">
-        <p><strong>Hero Skater drops into the empty pool.</strong> He carves the walls. Raw and loud — board on cracked concrete, the sound echoing off the empty house. Wide and low, the god-angle. Same heroic framing as Venice bowl, but now in this abandoned, private space.</p>
-        <p>Caitlin jumps up and down at the edge of the pool, clapping, loving it. This is their adventure. Their secret. For a moment the energy is back to full — fun, reckless, alive.</p>
-        <p>They sit together at the edge of the pool. The sun is going down — golden hour in the valley. She leans into him. He keeps watching the pool like he wants to go back in.</p>
-        <p><span class="beat-callout">Plexiglass #2</span> — Golden hour. She's standing over the lens, eyes closed, singing softly. Anamorphic flare streaks the glass. Warmer than the first, but something is different. She's starting to drift.</p>
+        <p><strong>Hero Skater drops into the empty pool.</strong> Raw and loud — board on cracked concrete. Wide and low, the god-angle. Same heroic framing as Venice, but now in this abandoned, private space.</p>
+        <p>Caitlin at the edge clapping, loving it. This is their adventure. For a moment the energy is back to full.</p>
+        <p>They sit together. Sun going down. She leans into him. He keeps watching the pool like he wants to go back in. <strong>Plexiglass #2</strong> — golden hour. Eyes closed. Anamorphic flare streaks the glass. She's starting to drift.</p>
       </div>
     </div>
 
-    <!-- CHORUS 2 -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">1:50–2:10</span>
         <span class="beat-title">Chorus 2 — The Turn</span>
         <span class="beat-format">Digital</span>
       </div>
-      <div class="beat-lyrics">She don't wanna go / He don't wanna stay<br>Drinking all the time / Hairs are turning gray<br>She just wanna talk / He don't got nothin' to say<br>Smoking all the time / till they blow away</div>
+      <div class="beat-lyrics">She don't wanna go / He don't wanna stay / Drinking all the time / Hairs are turning gray<br>She just wanna talk / He don't got nothin' to say / Smoking all the time / till they blow away</div>
       <div class="beat-body">
-        <p>"She don't wanna go / He don't wanna stay" — literal. He wants to leave. She pulls his arm, tries to make him stay. Playful at first — pouty, mock-tantrumy. But there's an edge to it. She's clinging and he's already halfway gone.</p>
-        <p><strong>He leaves her.</strong> Not dramatically. He just... goes. Grabs his board, heads back through the house. She watches him walk away. The camera holds on her face — and it's the first time in the video her expression isn't fun.</p>
-        <p>She's alone at the house. Sun fading. Standing at the edge of the empty pool, looking down into it.</p>
-        <p><strong>Bouquet payoff:</strong> The bouquet finally spills. Petals scatter across the dry pool deck. Wind catches them. Slow motion. They drift across the empty pool. They blow away. We never see them picked up.</p>
+        <p>He wants to leave. She pulls his arm — playful at first, then real. <strong>He goes anyway.</strong> She watches him walk through the house. First time her expression isn't fun.</p>
+        <p>She's alone at the house. Sun fading. Standing at the edge of the empty pool, looking down.</p>
+        <p><strong>Bouquet payoff:</strong> the flowers finally spill. Petals scatter across the dry pool deck. Wind catches them. Slow motion. They drift across the empty pool. They blow away. We never see them picked up.</p>
       </div>
     </div>
 
-    <!-- CHORUS 3 / OUTRO -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">2:10–2:35</span>
@@ -675,13 +600,12 @@ body {
       </div>
       <div class="beat-lyrics">Blowin' away / Blowin' away / Blowin' away</div>
       <div class="beat-body">
-        <p>Night. The projector is on — casting color across the curved concrete walls. Cyan, magenta, warm amber. Caitlin finishes the song alone in the empty pool. Still vibing. The track still bounces. But the energy is solo now. The difference between dancing at a party and dancing alone in your room. Both are real. One just knows something the other doesn't.</p>
-        <p><span class="beat-callout">Plexiglass #3</span> — Night. Projector light throwing color across her face from below. She looks down into the lens and her expression has changed. Not sad. Not angry. <strong>Clear.</strong> This is the Priscilla moment. She's not in anyone else's world anymore.</p>
-        <p><strong>"Blowin' away" — The 35mm flash.</strong> One last burst. The grain floods back. Sun-drenched Venice. The skate park. Hero Skater pulling up, friends greeting him. Caitlin glowing by his side. The whole golden circus at full volume. It's warm and beautiful and unmistakably the world we started in — but we've been in the clean digital long enough that the film stock now feels like it's from another time. It's not the present. It's the echo. It's the goodbye. The warmth comes flooding back and then it's gone.</p>
+        <p>Night. Projector on — casting color across the curved concrete walls. Cyan, magenta, warm amber. Caitlin finishes the song alone in the pool. Still vibing. But solo now. The difference between dancing at a party and dancing in your room. Both are real. One just knows something the other doesn't.</p>
+        <p><strong>Plexiglass #3</strong> — night. Projector light from below. She looks down into the lens and her expression has changed. Not sad. Not angry. <strong>Clear.</strong> This is the Priscilla moment.</p>
+        <p><strong>"Blowin' away" — the 35mm flash.</strong> One last burst. Grain floods back. Sun-drenched Venice. Hero Skater pulling up, Caitlin glowing by his side. The whole golden circus at full volume. Warm and beautiful and unmistakably the world we started in — but it now feels like it's from another time. The echo. The goodbye. Then it's gone.</p>
       </div>
     </div>
 
-    <!-- FINAL IMAGE -->
     <div class="beat">
       <div class="beat-header">
         <span class="beat-time">2:35–2:40</span>
@@ -689,133 +613,125 @@ body {
         <span class="beat-format">Digital</span>
       </div>
       <div class="beat-body">
-        <p>The empty pool. Night. Digital.</p>
-        <p>Caitlin is sitting on the curved floor of the pool, alone. Knees up, arms wrapped around them. Not watching anyone. Not performing. Just sitting.</p>
-        <p>Hero Skater's board is on its side nearby. Wheels still spinning. Barely.</p>
-        <p>The camera is above her, looking straight down. It begins to rise. The pool widens. She gets smaller. The projector light makes the concrete look like the surface of another planet.</p>
-        <p>She doesn't look up. The wheels stop spinning. The clean digital image holds for one breath too long.</p>
+        <p>The empty pool. Night. Caitlin sitting alone. Knees up, arms wrapped around them. Not watching anyone. Not performing.</p>
+        <p>His board on its side nearby. Wheels spinning. Barely. The camera is above her, looking straight down. It begins to rise. The pool widens. She gets smaller. She doesn't look up. The wheels stop. The clean digital image holds for one breath too long.</p>
         <p><strong>Cut to black.</strong></p>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- ARC SUMMARY -->
-  <div class="arc-summary">
-    Caitlin arrives at Venice in the glow of her skater boyfriend's world. She watches him get greeted like a king and loves every second of it. She performs at the bowl, hangs with the crew, plays into their chaos. She's a passenger on his ride and she's thriving. They leave Venice — she drives them to an abandoned valley house where he skates the empty pool. She claps, she cheers, she's still all in. But when the sun goes down and he wants to leave, she clings — and he goes anyway. She's alone in the empty pool as night falls. She finishes the song there, bathed in projector light, still vibing but solo now. One last flash of the golden Venice days hits like a wave — warm, grainy, beautiful, and unmistakably over. Then we're back in the pool. Digital. Clear. She's sitting alone. The board stops spinning. She doesn't look up. Cut to black.
+  <div class="section">
+    <div class="section-label">The Arc — One Paragraph</div>
+    <p class="arc-summary">Caitlin arrives at Venice in the glow of her skater boyfriend's world. She watches him get greeted like a king and loves every second of it. She performs at the bowl, hangs with the crew, plays into their chaos. She's a passenger on his ride and she's thriving. They leave Venice — she drives them to an abandoned valley house where he skates the empty pool. She claps, she cheers, she's still all in. But when the sun goes down and he wants to leave, she clings — and he goes anyway. She's alone in the empty pool as night falls. She finishes the song there, bathed in projector light, still vibing but solo now. One last flash of the golden Venice days hits like a wave — warm, grainy, beautiful, and unmistakably over. Then we're back in the pool. Digital. Clear. She's sitting alone. The board stops spinning. She doesn't look up. Cut to black.</p>
   </div>
 
   <!-- SHOT LIST -->
-  <section class="section" id="shots" style="margin-top: 80px;">
-    <div class="section-label">Shot List</div>
-    <h2 class="section-heading">43 shots across 3 locations.</h2>
+  <div class="section">
+    <div class="section-label">Shot List — 43 Shots</div>
 
-    <!-- Location 1 -->
     <div class="location-block">
-      <div class="location-title">Location 1 — Venice Skate Park &amp; Boardwalk</div>
+      <div class="location-name">Location 1 — Venice Skate Park &amp; Boardwalk</div>
       <div class="location-format">Format: 35mm · Kodak Vision3 250D</div>
       <table class="shot-table">
         <thead>
           <tr>
             <th>#</th>
             <th>Shot</th>
-            <th>Lens / Movement</th>
-            <th>Notes</th>
+            <th class="col-lens">Lens / Movement</th>
+            <th class="col-notes">Notes</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>01</td><td><strong>EST — Morning Venice</strong><em>Empty boardwalk, long shadows, palm trees, tagged walls. Texture shots.</em></td><td>Various, tripod + handheld</td><td>Pre-sunrise. No people.</td></tr>
-          <tr><td>02</td><td><strong>EST — Venice waking up</strong><em>Skaters arriving, the park filling up. Life entering frame.</em></td><td>Handheld, wide</td><td>Energy building with track intro.</td></tr>
-          <tr><td>03</td><td><strong>NARR — Hero Skater arrival</strong><em>He walks into the park. Friends greet him. Hands slapped, board tossed.</em></td><td>Handheld, shoot THROUGH the friend group</td><td>We discover him the way the park discovers him.</td></tr>
-          <tr><td>04</td><td><strong>NARR — Caitlin watching</strong><em>Her face as she watches him get greeted. Pride, admiration, glow.</em></td><td>85mm+, handheld, shallow DOF</td><td>THE emotional baseline shot. Hang on this.</td></tr>
-          <tr><td>05</td><td><strong>NARR — The circle</strong><em>The friend group around Hero Skater. Caitlin one step outside it.</em></td><td>Wide, handheld</td><td>She's in his orbit, not his circle.</td></tr>
-          <tr><td>06</td><td><strong>PERF A — Bowl front, wide</strong><em>Caitlin performing in front of the bowl. Skaters dropping in behind her.</em></td><td>Wide angle, 24mm anamorphic</td><td>Syd choreo. She plays to camera.</td></tr>
-          <tr><td>07</td><td><strong>PERF A — Bowl front, close</strong><em>Same setup, tighter framing. Her face, her movement.</em></td><td>50–85mm, handheld</td><td>Alt coverage for edit.</td></tr>
-          <tr><td>08</td><td><strong>NARR — Fake proposal</strong><em>Friend drops to one knee. Caitlin gasps. Hero Skater shoves friend.</em></td><td>Handheld, medium</td><td>Play it loose. Let them improv. Capture the laughs.</td></tr>
-          <tr><td>09</td><td><strong>NARR — Edge of bowl, hanging</strong><em>Caitlin and Hero Skater sitting on edge. Boys drinking around them.</em></td><td>85mm, handheld or stabilized</td><td>She leans into him. He watches the session.</td></tr>
-          <tr><td>10</td><td><strong>DET — CZ ring</strong><em>Flash of light off the ring on her finger. His hand on hers.</em></td><td>Macro or long lens close-up</td><td>Quick. Don't linger.</td></tr>
-          <tr><td>11</td><td><strong>PERF B — Edge of bowl, singing</strong><em>Caitlin sitting on lip of bowl, legs dangling, singing to camera.</em></td><td>50mm, handheld, eye level</td><td>Intimate and direct.</td></tr>
-          <tr><td>12</td><td><strong>PERF C — Plexiglass #1</strong><em>Caitlin slides down bowl, lands over lens. Looking down. Midday sky.</em></td><td>Plexiglass rig at base of bowl, wide lens beneath</td><td>Half-smile. Teasing. First of three.</td></tr>
-          <tr><td>13</td><td><strong>NARR — Skater chaos</strong><em>Boys spilling out of bowl area, messy, laughing, beers. Bouquet jostled.</em></td><td>Handheld, wide</td><td>Fun and chaotic energy.</td></tr>
-          <tr><td>14</td><td><strong>NARR — Bouquet presentation</strong><em>Hero Skater gives Caitlin the massive bouquet. She holds it to her chest.</em></td><td>Medium, handheld</td><td>The absurd romance of it.</td></tr>
-          <tr><td>15</td><td><strong>NARR — Smoke / jay (transition)</strong><em>Edge of bowl. Someone smoking. Smoke blown up into air. Camera tracks it up and spins.</em></td><td>Start tight, camera tracks UP with smoke</td><td>TRANSITION SHOT — keeps rising, spins, cuts to car interior.</td></tr>
-          <tr><td>16</td><td><strong>VEN — Boardwalk b-roll</strong><em>Venice weirdness. Shirtless dude. Vendors. Dogs. Skaters. The circus.</em></td><td>Various, handheld</td><td>Texture bank. Shoot liberally.</td></tr>
-          <tr><td>17</td><td><strong>VEN — The Pull</strong><em>Caitlin on skateboard being towed down boardwalk by oversized character.</em></td><td>Dolly or stabilizer, tracking alongside</td><td>She's laughing. Literally a passenger.</td></tr>
-          <tr><td>18</td><td><strong>NARR — Skater b-roll</strong><em>Hero Skater and friends skating bowls, ledges, flatground. Tricks, bails, hangs.</em></td><td>Low angle, wide; fisheye alt; 48fps selects</td><td>Skate footage bank. Get the god-angles.</td></tr>
+          <tr><td>01</td><td><strong>EST — Morning Venice</strong><em>Empty boardwalk, long shadows, palm trees, tagged walls.</em></td><td class="col-lens">Various, tripod + handheld</td><td class="col-notes">Pre-sunrise. No people.</td></tr>
+          <tr><td>02</td><td><strong>EST — Venice waking up</strong><em>Skaters arriving, the park filling up.</em></td><td class="col-lens">Handheld, wide</td><td class="col-notes">Energy building with track intro.</td></tr>
+          <tr><td>03</td><td><strong>NARR — Hero Skater arrival</strong><em>He walks in. Friends greet him. Hands slapped, board tossed.</em></td><td class="col-lens">Handheld, shoot THROUGH the friend group</td><td class="col-notes">We discover him the way the park discovers him.</td></tr>
+          <tr><td>04</td><td><strong>NARR — Caitlin watching</strong><em>Her face as she watches. Pride, admiration, glow.</em></td><td class="col-lens">85mm+, handheld, shallow DOF</td><td class="col-notes">THE emotional baseline shot. Hang on this.</td></tr>
+          <tr><td>05</td><td><strong>NARR — The circle</strong><em>The friend group around Hero Skater. Caitlin one step outside.</em></td><td class="col-lens">Wide, handheld</td><td class="col-notes">She's in his orbit, not his circle.</td></tr>
+          <tr><td>06</td><td><strong>PERF A — Bowl front, wide</strong><em>Caitlin performing. Skaters dropping in behind her.</em></td><td class="col-lens">Wide angle, 24mm anamorphic</td><td class="col-notes">Syd choreo. She plays to camera.</td></tr>
+          <tr><td>07</td><td><strong>PERF A — Bowl front, close</strong><em>Same setup, tighter framing. Her face, her movement.</em></td><td class="col-lens">50–85mm, handheld</td><td class="col-notes">Alt coverage for edit.</td></tr>
+          <tr><td>08</td><td><strong>NARR — Fake proposal</strong><em>Friend drops to one knee. Caitlin gasps. Hero Skater shoves friend.</em></td><td class="col-lens">Handheld, medium</td><td class="col-notes">Play it loose. Let them improv.</td></tr>
+          <tr><td>09</td><td><strong>NARR — Edge of bowl, hanging</strong><em>Caitlin + Hero Skater sitting on edge. Boys drinking.</em></td><td class="col-lens">85mm, handheld or stabilized</td><td class="col-notes">She leans into him. He watches the session.</td></tr>
+          <tr><td>10</td><td><strong>DET — CZ ring</strong><em>Flash of light off the ring. His hand on hers.</em></td><td class="col-lens">Macro or long lens close-up</td><td class="col-notes">Quick. Don't linger.</td></tr>
+          <tr><td>11</td><td><strong>PERF B — Edge of bowl, singing</strong><em>Caitlin sitting on lip, legs dangling, singing to camera.</em></td><td class="col-lens">50mm, handheld, eye level</td><td class="col-notes">Intimate and direct.</td></tr>
+          <tr><td>12</td><td><strong>PERF C — Plexiglass #1</strong><em>Caitlin slides down bowl, lands over lens. Midday sky.</em></td><td class="col-lens">Plexiglass rig, wide lens beneath</td><td class="col-notes">Half-smile. Teasing. First of three.</td></tr>
+          <tr><td>13</td><td><strong>NARR — Skater chaos</strong><em>Boys spilling out of bowl, messy, laughing, beers. Bouquet jostled.</em></td><td class="col-lens">Handheld, wide</td><td class="col-notes">Fun and chaotic.</td></tr>
+          <tr><td>14</td><td><strong>NARR — Bouquet presentation</strong><em>Hero Skater gives Caitlin the massive bouquet.</em></td><td class="col-lens">Medium, handheld</td><td class="col-notes">The absurd romance of it.</td></tr>
+          <tr><td>15</td><td><strong>NARR — Smoke transition</strong><em>Someone smoking. Camera tracks smoke up, spins, lands on car.</em></td><td class="col-lens">Start tight, camera tracks UP</td><td class="col-notes">TRANSITION SHOT.</td></tr>
+          <tr><td>16</td><td><strong>VEN — Boardwalk b-roll</strong><em>Venice weirdness. Vendors, dogs, skaters, the circus.</em></td><td class="col-lens">Various, handheld</td><td class="col-notes">Texture bank. Shoot liberally.</td></tr>
+          <tr><td>17</td><td><strong>VEN — The Pull</strong><em>Caitlin on skateboard being towed down boardwalk.</em></td><td class="col-lens">Dolly or stabilizer, tracking</td><td class="col-notes">She's laughing. Literally a passenger.</td></tr>
+          <tr><td>18</td><td><strong>NARR — Skater b-roll</strong><em>Hero Skater and friends skating. Tricks, bails, hangs.</em></td><td class="col-lens">Low angle, wide; 48fps selects</td><td class="col-notes">Get the god-angles.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Location 2 -->
     <div class="location-block">
-      <div class="location-title">Location 2 — Car / Driving</div>
+      <div class="location-name">Location 2 — Car / Driving</div>
       <div class="location-format">Format: Digital · Alexa Mini LF</div>
       <table class="shot-table">
         <thead>
-          <tr><th>#</th><th>Shot</th><th>Lens / Movement</th><th>Notes</th></tr>
+          <tr><th>#</th><th>Shot</th><th class="col-lens">Lens / Movement</th><th class="col-notes">Notes</th></tr>
         </thead>
         <tbody>
-          <tr><td>19</td><td><strong>NARR — Caitlin driving</strong><em>Caitlin behind the wheel, windows down, singing casually.</em></td><td>Mounted or handheld from passenger side</td><td>Natural, not posed. She sings to the road.</td></tr>
-          <tr><td>20</td><td><strong>NARR — Hero Skater passenger</strong><em>He's in passenger seat. Phone, window, not engaging.</em></td><td>Reverse angle or OTS from Caitlin</td><td>The dynamic: she drives, he drifts.</td></tr>
-          <tr><td>21</td><td><strong>NARR — The glance</strong><em>She looks at him. He doesn't look back.</em></td><td>Tight on her face, 85mm</td><td>Small beat. Camera catches what he misses.</td></tr>
-          <tr><td>22</td><td><strong>DET — Valley driving</strong><em>Overgrown hedges, dead lawns, sun-bleached FOR SALE signs, chain-link.</em></td><td>Window mount or handheld through glass</td><td>The valley in decay. Not Venice anymore.</td></tr>
+          <tr><td>19</td><td><strong>NARR — Caitlin driving</strong><em>Behind the wheel, windows down, singing casually.</em></td><td class="col-lens">Mounted or handheld from passenger side</td><td class="col-notes">Natural. She sings to the road.</td></tr>
+          <tr><td>20</td><td><strong>NARR — Hero Skater passenger</strong><em>In passenger seat. Phone, window, not engaging.</em></td><td class="col-lens">Reverse angle or OTS from Caitlin</td><td class="col-notes">She drives, he drifts.</td></tr>
+          <tr><td>21</td><td><strong>NARR — The glance</strong><em>She looks at him. He doesn't look back.</em></td><td class="col-lens">Tight on her face, 85mm</td><td class="col-notes">Camera catches what he misses.</td></tr>
+          <tr><td>22</td><td><strong>DET — Valley driving</strong><em>Overgrown hedges, dead lawns, FOR SALE signs, chain-link.</em></td><td class="col-lens">Window mount or handheld through glass</td><td class="col-notes">The valley in decay.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Location 3 -->
     <div class="location-block">
-      <div class="location-title">Location 3 — Abandoned Valley House / Empty Pool</div>
+      <div class="location-name">Location 3 — Abandoned Valley House / Empty Pool</div>
       <div class="location-format">Format: Digital · Alexa Mini LF</div>
       <table class="shot-table">
         <thead>
-          <tr><th>#</th><th>Shot</th><th>Lens / Movement</th><th>Notes</th></tr>
+          <tr><th>#</th><th>Shot</th><th class="col-lens">Lens / Movement</th><th class="col-notes">Notes</th></tr>
         </thead>
         <tbody>
-          <tr><td>23</td><td><strong>EST — The house</strong><em>Exterior. Sun-beaten, dead yard, real estate sign face-down.</em></td><td>Wide, tripod or stabilized</td><td>Establishing the desolation.</td></tr>
-          <tr><td>24</td><td><strong>NARR — The break-in</strong><em>They find their way in. Through fence, around side, over wall.</em></td><td>Handheld, following. Sneaky.</td><td>Camera is conspiratorial. We shouldn't be here.</td></tr>
-          <tr><td>25</td><td><strong>NARR — Through the house</strong><em>Push through dark hallway, past peeling wallpaper, dusty light.</em></td><td>Handheld, steadicam, forward motion</td><td>Tension and discovery.</td></tr>
-          <tr><td>26</td><td><strong>NARR — Pool reveal</strong><em>Camera discovers the empty swimming pool. Hold on it.</em></td><td>Wide, stabilized push-in</td><td>The void. Beautiful and desolate.</td></tr>
-          <tr><td>27</td><td><strong>NARR — Hero Skater drops in</strong><em>He drops into the empty pool. Carves the walls. Raw and loud.</em></td><td>Wide and low (god-angle), 48fps selects</td><td>Same heroic framing as Venice bowl.</td></tr>
-          <tr><td>28</td><td><strong>NARR — Caitlin reacts</strong><em>She jumps up and down at edge of pool, clapping, loving it.</em></td><td>Handheld, medium</td><td>Her genuine excitement. Still fully in it.</td></tr>
-          <tr><td>29</td><td><strong>NARR — Edge of pool, together</strong><em>They sit at the edge. She watches him skate. Sun going down.</em></td><td>85mm, stabilized</td><td>Golden hour. She leans in. He looks at the pool.</td></tr>
-          <tr><td>30</td><td><strong>PERF — Pool floor singing</strong><em>Caitlin singing at the bottom of the empty pool.</em></td><td>Various — handheld close, wide from above</td><td>Solo performance in the void.</td></tr>
-          <tr><td>31</td><td><strong>PERF C — Plexiglass #2</strong><em>Plexiglass at base of pool. Golden hour. Eyes closed, singing.</em></td><td>Plexiglass rig, wide lens beneath</td><td>Softer than #1. Anamorphic flare. Starting to drift.</td></tr>
-          <tr><td>32</td><td><strong>NARR — He wants to leave</strong><em>He stands up, grabs his board. She pulls his arm. Pouty, playful, then real.</em></td><td>Handheld, medium to tight</td><td>The turn. She clings. He's already gone.</td></tr>
-          <tr><td>33</td><td><strong>NARR — He leaves</strong><em>He walks away through the house. She watches from the pool edge.</em></td><td>Hold on her face as he exits frame</td><td>First time her expression isn't fun.</td></tr>
-          <tr><td>34</td><td><strong>NARR — Alone at the house</strong><em>Caitlin standing at the edge of the empty pool. Sun fading. Getting dark.</em></td><td>Wide, stabilized</td><td>The solitude settling in.</td></tr>
-          <tr><td>35</td><td><strong>NARR — Bouquet spill</strong><em>The flowers fall/scatter across the pool deck. Petals drift into the pool. Wind.</em></td><td>48fps, various angles</td><td>THE blow away image. Slow motion. Don't rush.</td></tr>
-          <tr><td>36</td><td><strong>NARR/PERF — Night pool, projector</strong><em>Caitlin in the pool at night. Projector casting color on the walls. She sings.</em></td><td>Slow orbital, handheld close-ups</td><td>Somber but still vibing. Solo energy.</td></tr>
-          <tr><td>37</td><td><strong>PERF C — Plexiglass #3</strong><em>Night. Projector light from below — cyan, magenta, amber. She looks down.</em></td><td>Plexiglass rig, wide lens beneath</td><td>Expression has CHANGED. Not sad. Awake. The Priscilla moment.</td></tr>
-          <tr><td>38</td><td><strong>NARR — Hero Skater's board</strong><em>The board on its side. Wheels spinning. Slowing.</em></td><td>Detail shot, stable</td><td>Metaphor. Don't oversell.</td></tr>
-          <tr><td>39</td><td><strong>NARR — Final pool, overhead</strong><em>Camera above Caitlin sitting alone in pool. Rising. She gets smaller.</em></td><td>Drone or jib, straight down, slow rise</td><td>THE final image. She doesn't look up.</td></tr>
+          <tr><td>23</td><td><strong>EST — The house</strong><em>Sun-beaten exterior. Dead yard. Real estate sign face-down.</em></td><td class="col-lens">Wide, tripod or stabilized</td><td class="col-notes">Establishing the desolation.</td></tr>
+          <tr><td>24</td><td><strong>NARR — The break-in</strong><em>Through the fence, around the side, over a wall.</em></td><td class="col-lens">Handheld, following. Sneaky.</td><td class="col-notes">Camera is conspiratorial. We shouldn't be here.</td></tr>
+          <tr><td>25</td><td><strong>NARR — Through the house</strong><em>Dark hallway, peeling wallpaper, dusty light.</em></td><td class="col-lens">Handheld, steadicam, forward motion</td><td class="col-notes">Tension and discovery.</td></tr>
+          <tr><td>26</td><td><strong>NARR — Pool reveal</strong><em>Camera discovers the empty swimming pool. Hold on it.</em></td><td class="col-lens">Wide, stabilized push-in</td><td class="col-notes">The void. Beautiful and desolate.</td></tr>
+          <tr><td>27</td><td><strong>NARR — Hero Skater drops in</strong><em>He drops into the empty pool. Carves the walls. Raw and loud.</em></td><td class="col-lens">Wide and low (god-angle), 48fps selects</td><td class="col-notes">Same heroic framing as Venice bowl.</td></tr>
+          <tr><td>28</td><td><strong>NARR — Caitlin reacts</strong><em>Jumping up and down at edge of pool, clapping, loving it.</em></td><td class="col-lens">Handheld, medium</td><td class="col-notes">Her genuine excitement. Still fully in it.</td></tr>
+          <tr><td>29</td><td><strong>NARR — Edge of pool, together</strong><em>They sit at the edge. Sun going down. She watches him skate.</em></td><td class="col-lens">85mm, stabilized</td><td class="col-notes">She leans in. He looks at the pool.</td></tr>
+          <tr><td>30</td><td><strong>PERF — Pool floor singing</strong><em>Caitlin singing at the bottom of the empty pool.</em></td><td class="col-lens">Handheld close + wide from above</td><td class="col-notes">Solo performance in the void.</td></tr>
+          <tr><td>31</td><td><strong>PERF C — Plexiglass #2</strong><em>Golden hour. Eyes closed, singing. Anamorphic flare.</em></td><td class="col-lens">Plexiglass rig, wide lens beneath</td><td class="col-notes">Softer than #1. Starting to drift.</td></tr>
+          <tr><td>32</td><td><strong>NARR — He wants to leave</strong><em>He stands, grabs his board. She pulls his arm. Pouty, then real.</em></td><td class="col-lens">Handheld, medium to tight</td><td class="col-notes">The turn. She clings. He's already gone.</td></tr>
+          <tr><td>33</td><td><strong>NARR — He leaves</strong><em>He walks away through the house. She watches from the pool edge.</em></td><td class="col-lens">Hold on her face as he exits frame</td><td class="col-notes">First time her expression isn't fun.</td></tr>
+          <tr><td>34</td><td><strong>NARR — Alone at the house</strong><em>Caitlin at the edge of the empty pool. Sun fading.</em></td><td class="col-lens">Wide, stabilized</td><td class="col-notes">The solitude settling in.</td></tr>
+          <tr><td>35</td><td><strong>NARR — Bouquet spill</strong><em>Flowers scatter across the pool deck. Petals drift. Wind.</em></td><td class="col-lens">48fps, various angles</td><td class="col-notes">THE blow away image. Slow motion. Don't rush.</td></tr>
+          <tr><td>36</td><td><strong>NARR/PERF — Night pool, projector</strong><em>Caitlin in the pool at night. Projector casting color.</em></td><td class="col-lens">Slow orbital, handheld close-ups</td><td class="col-notes">Still vibing. Solo energy.</td></tr>
+          <tr><td>37</td><td><strong>PERF C — Plexiglass #3</strong><em>Night. Projector light from below — cyan, magenta, amber.</em></td><td class="col-lens">Plexiglass rig, wide lens beneath</td><td class="col-notes">Expression CHANGED. Not sad. Awake. The Priscilla moment.</td></tr>
+          <tr><td>38</td><td><strong>NARR — Hero Skater's board</strong><em>The board on its side. Wheels spinning. Slowing.</em></td><td class="col-lens">Detail shot, stable</td><td class="col-notes">Metaphor. Don't oversell.</td></tr>
+          <tr><td>39</td><td><strong>NARR — Final pool, overhead</strong><em>Camera above Caitlin, rising. She gets smaller.</em></td><td class="col-lens">Drone or jib, straight down, slow rise</td><td class="col-notes">THE final image. She doesn't look up.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Flash Shots -->
     <div class="location-block">
-      <div class="location-title">Pickup / Flash Shots — Venice</div>
+      <div class="location-name">Pickup / Flash Shots — Venice</div>
       <div class="location-format">Format: 35mm · Shot during Venice days · Used for final 35mm flash</div>
       <table class="shot-table">
         <thead>
-          <tr><th>#</th><th>Shot</th><th>Lens / Movement</th><th>Notes</th></tr>
+          <tr><th>#</th><th>Shot</th><th class="col-lens">Lens / Movement</th><th class="col-notes">Notes</th></tr>
         </thead>
         <tbody>
-          <tr><td>40</td><td><strong>FLASH — Skate park arrival</strong><em>Hero Skater pulling up, friends greeting him. The homecoming.</em></td><td>Match shot #3 framing</td><td>Echo of the opening.</td></tr>
-          <tr><td>41</td><td><strong>FLASH — Caitlin glowing</strong><em>Her face in the crowd, watching him, proud. Full golden hour.</em></td><td>Match shot #4 framing, 85mm</td><td>Echo of the baseline.</td></tr>
-          <tr><td>42</td><td><strong>FLASH — Boardwalk chaos</strong><em>The Pull, the vendors, the circus. Sun-drenched.</em></td><td>Various, handheld</td><td>Quick cuts. The warmth flooding back.</td></tr>
-          <tr><td>43</td><td><strong>FLASH — Together, golden</strong><em>Caitlin and Hero Skater together. Laughing, touching, alive.</em></td><td>Handheld, 85mm</td><td>The relationship at its warmest. Used only here.</td></tr>
+          <tr><td>40</td><td><strong>FLASH — Skate park arrival</strong><em>Hero Skater pulling up, friends greeting him.</em></td><td class="col-lens">Match shot #3 framing</td><td class="col-notes">Echo of the opening.</td></tr>
+          <tr><td>41</td><td><strong>FLASH — Caitlin glowing</strong><em>Her face in the crowd, watching him. Full golden hour.</em></td><td class="col-lens">Match shot #4 framing, 85mm</td><td class="col-notes">Echo of the baseline.</td></tr>
+          <tr><td>42</td><td><strong>FLASH — Boardwalk chaos</strong><em>The Pull, the vendors, the circus. Sun-drenched.</em></td><td class="col-lens">Various, handheld</td><td class="col-notes">The warmth flooding back.</td></tr>
+          <tr><td>43</td><td><strong>FLASH — Together, golden</strong><em>Caitlin and Hero Skater. Laughing, touching, alive.</em></td><td class="col-lens">Handheld, 85mm</td><td class="col-notes">The relationship at its warmest. Used only here.</td></tr>
         </tbody>
       </table>
     </div>
-  </section>
-
-  <!-- COLOPHON -->
-  <div class="colophon">
-    Storyline &amp; Shot List — Brendan Lynch<br>
-    Choreography consultation: Syd (TBD)<br>
-    Blow Away · Caitlin Byk · The Varied
   </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>Brendan Lynch · The Varied</span>
+    <a href="/blow-away">← Treatment</a>
+  </footer>
 
 </div>
 </body>
