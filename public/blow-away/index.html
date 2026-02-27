@@ -4,961 +4,543 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blow Away — Brendan Lynch</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300;1,400&family=Barlow+Condensed:wght@300;400;600;700;800&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo+Black&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ── TOKENS ────────────────────────────────────── */
+:root {
+  --bg:             #09090B;
+  --bg-subtle:      #18181B;
+  --border:         #27272A;
+  --border-subtle:  #1C1C1F;
+  --text-primary:   #EDEDEF;
+  --text-secondary: #A1A1AA;
+  --text-tertiary:  #71717A;
+  --text-muted:     #52525B;
+  --orange:         #D4551E;
+  --orange-muted:   #8C3A15;
+  --font-serif:     'Instrument Serif', Georgia, serif;
+  --font-impact:    'Archivo Black', 'Arial Black', sans-serif;
+  --font-mono:      'DM Mono', 'Courier New', monospace;
+}
+
+/* ── RESET ─────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100%;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: #080808;
-  color: #f0ebe0;
-  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
   font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.7;
 }
 
-/* ── SLIDE BASE ───────────────────────────────── */
-.slide {
-  width: 100vw;
-  min-height: 100vh;
-  scroll-snap-align: start;
-  position: relative;
-  overflow: hidden;
+::selection { background: var(--orange); color: var(--bg); }
+
+a { color: inherit; text-decoration: none; }
+
+/* ── SPOTIFY BAR ───────────────────────────────── */
+.spotify-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
   display: flex;
+  justify-content: center;
+  background: rgba(9,9,11,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 2.5rem;
 }
 
-/* ── TYPE SYSTEM ──────────────────────────────── */
-.t-display {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 200;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-}
-
-.t-heading {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 0.9;
-}
-
-.t-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 400;
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.45);
-}
-
-.t-body {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.65;
-}
-
-.t-sans {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.75;
-}
-
-/* ── IMAGE FILL ───────────────────────────────── */
-.img-fill {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.spotify-bar iframe {
   display: block;
-  position: absolute;
-  inset: 0;
-}
-
-.overlay-dark {
-  position: absolute;
-  inset: 0;
-  background: rgba(8,8,8,0.55);
-}
-
-.overlay-dark-heavy {
-  position: absolute;
-  inset: 0;
-  background: rgba(8,8,8,0.72);
-}
-
-.overlay-grad-b {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.3) 50%, rgba(8,8,8,0.1) 100%);
-}
-
-.overlay-grad-l {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.1) 100%);
-}
-
-/* ── SLIDE COUNTER ────────────────────────────── */
-.slide-num {
-  position: absolute;
-  bottom: 32px;
-  right: 40px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: rgba(240,235,224,0.25);
-  z-index: 10;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 01 — COVER                               */
-/* ─────────────────────────────────────────────── */
-#s01 {
-  background: #080808;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 80px 60px;
-}
-
-#s01::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 45%, rgba(160,110,50,0.12) 0%, transparent 65%);
-}
-
-.cover-eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.45em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.35);
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 1;
-}
-
-.cover-title {
-  font-size: clamp(120px, 18vw, 220px);
-  color: #f0ebe0;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 0;
-}
-
-.cover-rule {
-  width: 1px;
-  height: 60px;
-  background: rgba(240,235,224,0.2);
-  margin: 40px auto;
-  position: relative;
-  z-index: 1;
-}
-
-.cover-artist {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 24px;
-  letter-spacing: 0.05em;
-  color: rgba(240,235,224,0.7);
-  position: relative;
-  z-index: 1;
-  margin-bottom: 60px;
-}
-
-.cover-meta {
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.2);
-  line-height: 2.2;
-  position: relative;
-  z-index: 1;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 02 — DIRECTOR'S STATEMENT                */
-/* ─────────────────────────────────────────────── */
-#s02 {
-  flex-direction: row;
-}
-
-.s02-text {
-  width: 45%;
-  padding: 80px 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  background: #080808;
-}
-
-.s02-image {
-  width: 55%;
-  position: relative;
-}
-
-.statement-quote {
-  font-size: clamp(28px, 3.5vw, 46px);
-  color: #f0ebe0;
-  margin-bottom: 40px;
+  border-radius: 8px;
+  width: 100%;
   max-width: 480px;
+  height: 80px;
 }
 
-.statement-body {
-  font-size: 15px;
-  color: rgba(240,235,224,0.65);
-  max-width: 380px;
+/* ── PAGE ──────────────────────────────────────── */
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 140px 2.5rem 8rem;
+}
+
+@media (max-width: 600px) {
+  .page { padding: 130px 1.5rem 6rem; }
+  .spotify-bar { padding: 10px 1rem; }
+}
+
+/* ── HEADER ────────────────────────────────────── */
+.header {
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4rem;
+}
+
+.header-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.header-sub {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: var(--text-muted);
   line-height: 1.8;
 }
 
-/* ─────────────────────────────────────────────── */
-/* SLIDE 03 — WITNESS TITLE                       */
-/* ─────────────────────────────────────────────── */
-#s03 {
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 0 72px 72px;
+/* ── SECTIONS ──────────────────────────────────── */
+.section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.concept-badge {
-  display: inline-block;
-  border: 1px solid rgba(240,235,224,0.3);
-  padding: 6px 14px;
-  font-size: 10px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.6);
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 2;
+.section:last-of-type {
+  border-bottom: none;
 }
 
-.concept-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: clamp(160px, 22vw, 280px);
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  line-height: 0.85;
-  color: #f0ebe0;
-  position: relative;
-  z-index: 2;
-  margin-bottom: 0;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
 }
 
-.concept-title-line {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 200;
-  font-size: clamp(48px, 7vw, 96px);
-  color: rgba(240,235,224,0.85);
-  line-height: 1;
-  position: relative;
-  z-index: 2;
-  margin-bottom: 28px;
-}
-
-.concept-hook {
-  font-family: 'DM Sans', sans-serif;
+.section-body {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
   font-weight: 300;
-  font-size: 14px;
-  color: rgba(240,235,224,0.55);
+  line-height: 1.85;
+  color: var(--text-secondary);
+  max-width: 64ch;
+}
+
+.section-body p { margin-bottom: 1rem; }
+.section-body p:last-child { margin-bottom: 0; }
+
+/* ── KEY MOMENTS ───────────────────────────────── */
+.moments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.moment {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+
+.moment:last-child { border-bottom: none; }
+
+.moment-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.moment-body {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+/* ── SHOT LIST ─────────────────────────────────── */
+.shot {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.shot:last-child { border-bottom: none; }
+
+.shot-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.shot-time {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--text-muted);
   letter-spacing: 0.04em;
-  max-width: 480px;
-  position: relative;
-  z-index: 2;
-  line-height: 1.7;
+  white-space: nowrap;
 }
 
-/* ─────────────────────────────────────────────── */
-/* SLIDE 04 — WITNESS MOODBOARD                   */
-/* ─────────────────────────────────────────────── */
-#s04 {
-  flex-direction: column;
-}
-
-.moodboard-grid {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  gap: 3px;
-  background: #080808;
-}
-
-.moodboard-grid.g-2x3 {
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-
-.grid-cell {
-  position: relative;
-  overflow: hidden;
-}
-
-.grid-cell img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.88) contrast(1.05);
-  transition: filter 0.4s;
-}
-
-.grid-cell:hover img { filter: brightness(0.95) contrast(1.02); }
-
-.grid-cell.span-2 { grid-row: span 2; }
-
-.grid-label {
-  position: absolute;
-  bottom: 12px;
-  left: 14px;
-  font-size: 9px;
-  letter-spacing: 0.25em;
+.shot-title {
+  font-family: var(--font-impact);
+  font-size: 0.8125rem;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  z-index: 2;
-}
-
-.moodboard-ref {
-  position: absolute;
-  bottom: 24px;
-  right: 40px;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.25);
-  z-index: 10;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 05 — WITNESS APPROACH                    */
-/* ─────────────────────────────────────────────── */
-#s05 {
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.approach-image {
-  width: 50%;
-  position: relative;
-}
-
-.approach-text {
-  width: 50%;
-  padding: 80px 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: #080808;
-}
-
-.approach-heading {
-  font-size: clamp(72px, 10vw, 130px);
-  color: #f0ebe0;
-  margin-bottom: 48px;
-}
-
-.approach-items {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.approach-item {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-.approach-item-label {
-  font-size: 9px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.35);
-  padding-top: 2px;
-  line-height: 1.4;
-}
-
-.approach-item-value {
-  font-size: 15px;
-  color: rgba(240,235,224,0.8);
-  line-height: 1.6;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 06 — OBJECTS TITLE                       */
-/* ─────────────────────────────────────────────── */
-#s06 {
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 0 72px 72px;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 07 — OBJECTS MOODBOARD                   */
-/* ─────────────────────────────────────────────── */
-#s07 {
-  flex-direction: column;
-}
-
-.moodboard-grid.g-dutch {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 08 — OBJECTS APPROACH                    */
-/* ─────────────────────────────────────────────── */
-#s08 {
-  flex-direction: row-reverse;
-  align-items: stretch;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 09 — KEY SHOTS / OBJECTS                 */
-/* ─────────────────────────────────────────────── */
-#s09 {
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 80px;
-  background: #080808;
-}
-
-.shots-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  margin-top: 48px;
-}
-
-.shot-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.shot-card-num {
-  font-size: 9px;
-  letter-spacing: 0.35em;
-  color: rgba(240,235,224,0.3);
-  text-transform: uppercase;
-}
-
-.shot-card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 22px;
-  color: #f0ebe0;
-  line-height: 1.1;
-}
-
-.shot-card-desc {
-  font-size: 13px;
-  color: rgba(240,235,224,0.55);
-  line-height: 1.7;
-}
-
-.shot-card-rule {
-  width: 24px;
-  height: 1px;
-  background: rgba(240,235,224,0.2);
-  margin-bottom: 4px;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 10 — PRODUCTION                          */
-/* ─────────────────────────────────────────────── */
-#s10 {
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px;
-  background: #0c0b09;
-}
-
-.prod-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-top: 48px;
-}
-
-.prod-col-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 56px;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: #f0ebe0;
-  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
   line-height: 1;
 }
 
-.prod-col-sub {
-  font-size: 10px;
-  letter-spacing: 0.3em;
+.shot-format {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(240,235,224,0.35);
-  margin-bottom: 36px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  margin-left: auto;
 }
 
-.prod-specs {
-  list-style: none;
+.shot-body {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 64ch;
+}
+
+/* ── FOOTER ────────────────────────────────────── */
+.footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
   display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.prod-spec {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 0;
-  border-bottom: 1px solid rgba(240,235,224,0.08);
-  padding: 14px 0;
-}
-
-.prod-spec-label {
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.3);
-}
-
-.prod-spec-value {
-  font-size: 14px;
-  color: rgba(240,235,224,0.75);
-  line-height: 1.5;
-}
-
-/* ─────────────────────────────────────────────── */
-/* SLIDE 11 — CLOSE                               */
-/* ─────────────────────────────────────────────── */
-#s11 {
-  background: #080808;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
-  padding: 80px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-muted);
 }
 
-#s11::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(160,110,50,0.08) 0%, transparent 70%);
+.footer a {
+  color: var(--text-muted);
+  transition: color 0.2s;
 }
-
-.close-quote {
-  font-size: clamp(22px, 3vw, 38px);
-  max-width: 700px;
-  color: rgba(240,235,224,0.8);
-  position: relative;
-  z-index: 1;
-  margin-bottom: 64px;
-}
-
-.close-rule {
-  width: 40px;
-  height: 1px;
-  background: rgba(240,235,224,0.2);
-  margin: 0 auto 40px;
-  position: relative;
-  z-index: 1;
-}
-
-.close-credit {
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.25);
-  line-height: 2.2;
-  position: relative;
-  z-index: 1;
-}
-
-.close-note {
-  position: absolute;
-  bottom: 32px;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.15);
-  z-index: 1;
-}
-
+.footer a:hover { color: var(--text-primary); }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- SPOTIFY EMBED — fixed top bar                 -->
-<!-- ══════════════════════════════════════════════ -->
-<div style="position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:center;pointer-events:none;">
-  <div style="pointer-events:all;width:100%;max-width:440px;padding:10px 16px 0;">
-    <iframe
-      src="https://open.spotify.com/embed/album/1YEhgJTndmgzaZnbINBf3q?utm_source=generator&theme=0"
-      width="100%"
-      height="80"
-      frameborder="0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
-      style="border-radius:10px;display:block;"
-    ></iframe>
-  </div>
+<!-- SPOTIFY -->
+<div class="spotify-bar">
+  <iframe
+    src="https://open.spotify.com/embed/album/1YEhgJTndmgzaZnbINBf3q?utm_source=generator&theme=0"
+    frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+  ></iframe>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 01 · COVER                              -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s01">
-  <div class="cover-eyebrow">A Director's Treatment</div>
-  <h1 class="cover-title t-display">Blow Away</h1>
-  <div class="cover-rule"></div>
-  <div class="cover-artist">Caitlin Byk</div>
-  <div class="cover-meta">
-    Brendan Lynch · The Varied<br>
-    Director · February 2026
+<!-- PAGE -->
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-eyebrow">Director's Treatment — Caitlin Byk</div>
+    <h1 class="header-title">Blow Away</h1>
+    <div class="header-sub">
+      Dir. Brendan Lynch<br>
+      The Varied
+    </div>
+  </header>
+
+  <!-- 1 — THE FEEL -->
+  <div class="section">
+    <div class="section-label">01 — The Feel</div>
+    <div class="section-body">
+      <p>Caitlin watches her skater boyfriend walk into Venice skate park like a local king and she's glowing. The whole video lives in that energy — fun, bouncing, sun-drenched. We shoot on 35mm early (the spell) and migrate to digital as her eyes open. One last flash of film at the end hits like nostalgia for something that happened twenty minutes ago.</p>
+      <p>It's not a sad video. It's a fun video that turns out to be a goodbye.</p>
+    </div>
   </div>
-  <div class="slide-num">01 / 11</div>
+
+  <!-- 2 — THE WORLD -->
+  <div class="section">
+    <div class="section-label">02 — The World</div>
+    <div class="section-body">
+      <p>Venice, unfiltered. Cracked sidewalks, tagged walls, weird boardwalk characters, palm trees dead at the tips. Then an abandoned valley house with a drained swimming pool.</p>
+      <p>The light tracks Caitlin's arc — hard midday sun early, golden hour in the middle, night for the pool. 35mm makes the early stuff glow. Digital makes the later stuff clear. Anamorphic 2.39:1 the whole way through.</p>
+    </div>
+  </div>
+
+  <!-- 3 — CAITLIN -->
+  <div class="section">
+    <div class="section-label">03 — Caitlin</div>
+    <h2 class="section-heading">Herself with the volume up.</h2>
+    <div class="section-body">
+      <p>Back to Black-era Amy meets Priscilla. She's fun, a little messy, the most magnetic person in every frame — giving all that energy to a boy who doesn't fully see it. She's not a sad girl or a pop star. She laughs too loud, sits on things you're not supposed to sit on, gets pouty when he tries to leave.</p>
+      <p>By the end she's not broken — just present. The fun didn't leave her. She just stopped attaching it to him.</p>
+      <p>Wardrobe: normal. Tank top, shorts, sneakers or barefoot. If it looks like a stylist picked it, it's wrong.</p>
+    </div>
+  </div>
+
+  <!-- 4 — THE ARC -->
+  <div class="section">
+    <div class="section-label">04 — The Arc</div>
+    <h2 class="section-heading">No plot. A five-degree turn.</h2>
+    <div class="section-body">
+      <p>She starts watching him get greeted like a celebrity and loving it. By the night pool she's seeing him clearly for the first time. The shift happens behind her eyes — never announced, never performed.</p>
+      <p>Ninety percent of the video is still golden and fun. The last ten percent just breathes differently. The audience should feel like they watched something joyful and only catch the goodbye on the second watch.</p>
+    </div>
+  </div>
+
+  <!-- 5 — CAMERA & FILM -->
+  <div class="section">
+    <div class="section-label">05 — Camera &amp; Film</div>
+    <h2 class="section-heading">Two cameras, one migration.</h2>
+    <div class="section-body">
+      <p>35mm opens (Kodak Vision3 — the warmth, the grain, the spell). Digital takes over as she wakes up (Alexa Mini LF — precision, clarity). By the night pool we're fully digital. Then one last flash of 35mm at the end — sun-drenched Venice, full grain — and it devastates because the film stock now feels like it's from another time.</p>
+      <p>Both formats anamorphic. 48fps overcranking for the bouquet spill, kickflips, hair whipping on the boardwalk. Slow motion as punctuation.</p>
+    </div>
+  </div>
+
+  <!-- 6 — PERFORMANCE -->
+  <div class="section">
+    <div class="section-label">06 — Performance</div>
+    <div class="section-body">
+      <p>Caitlin performs at the Venice bowl in three setups: standing wide (skaters dropping in behind her), sitting on the lip (intimate, to camera), and the plexiglass shot from beneath the pool. Syd (choreographer) on set for all performance — the goal is intention and confidence, not pop choreo. She moves like herself, just dialed in.</p>
+      <p>The plexiglass recurs three times — midday (teasing), golden hour (drifting), night with projector light (awake). Same composition, different Caitlin. It's a time device and an emotional tracker.</p>
+    </div>
+  </div>
+
+  <!-- 7 — KEY MOMENTS -->
+  <div class="section">
+    <div class="section-label">07 — Key Moments</div>
+    <div class="moments-list">
+      <div class="moment">
+        <div class="moment-title">The Arrival</div>
+        <div class="moment-body">He walks in, the park rearranges around him, she watches from one step outside the circle. Our emotional baseline.</div>
+      </div>
+      <div class="moment">
+        <div class="moment-title">The Bouquet</div>
+        <div class="moment-body">He gives her an absurdly huge bouquet. Later the flowers spill and scatter in slow motion. They blow away. We never pick them up.</div>
+      </div>
+      <div class="moment">
+        <div class="moment-title">The Smoke Transition</div>
+        <div class="moment-body">Jay at the edge of the bowl. Camera tracks the smoke up, spins in the sky, comes down on Caitlin driving to the valley.</div>
+      </div>
+      <div class="moment">
+        <div class="moment-title">He Leaves</div>
+        <div class="moment-body">She pulls his arm, he goes anyway. First time her expression isn't fun.</div>
+      </div>
+      <div class="moment">
+        <div class="moment-title">The 35mm Flash</div>
+        <div class="moment-body">End of the video. The grain floods back. Venice, golden hour, the good times. Warm and beautiful and unmistakably over.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 — NIGHT POOL -->
+  <div class="section">
+    <div class="section-label">08 — Night Pool</div>
+    <div class="section-body">
+      <p>The empty pool at night is where the video lands. Fully digital. Projector casting color on the concrete walls — cyan, magenta, amber. Caitlin finishes the song here alone. Still vibing but solo.</p>
+      <p>The energy is the difference between dancing at a party and dancing in your room. Both are real. One just knows something the other doesn't.</p>
+    </div>
+  </div>
+
+  <!-- 9 — FINAL IMAGE -->
+  <div class="section">
+    <div class="section-label">09 — Final Image</div>
+    <h2 class="section-heading">One breath too long.</h2>
+    <div class="section-body">
+      <p>Flash of 35mm — Venice, golden, the world we started in. Then back to digital. Night. The empty pool. Caitlin sitting alone. Knees up. Not watching anyone. His board on its side nearby, wheels barely spinning.</p>
+      <p>Camera rises above her. She gets smaller. She doesn't look up. Wheels stop. Clean digital holds one breath too long.</p>
+      <p>Black.</p>
+    </div>
+  </div>
+
+  <!-- 10 — TONE -->
+  <div class="section">
+    <div class="section-label">10 — Tone</div>
+    <h2 class="section-heading">Fun. Not sullen. Raw. Not try-hard.</h2>
+    <div class="section-body">
+      <p>True to SoCal and true to Caitlin. She starts proud to be next to him. She ends sitting still for the first time. The whole thing makes you want to move.</p>
+      <p>And somewhere underneath all that movement, you feel her stop.</p>
+    </div>
+  </div>
+
+  <!-- SHOT BY SHOT -->
+  <div class="section" style="margin-top: 2rem;">
+    <div class="section-label">Shot-by-Shot Storyline</div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">0:00–0:06</span>
+        <span class="shot-title">Cold Open</span>
+        <span class="shot-format">35mm</span>
+      </div>
+      <div class="shot-body">Morning Venice. Empty boardwalk, long shadows, concrete still cool. Texture shots — tagged walls, palm trees, the ocean flat and silver. The city before anyone's in it. Beat drops at 0:06.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">0:06–0:20</span>
+        <span class="shot-title">The Arrival</span>
+        <span class="shot-format">35mm</span>
+      </div>
+      <div class="shot-body">Venice alive. Hero Skater pulls up to the park. Friends greet him — hands slapped, board tossed. We shoot through the group toward him. Camera keeps drifting to Caitlin watching from one step outside. She's glowing. Group disperses. We hang on her face — pride, admiration, full buy-in.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">0:20–0:30</span>
+        <span class="shot-title">"17, klepto queen"</span>
+        <span class="shot-format">35mm</span>
+      </div>
+      <div class="shot-body">Caitlin performing in front of the bowl. Wide angle, skaters dropping in behind her. She plays to camera, confident and cool. Syd choreo here. Intercut b-roll: hand grabbing a bottle, fake ID getting flashed (playful, not literal).</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">0:30–0:38</span>
+        <span class="shot-title">"23, friday night degree"</span>
+        <span class="shot-format">35mm</span>
+      </div>
+      <div class="shot-body">Back to narrative. Friend fake-proposes to Caitlin (mocking Hero Skater). She gasps, plays into it. Hero Skater shoves him with the board, laughing. Cut to Caitlin and Hero Skater sitting on edge of bowl. Boys drinking. She leans into him. He watches the session. Quick detail: CZ ring flash.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">0:38–0:50</span>
+        <span class="shot-title">"They'd go all night long"</span>
+        <span class="shot-format">35mm → digital</span>
+      </div>
+      <div class="shot-body">Cut to Caitlin performance for the ashtray line — edge of bowl, tighter framing. Big skateboard transition (board drops into bowl, camera rides the momentum). Bouquet presentation — Hero Skater gives her the massive flowers. She holds them to her chest.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">0:50–1:15</span>
+        <span class="shot-title">Chorus 1 — "She don't wanna go"</span>
+        <span class="shot-format">Film/digital transition</span>
+      </div>
+      <div class="shot-body">Intercut three performance setups: wide bowl, edge sitting, plexiglass #1 (midday, half-smile, teasing). Narrative intercuts: skaters spilling out messy and laughing, bouquet getting jostled. "Smoking all the time" — jay at edge of bowl, smoke blown up, camera tracks it skyward, spins, comes down on...</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">1:15–1:25</span>
+        <span class="shot-title">"34, uni are at the door"</span>
+        <span class="shot-format">Digital</span>
+      </div>
+      <div class="shot-body">Caitlin driving. Hero Skater in passenger seat. Windows down, valley streets. She sings casually. He's on his phone. She glances at him — he doesn't look back. Camera catches it. Detail shots: overgrown hedges, dead lawns, sun-bleached FOR SALE signs.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">1:25–1:35</span>
+        <span class="shot-title">"41, never had a son"</span>
+        <span class="shot-format">Digital</span>
+      </div>
+      <div class="shot-body">They pull up to the abandoned house. The break-in — through the fence, around the side, camera following like it shouldn't be here. Push through dark hallway. Discover the empty pool. Hold on it. Caitlin climbs down, exploring.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">1:35–1:50</span>
+        <span class="shot-title">Pre-Chorus 2 — "They'd go all night long"</span>
+        <span class="shot-format">Digital</span>
+      </div>
+      <div class="shot-body">Hero Skater drops into the pool. Raw and loud. Caitlin at the edge jumping up and down, clapping. They sit together, sun going down. She watches him skate. Plexiglass #2 — golden hour, eyes closed, softer. She's starting to drift. Smoke curling through pool light.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">1:50–2:10</span>
+        <span class="shot-title">Chorus 2 — "She don't wanna go"</span>
+        <span class="shot-format">Digital</span>
+      </div>
+      <div class="shot-body">The turn. He wants to leave. She pulls his arm — playful, then real. He goes anyway. She watches him walk through the house. First time her expression isn't fun. She's alone at the house. Sun fading. Performance callbacks — quick flashes of Venice bowl, shorter and more fragmented. Bouquet spills — petals scatter across pool deck in slow motion. They blow away.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">2:10–2:35</span>
+        <span class="shot-title">Chorus 3 / Outro — "Blowin' away"</span>
+        <span class="shot-format">Digital → 35mm → Digital</span>
+      </div>
+      <div class="shot-body">Night pool. Projector light on the walls. Caitlin finishes the song alone. Still vibing, solo energy. Plexiglass #3 — night, projector colors on her face, expression changed. Not sad. Awake. "Blowin' away" — 35mm flash: Venice, skate park, golden hour, the good times flooding back in warm grain. Beautiful and unmistakably over. Back to digital.</div>
+    </div>
+
+    <div class="shot">
+      <div class="shot-header">
+        <span class="shot-time">2:35–2:40</span>
+        <span class="shot-title">Final Image</span>
+        <span class="shot-format">Digital</span>
+      </div>
+      <div class="shot-body">Empty pool. Night. Caitlin sitting alone. His board on its side, wheels spinning, slowing. Camera rises above her. Pool widens. She gets smaller. Doesn't look up. Wheels stop. Clean image holds. Black.</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>Brendan Lynch · The Varied</span>
+    <a href="/">thevaried.co</a>
+  </footer>
+
 </div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 02 · DIRECTOR'S STATEMENT               -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s02">
-  <div class="s02-text">
-    <div class="t-label" style="margin-bottom:32px;">Director's Intent</div>
-    <p class="statement-quote t-display">
-      The song is about a room as much as it's about a relationship.
-    </p>
-    <p class="statement-body t-sans">
-      Twenty-four years. The smoke is a character. The objects are evidence. Caitlin isn't performing a story — she's the only witness to it. Two concepts. One vision.
-    </p>
-  </div>
-  <div class="s02-image">
-    <img class="img-fill" src="stills/itmfl_44.jpg" alt="">
-    <div class="overlay-grad-l"></div>
-  </div>
-  <div class="slide-num">02 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 03 · WITNESS — TITLE                    -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s03">
-  <img class="img-fill" src="stills/itmfl_23.jpg" alt="">
-  <div class="overlay-dark-heavy"></div>
-  <div class="overlay-grad-b"></div>
-
-  <span class="concept-badge">Concept One · Location</span>
-  <div class="concept-num t-heading">I</div>
-  <div class="concept-title-line">Witness</div>
-  <p class="concept-hook">
-    She's not inside the story.<br>She's standing slightly to the side of it,<br>watching it happen, carrying what she couldn't stop.
-  </p>
-  <div class="slide-num">03 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 04 · WITNESS — MOODBOARD                -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s04">
-  <div class="moodboard-grid g-2x3" style="width:100%;height:100vh;">
-    <div class="grid-cell span-2">
-      <img src="stills/itmfl_52.jpg" alt="">
-      <span class="grid-label">threshold · witness</span>
-    </div>
-    <div class="grid-cell">
-      <img src="stills/itmfl_38.jpg" alt="">
-      <span class="grid-label">doorway</span>
-    </div>
-    <div class="grid-cell">
-      <img src="stills/itmfl_16.jpg" alt="">
-      <span class="grid-label">absence</span>
-    </div>
-    <div class="grid-cell">
-      <img src="stills/itmfl_30.jpg" alt="">
-      <span class="grid-label">proximity-as-distance</span>
-    </div>
-    <div class="grid-cell">
-      <img src="stills/itmfl_05.jpg" alt="">
-      <span class="grid-label">corridor</span>
-    </div>
-  </div>
-  <div class="moodboard-ref">In the Mood for Love · Wong Kar-wai · Christopher Doyle · 2000</div>
-  <div class="slide-num">04 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 05 · WITNESS — APPROACH                 -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s05">
-  <div class="approach-image">
-    <img class="img-fill" src="stills/itmfl_23.jpg" alt="">
-    <div class="overlay-grad-l" style="background:linear-gradient(to left, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.3) 50%, rgba(8,8,8,0.05) 100%);"></div>
-  </div>
-  <div class="approach-text">
-    <div class="approach-heading t-heading">Witness</div>
-    <ul class="approach-items">
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Concept</span>
-        <span class="approach-item-value t-sans">Caitlin walks through real LA locations — present-day. In each space, the couple appears as memory: overexposed, slightly soft, untouchable. When she leaves, they disappear. They can't follow her out.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Camera</span>
-        <span class="approach-item-value t-sans">Steadicam for Caitlin. Handheld for memory. Shoot through things — bars, doorframes, glass. Never unobstructed.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Location</span>
-        <span class="approach-item-value t-sans">Wide spaces. 40+ feet of depth. Craftsman or Spanish revival. The camera lives in the threshold, not the room.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Grade</span>
-        <span class="approach-item-value t-sans">Two separate LUTs — no blending. Present: warm, saturated, golden. Memory: cool, desaturated, two stops blown.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Format</span>
-        <span class="approach-item-value t-sans">Sony FX3 · Vintage Zeiss · 1.85:1</span>
-      </li>
-    </ul>
-  </div>
-  <div class="slide-num">05 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 06 · OBJECTS — TITLE                    -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s06">
-  <img class="img-fill" src="stills/met_claesz_skull.jpg" alt="" style="object-position:center;">
-  <div class="overlay-dark-heavy"></div>
-  <div class="overlay-grad-b"></div>
-
-  <span class="concept-badge">Concept Two · Stage</span>
-  <div class="concept-num t-heading">II</div>
-  <div class="concept-title-line">Objects</div>
-  <p class="concept-hook">
-    We never meet the couple at all.<br>The relationship exists entirely in what it left behind.<br>The restraint is the power.
-  </p>
-  <div class="slide-num">06 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 07 · OBJECTS — MOODBOARD                -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s07">
-  <div class="moodboard-grid g-dutch" style="width:100%;height:100vh;">
-    <div class="grid-cell">
-      <img src="stills/met_vanitas.jpg" alt="" style="object-position:center;">
-      <span class="grid-label">Vanitas Still Life · de Gheyn II</span>
-    </div>
-    <div class="grid-cell">
-      <img src="stills/met_heda_oysters.jpg" alt="" style="object-position:center;">
-      <span class="grid-label">Objects · Heda · oblique light</span>
-    </div>
-    <div class="grid-cell">
-      <img src="stills/met_claesz_skull.jpg" alt="" style="object-position:center;">
-      <span class="grid-label">Still Life with Skull · Claesz</span>
-    </div>
-    <div class="grid-cell">
-      <img src="stills/met_vermeer_maid.jpg" alt="" style="object-position:center top;">
-      <span class="grid-label">A Maid Asleep · Vermeer · single source</span>
-    </div>
-  </div>
-  <div class="moodboard-ref">Dutch Golden Age / 17th Century · Metropolitan Museum of Art</div>
-  <div class="slide-num">07 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 08 · OBJECTS — APPROACH                 -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s08" style="flex-direction:row-reverse;">
-  <div class="approach-image">
-    <img class="img-fill" src="stills/met_vanitas.jpg" alt="">
-    <div class="overlay-grad-l"></div>
-  </div>
-  <div class="approach-text">
-    <div class="approach-heading t-heading">Objects</div>
-    <ul class="approach-items">
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Concept</span>
-        <span class="approach-item-value t-sans">One stage. Total darkness. Objects lit under a single warm source — screen left. Caitlin sings from a clean bright room, holding artifacts like she's trying to figure out how much each one weighs.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Lighting</span>
-        <span class="approach-item-value t-sans">Dutch Golden Age. One source. Oblique shadows. Every shadow tells you something about the shape of the object casting it. The darkness is as designed as the light.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">The Ashtray</span>
-        <span class="approach-item-value t-sans">Overhead. Smoke rising. Hold until the smoke is the whole frame. <em>Night-swimming laps in the ashtray.</em> This is the title shot.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Stage</span>
-        <span class="approach-item-value t-sans">40–50 ft. The set is physically stripped between sequences. The room gets smaller. The pullback at the end reveals how much space became nothing.</span>
-      </li>
-      <li class="approach-item">
-        <span class="approach-item-label t-label">Format</span>
-        <span class="approach-item-value t-sans">ARRI Mini LF · Vintage Anamorphic · 2.39:1</span>
-      </li>
-    </ul>
-  </div>
-  <div class="slide-num">08 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 09 · KEY SHOTS                          -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s09">
-  <div class="t-label" style="margin-bottom:12px;">Key Frames · Objects</div>
-  <h2 class="t-heading" style="font-size:clamp(42px,5vw,64px);color:#f0ebe0;margin-bottom:0;line-height:1;">The Evidence</h2>
-
-  <div class="shots-grid">
-    <div class="shot-card">
-      <div class="shot-card-rule"></div>
-      <div class="shot-card-num">01</div>
-      <div class="shot-card-title">The Ring</div>
-      <p class="shot-card-desc">CZ ring on white cloth under a single practical. Lit like it costs everything and nothing. The shadow it casts is longer than it should be.</p>
-    </div>
-    <div class="shot-card">
-      <div class="shot-card-rule"></div>
-      <div class="shot-card-num">02</div>
-      <div class="shot-card-title">Pill Bottles</div>
-      <p class="shot-card-desc">100mm, f/2.0. Labels just past readable — you feel the weight without reading the diagnosis. Amber glass in warm light.</p>
-    </div>
-    <div class="shot-card">
-      <div class="shot-card-rule"></div>
-      <div class="shot-card-num">03</div>
-      <div class="shot-card-title">The Hole</div>
-      <p class="shot-card-desc">Drywall at eye level. Caitlin's hand enters frame from below, touches the edge. Then pulls back. Camera holds on the wall.</p>
-    </div>
-    <div class="shot-card">
-      <div class="shot-card-rule"></div>
-      <div class="shot-card-num">04</div>
-      <div class="shot-card-title">The Ashtray</div>
-      <p class="shot-card-desc">Overhead. Smoke rising in available light. Hold until the smoke fills the frame. This is the title. This is the song.</p>
-    </div>
-  </div>
-  <div class="slide-num">09 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 10 · PRODUCTION                         -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s10">
-  <div class="t-label" style="margin-bottom:12px;">Production</div>
-  <h2 class="t-heading" style="font-size:clamp(42px,5vw,64px);color:#f0ebe0;line-height:1;">Two Approaches</h2>
-
-  <div class="prod-grid">
-    <div>
-      <div class="prod-col-title">Witness</div>
-      <div class="prod-col-sub">Location · Lower Budget</div>
-      <ul class="prod-specs">
-        <li class="prod-spec">
-          <span class="prod-spec-label">Camera</span>
-          <span class="prod-spec-value">Sony FX3 · Vintage Zeiss or Leica glass</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Format</span>
-          <span class="prod-spec-value">1.85:1 · Two visual registers</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Schedule</span>
-          <span class="prod-spec-value">2 days · Golden hour shoots both days</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Location</span>
-          <span class="prod-spec-value">Real LA · 40+ ft depth minimum · Craftsman or loft</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Grade</span>
-          <span class="prod-spec-value">Split LUT · Present warm · Memory blown</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Crew</span>
-          <span class="prod-spec-value">Small, tight · Intimacy is the point</span>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <div class="prod-col-title">Objects</div>
-      <div class="prod-col-sub">Stage · Higher Budget</div>
-      <ul class="prod-specs">
-        <li class="prod-spec">
-          <span class="prod-spec-label">Camera</span>
-          <span class="prod-spec-value">ARRI Mini LF · Vintage Anamorphic glass</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Format</span>
-          <span class="prod-spec-value">2.39:1 · Stage reveal on final pullback</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Schedule</span>
-          <span class="prod-spec-value">Pre-light + 2 days · Day 1 objects · Day 2 Caitlin</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Stage</span>
-          <span class="prod-spec-value">40–50 ft · Dutch lighting rig · Total control</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Grade</span>
-          <span class="prod-spec-value">Full DI · Forensic gold · ARRI color science</span>
-        </li>
-        <li class="prod-spec">
-          <span class="prod-spec-label">Art Dept</span>
-          <span class="prod-spec-value">Full prop budget · Set stripped between sequences</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="slide-num">10 / 11</div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- SLIDE 11 · CLOSE                              -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="slide" id="s11">
-  <p class="close-quote t-display">
-    "Both concepts earn the song. The question is what you want Caitlin's visual identity to be: a woman who walks through the city carrying what she witnessed — or a woman alone on a stage, sorting through what's left."
-  </p>
-  <div class="close-rule"></div>
-  <div class="close-credit">
-    Brendan Lynch · Director<br>
-    The Varied · The Floatplane<br>
-    brendan@thefloatplane.com<br>
-    February 2026
-  </div>
-  <div class="close-note">Nothing submitted without Brendan's review.</div>
-  <a href="go-deeper.html" style="
-    display: inline-block;
-    margin-top: 40px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(240,235,224,0.35);
-    text-decoration: none;
-    border: 1px solid rgba(240,235,224,0.12);
-    padding: 10px 20px;
-    transition: color 0.2s, border-color 0.2s;
-  " onmouseover="this.style.color='#f0ebe0';this.style.borderColor='rgba(240,235,224,0.4)'" onmouseout="this.style.color='rgba(240,235,224,0.35)';this.style.borderColor='rgba(240,235,224,0.12)'">
-    Go Deeper →
-  </a>
-  <div class="slide-num">11 / 11</div>
-</div>
-
 </body>
 </html>
