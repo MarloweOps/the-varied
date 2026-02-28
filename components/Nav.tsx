@@ -2,15 +2,18 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type MouseEvent } from "react";
+import Link from "next/link";
 
 type NavItem = {
   label: string;
-  anchor: string;
+  anchor?: string;
+  href?: string;
 };
 
 const navItems: NavItem[] = [
   { label: "Work", anchor: "work" },
   { label: "Director", anchor: "director" },
+  { label: "Blog", href: "/blog" },
   { label: "About", anchor: "about" },
   { label: "Contact", anchor: "contact" },
 ];
@@ -57,6 +60,31 @@ export default function Nav() {
   const getHref = (anchor: string) =>
     pathname === "/" ? `#${anchor}` : `/#${anchor}`;
 
+  const renderNavLink = (item: NavItem, className: string) => {
+    if (item.href) {
+      return (
+        <Link
+          key={item.label}
+          href={item.href}
+          className={className}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          {item.label}
+        </Link>
+      );
+    }
+    return (
+      <a
+        key={item.label}
+        href={getHref(item.anchor!)}
+        onClick={(event) => handleLinkClick(event, item.anchor!)}
+        className={className}
+      >
+        {item.label}
+      </a>
+    );
+  };
+
   return (
     <>
       <nav
@@ -73,16 +101,12 @@ export default function Nav() {
           </a>
 
           <div className="hidden items-center gap-8 md:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.anchor}
-                href={getHref(item.anchor)}
-                onClick={(event) => handleLinkClick(event, item.anchor)}
-                className="font-inter text-[11px] uppercase tracking-[0.15em] text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              renderNavLink(
+                item,
+                "font-inter text-[11px] uppercase tracking-[0.15em] text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
+              )
+            )}
           </div>
 
           <button
@@ -101,16 +125,12 @@ export default function Nav() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#080808]">
           <div className="flex flex-col items-center gap-6">
-            {navItems.map((item) => (
-              <a
-                key={item.anchor}
-                href={getHref(item.anchor)}
-                onClick={(event) => handleLinkClick(event, item.anchor)}
-                className="font-cormorant text-[48px] leading-none text-[var(--text-primary)]"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              renderNavLink(
+                item,
+                "font-cormorant text-[48px] leading-none text-[var(--text-primary)]"
+              )
+            )}
           </div>
         </div>
       )}

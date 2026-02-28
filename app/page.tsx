@@ -1,5 +1,9 @@
+import Nav from "@/components/Nav";
+
 export default function Home() {
   return (
+    <>
+    <Nav />
     <main
       style={{
         minHeight: '100dvh',
@@ -83,5 +87,6 @@ export default function Home() {
         </a>
       </footer>
     </main>
+    </>
   );
 }
