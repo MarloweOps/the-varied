@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Thoughts on production, creative process, and the work behind the work.",
   alternates: {
-    canonical: "/blog",
+    canonical: "https://thevaried.co/blog",
   },
 };
 
