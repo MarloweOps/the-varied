@@ -1,5 +1,5 @@
 ---
-title: AI Workflow Tools for Video Production: What Actually Works on Set
+title: "AI Workflow Tools for Video Production: What Actually Works on Set"
 meta_description: "AI tools are reshaping production workflows. Here's what actually works on set, what's hype, and how to integrate them into your real production process."
 slug: ai-workflow-tools-video-production
 keyword: ai workflow tools for video production
