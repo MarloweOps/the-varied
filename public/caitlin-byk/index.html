@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caitlin Byk — Brand Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Quicksand:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --honey: #E8368F; --honey-light: #F06BAE; --honey-dark: #C4246E;
+  --sunburn: #D72638; --sunburn-light: #E85A68; --peach: #6B8CFF;
+  --datestamp: #B8E62E; --datestamp-light: #D1F06A; --datestamp-dark: #8FBF10;
+  --chrome: #C0C8D4; --chrome-light: #E2E6EC;
+  --parchment: #F2EDEA; --cream: #FAF7F5; --sand: #E0D6D2;
+  --warm-gray: #9B918B; --soot: #1A1513; --soot-soft: #332B27;
+  --font-display: 'Dela Gothic One', Impact, 'Arial Black', sans-serif;
+  --font-body: 'Quicksand', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { background:var(--cream); color:var(--soot); font-family:var(--font-body); font-weight:400; line-height:1.65; -webkit-font-smoothing:antialiased; }
+body::before { content:''; position:fixed; top:0;left:0;right:0;bottom:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:9999; }
+.container { max-width:1100px; margin:0 auto; padding:0 48px; }
+section { padding:100px 0; border-bottom:1px solid var(--sand); }
+section:last-child { border-bottom:none; }
+h1,h2,h3,h4 { font-family:var(--font-display); font-weight:400; line-height:1.1; letter-spacing:-0.02em; }
+h1 { font-size:clamp(3.5rem,8vw,7rem); text-transform:uppercase; letter-spacing:-0.04em; }
+h2 { font-size:clamp(2rem,4vw,3rem); margin-bottom:48px; text-transform:uppercase; }
+h3 { font-size:1.35rem; margin-bottom:16px; }
+h4 { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; color:var(--warm-gray); font-family:var(--font-mono); }
+p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-soft); }
+.lead { font-size:1.3rem; line-height:1.5; font-weight:300; color:var(--soot); max-width:740px; }
+.mono { font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.02em; }
+.section-num { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--honey); display:block; margin-bottom:20px; }
+.divider { width:60px; height:2px; background:var(--honey); margin:40px 0; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-top:48px; }
+.three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:48px; margin-top:48px; }
+.brand-quote { font-family:var(--font-display); font-size:clamp(1.6rem,3vw,2.4rem); font-weight:400; line-height:1.25; color:var(--soot); padding:48px 0; max-width:800px; letter-spacing:-0.01em; }
+.brand-quote span { color:var(--honey); }
+
+/* COVER */
+.cover { min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; padding:80px 48px; background:var(--soot); color:var(--parchment); position:relative; overflow:hidden; border-bottom:none; }
+.cover::before { content:''; position:absolute; top:-20%;right:-10%; width:700px;height:700px; background:radial-gradient(circle,#E8368F 0%,transparent 70%); opacity:0.15; filter:blur(80px); }
+.cover::after { content:''; position:absolute; bottom:-10%;left:-5%; width:500px;height:500px; background:radial-gradient(circle,#D72638 0%,transparent 70%); opacity:0.12; filter:blur(60px); }
+.cover-top { position:absolute; top:48px;left:48px;right:48px; display:flex; justify-content:space-between; }
+.cover-tag { font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--warm-gray); }
+.cover-datestamp { font-family:var(--font-mono); font-size:0.72rem; color:var(--datestamp); letter-spacing:0.05em; }
+.cover h1 { position:relative; z-index:1; margin-bottom:32px; }
+.cover h1 span { display:block; color:var(--honey); }
+.cover-subtitle { font-family:var(--font-body); font-size:1.15rem; font-weight:300; color:var(--warm-gray); max-width:560px; line-height:1.6; position:relative; z-index:1; }
+.cover-bottom { display:flex; justify-content:space-between; align-items:flex-end; margin-top:60px; position:relative; z-index:1; }
+.cover-label { font-family:var(--font-mono); font-size:0.65rem; text-transform:uppercase; letter-spacing:0.18em; color:var(--warm-gray); border-top:1px solid var(--soot-soft); padding-top:12px; }
+
+/* NAV */
+.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:16px 48px; display:flex; justify-content:space-between; align-items:center; background:rgba(26,21,19,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transform:translateY(-100%); transition:transform 0.4s ease; border-bottom:1px solid rgba(232,54,143,0.15); }
+.nav.visible { transform:translateY(0); }
+.nav-logo { font-family:var(--font-display); font-size:0.9rem; color:var(--parchment); text-transform:uppercase; letter-spacing:-0.02em; }
+.nav-links { display:flex; gap:24px; }
+.nav-links a { font-family:var(--font-mono); font-size:0.62rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--warm-gray); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--honey); }
+
+/* TOC */
+.toc { background:var(--parchment); }
+.toc-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.toc-item { padding:28px 0; border-bottom:1px solid var(--sand); display:flex; gap:20px; align-items:baseline; cursor:pointer; transition:padding-left 0.2s; }
+.toc-item:hover { padding-left:8px; }
+.toc-item:nth-child(odd) { padding-right:40px; border-right:1px solid var(--sand); }
+.toc-item:nth-child(even) { padding-left:40px; }
+.toc-item:nth-child(even):hover { padding-left:48px; }
+.toc-num { font-family:var(--font-mono); font-size:0.7rem; color:var(--honey); min-width:36px; }
+.toc-title { font-family:var(--font-display); font-size:1.1rem; font-weight:400; color:var(--soot); }
+
+/* PILLARS */
+.pillar-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+.pillar-card { padding:40px; border-radius:16px; background:white; box-shadow:0 2px 16px rgba(35,30,24,0.05); position:relative; overflow:hidden; transition:transform 0.3s ease, box-shadow 0.3s ease; }
+.pillar-card:hover { transform:translateY(-4px); box-shadow:0 8px 32px rgba(35,30,24,0.1); }
+.pillar-card::before { content:''; position:absolute; top:0;left:0; width:100%;height:4px; }
+.pillar-card:nth-child(1)::before { background:var(--honey); }
+.pillar-card:nth-child(2)::before { background:var(--sunburn); }
+.pillar-card:nth-child(3)::before { background:var(--datestamp); }
+.pillar-card:nth-child(4)::before { background:var(--peach); }
+.pillar-num { font-family:var(--font-mono); font-size:0.6rem; color:var(--warm-gray); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:16px; }
+.pillar-card h3 { font-size:1.5rem; margin-bottom:16px; text-transform:uppercase; letter-spacing:-0.01em; }
+.pillar-card p { font-size:0.95rem; color:var(--soot-soft); max-width:none; }
+.pillar-details { margin-top:20px; padding-top:20px; border-top:1px solid var(--sand); }
+.pillar-detail-item { display:flex; gap:12px; margin-bottom:10px; font-size:0.88rem; color:var(--soot-soft); }
+.pillar-detail-item strong { font-weight:600; color:var(--soot); min-width:80px; font-size:0.82rem; text-transform:uppercase; font-family:var(--font-mono); letter-spacing:0.05em; flex-shrink:0; }
+
+/* MODES — Two photos side by side */
+.modes-visual { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:48px; margin-bottom:48px; }
+.mode-card { position:relative; border-radius:16px; overflow:hidden; cursor:pointer; }
+.mode-card img { display:block; width:100%; height:auto; object-fit:contain; transition:transform 0.6s ease; }
+.mode-card:hover img { transform:scale(1.03); }
+.mode-label { position:absolute; bottom:0; left:0; right:0; padding:32px 24px 24px; background:linear-gradient(transparent, rgba(26,21,19,0.85)); }
+.mode-label h3 { font-family:var(--font-display); color:var(--parchment); font-size:1.4rem; text-transform:uppercase; margin-bottom:4px; }
+.mode-label p { font-family:var(--font-mono); font-size:0.65rem; color:var(--warm-gray); letter-spacing:0.1em; text-transform:uppercase; max-width:none; margin:0; }
+
+/* LIGHTBOX */
+.lightbox { display:none; position:fixed; top:0;left:0;right:0;bottom:0; z-index:10000; background:rgba(26,21,19,0.95); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); justify-content:center; align-items:center; cursor:pointer; }
+.lightbox.active { display:flex; }
+.lightbox img { max-width:92vw; max-height:92vh; width:auto; height:auto; object-fit:contain; border-radius:4px; }
+.lightbox-close { position:absolute; top:24px; right:32px; font-family:var(--font-mono); font-size:0.8rem; color:var(--warm-gray); cursor:pointer; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* PALETTE */
+.palette-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.swatch { border-radius:12px; overflow:hidden; background:white; box-shadow:0 2px 12px rgba(35,30,24,0.06); transition:transform 0.3s ease; cursor:pointer; }
+.swatch:hover { transform:translateY(-4px); }
+.swatch-color { height:160px; position:relative; }
+.swatch-color::after { content:'Copied!'; position:absolute; top:50%;left:50%;transform:translate(-50%,-50%); font-family:var(--font-mono); font-size:0.72rem; color:white; background:rgba(0,0,0,0.6); padding:6px 14px; border-radius:6px; opacity:0; transition:opacity 0.3s; pointer-events:none; }
+.swatch.copied .swatch-color::after { opacity:1; }
+.swatch-info { padding:20px; }
+.swatch-name { font-family:var(--font-display); font-weight:400; font-size:1rem; margin-bottom:4px; }
+.swatch-hex { font-family:var(--font-mono); font-size:0.72rem; color:var(--warm-gray); text-transform:uppercase; letter-spacing:0.05em; }
+.swatch-role { font-size:0.82rem; color:var(--warm-gray); margin-top:8px; line-height:1.4; }
+.swatch.large { grid-column:span 2; }
+.swatch.large .swatch-color { height:200px; }
+.neutrals-row { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:32px; }
+.neutral-chip { text-align:center; }
+.neutral-chip-color { height:72px; border-radius:10px; margin-bottom:10px; border:1px solid var(--sand); }
+.neutral-chip-label { font-family:var(--font-mono); font-size:0.62rem; color:var(--warm-gray); text-transform:uppercase; letter-spacing:0.08em; }
+.color-ratio { display:flex; height:48px; border-radius:12px; overflow:hidden; margin-top:24px; box-shadow:0 2px 12px rgba(35,30,24,0.08); }
+.color-ratio div { display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:0.6rem; letter-spacing:0.08em; color:white; }
+
+/* TYPE SPECIMENS */
+.type-specimen { margin-top:48px; padding:48px; background:white; border-radius:16px; box-shadow:0 2px 16px rgba(35,30,24,0.05); margin-bottom:32px; }
+.type-specimen-display { font-family:var(--font-display); font-weight:400; font-size:clamp(2.5rem,5vw,4.5rem); line-height:1.05; letter-spacing:-0.03em; color:var(--soot); margin-bottom:24px; text-transform:uppercase; }
+.type-meta { display:flex; gap:40px; margin-top:20px; padding-top:20px; border-top:1px solid var(--sand); }
+.type-meta-item { display:flex; flex-direction:column; gap:4px; }
+.type-meta-label { font-family:var(--font-mono); font-size:0.6rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--warm-gray); }
+.type-meta-value { font-family:var(--font-body); font-size:0.9rem; font-weight:500; }
+
+/* WORDMARK */
+.wm-hero { padding:80px 48px; border-radius:20px; margin-top:48px; text-align:center; overflow:hidden; }
+.wm-name { font-family:var(--font-display); font-weight:400; text-transform:uppercase; letter-spacing:-0.04em; line-height:1; }
+.wm-label { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.35em; text-transform:uppercase; }
+.wm-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px; }
+.wm-card { padding:52px 32px; border-radius:16px; text-align:center; overflow:hidden; transition:transform 0.3s ease; }
+.wm-card:hover { transform:scale(1.02); }
+.wm-card .wm-name { font-size:clamp(1.8rem,3.5vw,2.4rem); margin-bottom:10px; }
+.wm-card .wm-label { font-size:0.55rem; letter-spacing:0.25em; }
+
+/* IMAGE RULES */
+.rule-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
+.rule-card { padding:32px; border-radius:14px; border:1px solid var(--sand); background:white; }
+.rule-card.do { border-top:3px solid var(--datestamp); }
+.rule-card.dont { border-top:3px solid var(--sunburn); }
+.rule-card-header { font-family:var(--font-mono); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:20px; }
+.rule-card.do .rule-card-header { color:var(--datestamp); }
+.rule-card.dont .rule-card-header { color:var(--sunburn); }
+.rule-list { list-style:none; padding:0; }
+.rule-list li { padding:10px 0; border-bottom:1px solid var(--sand); font-size:0.92rem; color:var(--soot-soft); display:flex; gap:10px; align-items:flex-start; }
+.rule-list li:last-child { border-bottom:none; }
+.rule-list li::before { flex-shrink:0; margin-top:2px; font-size:0.85rem; }
+.rule-card.do .rule-list li::before { content:'✦'; color:var(--datestamp); }
+.rule-card.dont .rule-list li::before { content:'✕'; color:var(--sunburn); }
+
+/* SHOT LIST */
+.shot-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:48px; }
+.shot-card { background:var(--soot); border-radius:12px; padding:24px 20px; color:var(--parchment); display:flex; flex-direction:column; min-height:180px; transition:transform 0.3s ease; }
+.shot-card:hover { transform:translateY(-4px); }
+.shot-card-num { font-family:var(--font-mono); font-size:0.6rem; color:var(--honey); letter-spacing:0.1em; margin-bottom:auto; }
+.shot-card h4 { font-family:var(--font-display); font-weight:400; font-size:1rem; color:var(--parchment); margin-bottom:8px; text-transform:uppercase; letter-spacing:0; }
+.shot-card p { font-size:0.78rem; color:var(--warm-gray); max-width:none; margin-bottom:0; line-height:1.45; }
+
+/* OPEN QUESTIONS */
+.question-list { margin-top:48px; }
+.question-item { padding:28px 0; border-bottom:1px solid var(--sand); display:grid; grid-template-columns:40px 1fr; gap:20px; }
+.question-num { font-family:var(--font-mono); font-size:0.72rem; color:var(--honey); padding-top:4px; }
+.question-item h3 { font-size:1.15rem; margin-bottom:8px; }
+.question-item p { font-size:0.92rem; max-width:none; margin-bottom:0; }
+
+/* FOOTER */
+.footer { background:var(--soot); color:var(--warm-gray); padding:60px 48px; text-align:center; }
+.footer-logo { font-family:var(--font-display); font-weight:400; font-size:1.4rem; text-transform:uppercase; letter-spacing:-0.02em; color:var(--parchment); margin-bottom:8px; }
+.footer-sub { font-family:var(--font-mono); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--warm-gray); }
+.footer-note { margin-top:32px; font-size:0.78rem; color:var(--warm-gray); max-width:500px; margin-left:auto; margin-right:auto; }
+
+/* SCROLL ANIMATIONS */
+.fade-in { opacity:0; transform:translateY(32px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width:900px) {
+  .container { padding:0 24px; }
+  section { padding:64px 0; }
+  .cover { padding:48px 24px; }
+  .cover-top { left:24px; right:24px; }
+  .two-col,.pillar-grid,.rule-grid,.toc-grid,.wm-grid,.modes-visual { grid-template-columns:1fr; }
+  .three-col { grid-template-columns:1fr; }
+  .palette-grid { grid-template-columns:1fr 1fr; }
+  .swatch.large { grid-column:span 1; }
+  .shot-grid { grid-template-columns:1fr 1fr; }
+  .neutrals-row { grid-template-columns:repeat(3,1fr); }
+  .type-meta { flex-wrap:wrap; gap:20px; }
+  .toc-item:nth-child(odd) { border-right:none; padding-right:0; }
+  .toc-item:nth-child(even) { padding-left:0; }
+  .nav { padding:12px 24px; }
+  .nav-links { gap:16px; }
+  .nav-links a { font-size:0.55rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="nav" id="nav">
+  <span class="nav-logo">Caitlin Byk</span>
+  <div class="nav-links">
+    <a href="#essence">Essence</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#palette">Palette</a>
+    <a href="#type">Type</a>
+    <a href="#wordmark">Wordmark</a>
+    <a href="#photography">Photo</a>
+    <a href="#styling">Styling</a>
+    <a href="#references">Refs</a>
+  </div>
+</nav>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">ESC to close</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <div class="cover-top">
+    <span class="cover-tag">Brand Guide — Source of Truth</span>
+    <span class="cover-datestamp">03 . 16 . 2026</span>
+  </div>
+  <h1>Caitlin<span>Byk</span></h1>
+  <p class="cover-subtitle">Effortless cool. Y2K. Camcorder warmth. LA street-pop with edge. This document defines the visual and verbal identity for everything that goes out under her name.</p>
+  <div class="cover-bottom">
+    <span class="cover-label">Cash Money Republic</span>
+    <span class="cover-label">Confidential</span>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="toc" id="toc">
+  <div class="container">
+    <span class="section-num">Index</span>
+    <h2>Contents</h2>
+    <div class="toc-grid">
+      <a class="toc-item" href="#essence" style="text-decoration:none;color:inherit"><span class="toc-num">01</span><span class="toc-title">Brand Essence</span></a>
+      <a class="toc-item" href="#pillars" style="text-decoration:none;color:inherit"><span class="toc-num">02</span><span class="toc-title">Brand Pillars</span></a>
+      <a class="toc-item" href="#palette" style="text-decoration:none;color:inherit"><span class="toc-num">03</span><span class="toc-title">Color Palette</span></a>
+      <a class="toc-item" href="#type" style="text-decoration:none;color:inherit"><span class="toc-num">04</span><span class="toc-title">Typography</span></a>
+      <a class="toc-item" href="#wordmark" style="text-decoration:none;color:inherit"><span class="toc-num">05</span><span class="toc-title">Wordmark & Logo</span></a>
+      <a class="toc-item" href="#photography" style="text-decoration:none;color:inherit"><span class="toc-num">06</span><span class="toc-title">Photography</span></a>
+      <a class="toc-item" href="#styling" style="text-decoration:none;color:inherit"><span class="toc-num">07</span><span class="toc-title">Styling Rules</span></a>
+      <a class="toc-item" href="#references" style="text-decoration:none;color:inherit"><span class="toc-num">08</span><span class="toc-title">References</span></a>
+      <a class="toc-item" href="#questions" style="text-decoration:none;color:inherit"><span class="toc-num">09</span><span class="toc-title">Open Questions</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 01 BRAND ESSENCE -->
+<section id="essence">
+  <div class="container">
+    <span class="section-num fade-in">01 — Brand Essence</span>
+    <h2 class="fade-in">Who She Is</h2>
+    <p class="lead fade-in">Caitlin Byk is a 17-year-old pop artist from LA, freshly signed to Cash Money Republic. She has half a million streams on "Blow Away," and the kind of taste that rejects everything that tries too hard. The music is already working. Now the image catches up.</p>
+    <div class="divider fade-in"></div>
+    <h4 class="fade-in">Positioning Statement</h4>
+    <h3 class="fade-in">The LA pop girl who looks like she just rolled out of bed and into something iconic.</h3>
+    <p class="fade-in">Effortless cool girl meets real musicianship — easy on the surface, deliberate underneath. She's the girl your audience wants to be friends with, and can't quite figure out how to be. Your cooler, slightly-more-rebellious bestie.</p>
+
+    <div class="divider fade-in"></div>
+
+    <h4 class="fade-in">Two Modes</h4>
+    <h3 class="fade-in">She's chill until she decides not to be. The flip is the brand.</h3>
+
+    <!-- PHOTO CARDS -->
+    <div class="modes-visual fade-in">
+      <div class="mode-card" onclick="openLightbox('img/everyday.png')">
+        <img src="img/everyday.png" alt="Caitlin Byk — Everyday mode">
+        <div class="mode-label">
+          <h3>Everyday</h3>
+          <p>Real places, real light, candid</p>
+        </div>
+      </div>
+      <div class="mode-card" onclick="openLightbox('img/elevated.png')">
+        <img src="img/elevated.png" alt="Caitlin Byk — Elevated mode">
+        <div class="mode-label">
+          <h3>Elevated</h3>
+          <p>Self-aware, kinetic, in your face</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col fade-in" style="margin-top:0;gap:48px">
+      <div>
+        <h4>Everyday</h4>
+        <p style="font-size:0.92rem">Real places, real light, candid. Baggy jeans and a coffee. The version of her that makes you think "she's just like me." Warm, analog, no effort visible.</p>
+      </div>
+      <div>
+        <h4>Elevated</h4>
+        <p style="font-size:0.92rem">Self-aware. She knows the camera's there and goes there. Kinetic, striking, in your face. The version that makes you think "I could never." Still her — just turned up.</p>
+      </div>
+    </div>
+
+    <div class="brand-quote fade-in">"I want things to look <span>effortlessly cool</span>. Like I've been wasted the entire week and didn't try — but it should also look <span>really good</span>."</div>
+  </div>
+</section>
+
+<!-- 02 BRAND PILLARS -->
+<section id="pillars">
+  <div class="container">
+    <span class="section-num fade-in">02 — Brand Pillars</span>
+    <h2 class="fade-in">Four Pillars</h2>
+    <div class="pillar-grid">
+      <div class="pillar-card fade-in">
+        <div class="pillar-num">Pillar 01</div>
+        <h3>Effortless Cool</h3>
+        <p>The brand's center of gravity. Nothing can look like it's trying. Every visual, caption, outfit, and piece of content should feel like it happened naturally — even when it's meticulously produced. The effort is invisible.</p>
+        <p style="font-size:0.88rem;font-style:italic;color:var(--honey);max-width:none;margin-bottom:16px">"I'm a chill girl."</p>
+        <div class="pillar-details">
+          <div class="pillar-detail-item"><strong>Styling</strong> Baggy baseline + one elevated piece (pointy heel, jacket, good bag)</div>
+          <div class="pillar-detail-item"><strong>Content</strong> Two buckets — everyday: real places, real light, candid moments. Elevated: self-aware, heightened reality, in your face visuals.</div>
+          <div class="pillar-detail-item"><strong>Voice</strong> Casual, unbothered, funny, slightly irreverent</div>
+        </div>
+      </div>
+      <div class="pillar-card fade-in">
+        <div class="pillar-num">Pillar 02</div>
+        <h3>Y2K / Camcorder</h3>
+        <p>Not a trend — a genuine aesthetic preference. This is her native visual language. Flash, grain, blown-out highlights. MiniDV texture, 4:3 ratios, datestamp overlays. Warm tones, amber, washed-out pastels, nothing clinical or cold.</p>
+        <p style="font-size:0.88rem;font-style:italic;color:var(--honey);max-width:none;margin-bottom:16px">"i'm so y2k. thats so my brand."</p>
+        <div class="pillar-details">
+          <div class="pillar-detail-item"><strong>Photo</strong> Flash, grain, blown-out highlights, disposable camera feel</div>
+          <div class="pillar-detail-item"><strong>Video</strong> MiniDV / Hi8, 4:3 aspect ratio, datestamps, handheld shake</div>
+          <div class="pillar-detail-item"><strong>Design</strong> Lo-res type, early-internet warmth, anti-HD</div>
+        </div>
+      </div>
+      <div class="pillar-card fade-in">
+        <div class="pillar-num">Pillar 03</div>
+        <h3>LA</h3>
+        <p>Not Hollywood LA — neighborhood LA. Venice, DTLA, strip malls, poolside. The city as a character, not a backdrop. Sun-soaked, slightly reckless, main-character energy without the self-awareness.</p>
+        <p style="font-size:0.88rem;font-style:italic;color:var(--honey);max-width:none;margin-bottom:16px">"I like simple things. Sick ass outfit, my makeup is sick, I'm in a really chill place. That's me."</p>
+        <div class="pillar-details">
+          <div class="pillar-detail-item"><strong>Settings</strong> Real locations — laundromats, diners, sidewalks, her pool, a parked car</div>
+          <div class="pillar-detail-item"><strong>Styling</strong> Street-casual baseline: baggy jeans, tanks, sneakers or pointy shoes</div>
+          <div class="pillar-detail-item"><strong>Energy</strong> Sun-soaked / party flash, main-character energy</div>
+        </div>
+      </div>
+      <div class="pillar-card fade-in">
+        <div class="pillar-num">Pillar 04</div>
+        <h3>Edge</h3>
+        <p>The brand sits between pop polish and something grittier. A bit grunge. Sweet but sharp. Will say exactly what she thinks.</p>
+        <p style="font-size:0.88rem;font-style:italic;color:var(--honey);max-width:none;margin-bottom:16px">"I hate all this trendy shit. I hate it. When things are very forced and like very try hard and trying to be cool — I hate it."</p>
+        <div class="pillar-details">
+          <div class="pillar-detail-item"><strong>Music</strong> Pop melodies with production nods to hip-hop, R&B, electronic textures</div>
+          <div class="pillar-detail-item"><strong>Fashion</strong> Streetwear + high fashion coexisting (Acne jacket over a beater)</div>
+          <div class="pillar-detail-item"><strong>Grunge</strong> Smudged liner, torn hems, darker wash denim, vintage band tees. Not costume grunge — just a little undone.</div>
+          <div class="pillar-detail-item"><strong>Attitude</strong> Sweet but sharp. Honest. No filter.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 COLOR PALETTE -->
+<section id="palette">
+  <div class="container">
+    <span class="section-num fade-in">03 — Color Palette</span>
+    <h2 class="fade-in">Palette</h2>
+    <p class="lead fade-in">Razr phone, lip gloss, cherry red nails, acid green camcorder text, icy blue flip phone wallpaper, chrome chain links. Hot pink is the signature. Cherry red is the heat. Icy blue is the cool flash. Acid lime is the era. Chrome is the texture. Five colors that don't ask permission — grounded by a warm black that keeps the whole thing from melting into candy.</p>
+    <div class="palette-grid">
+      <div class="swatch large fade-in" onclick="copyHex(this,'#E8368F')">
+        <div class="swatch-color" style="background:#E8368F"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sidekick Pink</div>
+          <div class="swatch-hex">#E8368F</div>
+          <div class="swatch-role">The color. The signature. Think Razr phone, lip gloss, the Juicy tracksuit. Hot, loud, unapologetic.</div>
+        </div>
+      </div>
+      <div class="swatch fade-in" onclick="copyHex(this,'#F06BAE')">
+        <div class="swatch-color" style="background:#F06BAE"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Bubblegum</div>
+          <div class="swatch-hex">#F06BAE</div>
+          <div class="swatch-role">The softer pink. Still loud, just less urgent. The glow around the edges.</div>
+        </div>
+      </div>
+      <div class="swatch fade-in" onclick="copyHex(this,'#D72638')">
+        <div class="swatch-color" style="background:#D72638"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cherry</div>
+          <div class="swatch-hex">#D72638</div>
+          <div class="swatch-role">The red. Deeper, more dangerous than the pink — cherry red nails, a vintage Corvette, a stop sign at golden hour. Pink is playful. Cherry is serious.</div>
+        </div>
+      </div>
+      <div class="swatch fade-in" onclick="copyHex(this,'#6B8CFF')">
+        <div class="swatch-color" style="background:#6B8CFF"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Icy Blue</div>
+          <div class="swatch-hex">#6B8CFF</div>
+          <div class="swatch-role">The cool flash. Periwinkle-meets-electric-blue — early-2000s web design, CD-ROM interfaces, flip phone wallpapers. A jolt of cool against the warm.</div>
+        </div>
+      </div>
+      <div class="swatch fade-in" onclick="copyHex(this,'#B8E62E')">
+        <div class="swatch-color" style="background:#B8E62E"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Datestamp</div>
+          <div class="swatch-hex">#B8E62E</div>
+          <div class="swatch-role">Acid lime — straight from a 2003 camcorder timestamp. The Y2K tech accent. Metadata, timestamps, UI details.</div>
+        </div>
+      </div>
+      <div class="swatch fade-in" onclick="copyHex(this,'#C0C8D4')">
+        <div class="swatch-color" style="background:#C0C8D4"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Chrome</div>
+          <div class="swatch-hex">#C0C8D4</div>
+          <div class="swatch-role">The metallic layer. Chrome hearts, silver chains, brushed aluminum. Borders, dividers, metallic text treatments.</div>
+        </div>
+      </div>
+      <div class="swatch large fade-in" onclick="copyHex(this,'#1A1513')">
+        <div class="swatch-color" style="background:#1A1513"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Soot</div>
+          <div class="swatch-hex">#1A1513</div>
+          <div class="swatch-role">Warm near-black. The anchor. Without this, the palette is a candy store. With it, it's a brand.</div>
+        </div>
+      </div>
+    </div>
+    <h4 style="margin-top:48px" class="fade-in">Neutral Spectrum</h4>
+    <div class="neutrals-row fade-in">
+      <div class="neutral-chip"><div class="neutral-chip-color" style="background:#FAF7F5"></div><div class="neutral-chip-label">Cream #FAF7F5</div></div>
+      <div class="neutral-chip"><div class="neutral-chip-color" style="background:#F2EDEA"></div><div class="neutral-chip-label">Parchment #F2EDEA</div></div>
+      <div class="neutral-chip"><div class="neutral-chip-color" style="background:#E0D6D2"></div><div class="neutral-chip-label">Sand #E0D6D2</div></div>
+      <div class="neutral-chip"><div class="neutral-chip-color" style="background:#9B918B"></div><div class="neutral-chip-label">Warm Gray #9B918B</div></div>
+      <div class="neutral-chip"><div class="neutral-chip-color" style="background:#332B27"></div><div class="neutral-chip-label">Soot Soft #332B27</div></div>
+    </div>
+    <h4 style="margin-top:48px" class="fade-in">Usage Ratios</h4>
+    <p class="fade-in">Pink dominates. Cherry punches. Icy Blue flashes. Lime disrupts. Chrome textures. Soot grounds.</p>
+    <div class="color-ratio fade-in">
+      <div style="background:#E8368F;width:26%">26% Pink</div>
+      <div style="background:#D72638;width:16%">16% Cherry</div>
+      <div style="background:#1A1513;width:18%">18% Soot</div>
+      <div style="background:#6B8CFF;width:12%">12% Icy Blue</div>
+      <div style="background:#B8E62E;width:10%;color:#1A1513">10% Lime</div>
+      <div style="background:#C0C8D4;width:10%;color:#1A1513">10% Chrome</div>
+      <div style="background:#F2EDEA;width:8%;color:#1A1513">8%</div>
+    </div>
+
+    <h4 style="margin-top:48px" class="fade-in">Color × Mode</h4>
+    <div class="two-col fade-in" style="gap:48px">
+      <div>
+        <h3 style="font-size:1.1rem">Everyday</h3>
+        <p style="font-size:0.92rem">Sidekick Pink, Bubblegum, Datestamp, warm neutrals. Soft, sun-soaked, analog. The palette at rest.</p>
+      </div>
+      <div>
+        <h3 style="font-size:1.1rem">Elevated</h3>
+        <p style="font-size:0.92rem">Cherry, Soot, Icy Blue, Chrome. Darker, harder, more contrast. The palette turned up. Pink still shows up — but it's fighting with red and black now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 TYPOGRAPHY -->
+<section id="type">
+  <div class="container">
+    <span class="section-num fade-in">04 — Typography</span>
+    <h2 class="fade-in">Type</h2>
+    <p class="lead fade-in">Dela Gothic One is a Japanese-designed ultra-black that feels like a streetwear poster, a vinyl sticker, a Y2K magazine cover all at once. The body font is soft and rounded. The mono is the camcorder layer.</p>
+    <div class="type-specimen fade-in">
+      <div class="type-specimen-display">Dela Gothic One</div>
+      <p style="font-family:var(--font-display);font-size:1.1rem;color:var(--soot);max-width:600px;margin-bottom:20px">THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG. abcdefghijklmnopqrstuvwxyz 0123456789</p>
+      <div class="type-meta">
+        <div class="type-meta-item"><span class="type-meta-label">Usage</span><span class="type-meta-value">Headlines, titles, wordmark, single art, merch, social</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Treatment</span><span class="type-meta-value">Uppercase always. Tight tracking. Go big.</span></div>
+      </div>
+    </div>
+    <div class="type-specimen fade-in">
+      <div style="font-family:var(--font-body);font-weight:300;font-size:2.8rem;color:var(--soot);margin-bottom:16px">Quicksand</div>
+      <p style="font-family:var(--font-body);font-size:1.1rem;line-height:1.7;color:var(--soot-soft);max-width:600px;margin-bottom:20px">She writes like a storyteller, not a vibe-chaser. The music is pop with R&B underneath — character-driven lyrics with specific details and chronological arcs.</p>
+      <div class="type-meta">
+        <div class="type-meta-item"><span class="type-meta-label">Usage</span><span class="type-meta-value">Body copy, bios, press material, web, UI</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Treatment</span><span class="type-meta-value">Sentence case or lowercase. Generous line height.</span></div>
+      </div>
+    </div>
+    <div class="type-specimen fade-in">
+      <div style="font-family:var(--font-mono);font-size:2rem;color:var(--datestamp);margin-bottom:16px">Space Mono</div>
+      <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--datestamp);letter-spacing:0.03em;line-height:1.6">03.16.2026 — REC ● — PLAY ▶ — 00:04:32<br>CAITLIN BYK / CASH MONEY REPUBLIC / BLOW AWAY / 543,836 STREAMS</p>
+      <div class="type-meta">
+        <div class="type-meta-item"><span class="type-meta-label">Usage</span><span class="type-meta-value">Datestamps, labels, captions, credits, camcorder overlays, UI chrome</span></div>
+        <div class="type-meta-item"><span class="type-meta-label">Treatment</span><span class="type-meta-value">Uppercase for labels. Lime, Icy Blue, or Chrome preferred color. Small sizes.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 WORDMARK -->
+<section id="wordmark">
+  <div class="container">
+    <span class="section-num fade-in">05 — Wordmark & Logo</span>
+    <h2 class="fade-in">Name Treatment</h2>
+    <p class="lead fade-in">The name IS the logo. Dela Gothic One, uppercase, tight tracking. Stamped onto a vinyl sticker or screen-printed on a tee. Chunky, unmissable, zero subtlety.</p>
+    <div class="wm-hero fade-in" style="background:#D72638">
+      <div class="wm-name" style="font-size:clamp(3.2rem,8vw,5.5rem);color:#1A1513;margin-bottom:14px">CAITLIN BYK</div>
+      <div class="wm-label" style="color:rgba(26,21,19,0.45)">CASH MONEY REPUBLIC</div>
+    </div>
+    <div class="wm-grid fade-in">
+      <div class="wm-card" style="background:#1A1513"><div class="wm-name" style="color:#D72638">CAITLIN BYK</div><div class="wm-label" style="color:rgba(208,208,208,0.4)">CHERRY ON SOOT</div></div>
+      <div class="wm-card" style="background:#D72638"><div class="wm-name" style="color:#FAF7F5">CAITLIN BYK</div><div class="wm-label" style="color:rgba(250,247,245,0.4)">CREAM ON CHERRY</div></div>
+      <div class="wm-card" style="background:#E8368F"><div class="wm-name" style="color:#1A1513">CAITLIN BYK</div><div class="wm-label" style="color:rgba(26,21,19,0.35)">SOOT ON PINK</div></div>
+      <div class="wm-card" style="background:#1A1513"><div class="wm-name" style="color:#E8368F">CAITLIN BYK</div><div class="wm-label" style="color:rgba(208,208,208,0.4)">PINK ON SOOT</div></div>
+      <div class="wm-card" style="background:#FAF7F5;border:1px solid #E0D6D2"><div class="wm-name" style="color:#1A1513">CAITLIN BYK</div><div class="wm-label" style="color:rgba(26,21,19,0.3)">SOOT ON CREAM (DEFAULT)</div></div>
+      <div class="wm-card" style="background:#1A1513"><div class="wm-name" style="color:#6B8CFF">CAITLIN BYK</div><div class="wm-label" style="color:rgba(107,140,255,0.5)">ICY BLUE ON SOOT</div></div>
+    </div>
+    <div class="two-col fade-in" style="margin-top:48px">
+      <div>
+        <h4>Wordmark Rules</h4>
+        <p style="font-size:0.92rem">Always Dela Gothic One. Always uppercase. Letter-spacing -0.03em to -0.05em. Clear space = cap height of the "C." Never stretch, skew, outline, shadow, or gradient. The font does the heavy lifting.</p>
+      </div>
+      <div>
+        <h4>Approved Lockups</h4>
+        <p style="font-size:0.92rem">Soot on Cherry is the hero — tentpole moments, single covers, merch. Cherry on Soot and Cream on Cherry are alternates. Soot on Pink and Pink on Soot for social. Soot on Cream for press. Icy Blue on Soot for playlist covers and digital highlights.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PHOTOGRAPHY -->
+<section id="photography">
+  <div class="container">
+    <span class="section-num fade-in">06 — Photography</span>
+    <h2 class="fade-in">Photography</h2>
+    <p class="lead fade-in">Two modes. Real locations only. Disposable camera energy — grain, flash, blown-out highlights. Nothing clinical, nothing studio.</p>
+
+    <div class="two-col fade-in" style="gap:48px">
+      <div>
+        <h3>Everyday</h3>
+        <p>2003 disposable camera. Candid, warm, analog. Real light, real places. The version of her that makes you think "she's just like me."</p>
+      </div>
+      <div>
+        <h3>Elevated</h3>
+        <p>She knows the camera's there. Flash, contrast, kinetic energy. Movement blur, mid-spin, hair whip. Still with tension — like she's about to move.</p>
+      </div>
+    </div>
+
+    <div class="rule-grid fade-in" style="margin-top:60px">
+      <div class="rule-card do">
+        <div class="rule-card-header">The Feel</div>
+        <ul class="rule-list">
+          <li>Real locations — pools, diners, sidewalks, parked cars, laundromats</li>
+          <li>Natural light or harsh disposable flash. Grain and blown-out highlights welcome.</li>
+          <li>Candid over posed. One prop max per scene.</li>
+        </ul>
+      </div>
+      <div class="rule-card dont">
+        <div class="rule-card-header">Not This</div>
+        <ul class="rule-list">
+          <li>No studio seamless. No clinical color grading. No teal-and-orange. No purple tones.</li>
+          <li>No dark/moody/underexposed. The brand is warm, even indoors.</li>
+          <li>No digital sharpness or HDR. Keep it soft and analog.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 style="margin-top:60px" class="fade-in">Look Archetypes</h4>
+    <div class="shot-grid fade-in">
+      <div class="shot-card"><div class="shot-card-num">Look 01</div><h4>Street Caitlin</h4><p>Baggy jeans, fitted top, pointy shoe. Sidewalk, bodega, crosswalk. The everyday baseline.</p></div>
+      <div class="shot-card"><div class="shot-card-num">Look 02</div><h4>Elevated Caitlin</h4><p>Same base + statement jacket. Big bag. Good sunglasses.</p></div>
+      <div class="shot-card"><div class="shot-card-num">Look 03</div><h4>Poolside / Nature</h4><p>Swimwear or casual summer. Her pool, the beach, greenery. Golden light. Relaxed.</p></div>
+      <div class="shot-card"><div class="shot-card-num">Look 04</div><h4>Night Out</h4><p>Flash photography. Darker setting but warm tones. Kitten heel, going-out top. Disposable camera energy.</p></div>
+      <div class="shot-card"><div class="shot-card-num">Look 05</div><h4>Y2K Pop</h4><p>The boldest look. A crazy pair of pants or a wild jacket. Fun colors. The one that gets screenshotted.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 STYLING -->
+<section id="styling">
+  <div class="container">
+    <span class="section-num fade-in">07 — Styling Rules</span>
+    <h2 class="fade-in">Wardrobe</h2>
+    <p class="lead fade-in">The baseline is the brand. Baggy bottom, fitted top, one elevated piece. Every outfit should look like she threw it on without thinking — but the one nice thing makes you look twice.</p>
+    <div class="brand-quote fade-in" style="padding-bottom:24px">"I like to <span>wear baggy clothes</span>. But like, adding in fun pieces — a jacket or like a crazy pair of pants — that takes it from everyday to <span>artist Caitlin</span>."</div>
+    <div class="two-col fade-in">
+      <div>
+        <h4>The Silhouette</h4>
+        <h3>Baggy + fitted + one statement piece.</h3>
+        <p>This is the formula. Baggy jeans or wide pants as the base. Fitted or cropped top on top. One elevated accent — a structured jacket, a pointy heel, a designer bag, statement sunglasses. The accent is what bridges "relatable" and "unobtainable."</p>
+      </div>
+      <div>
+        <h4>Do's</h4>
+        <ul class="rule-list" style="list-style:none;padding:0">
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--datestamp)">✦</span> Baggy jeans — wide leg, carpenter, vintage wash</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--datestamp)">✦</span> Pointy shoes with baggy pants (her favorite combination)</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--datestamp)">✦</span> Layering — jackets, open shirts, interesting textures on top</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--datestamp)">✦</span> Off-shoulder or asymmetric necklines (when casual, not costume-y)</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--datestamp)">✦</span> Kitten heels with casual outfits — the high-low bridge</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--datestamp)">✦</span> Vintage / secondhand pieces that feel lived-in</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--datestamp)">✦</span> Simple hair and makeup — Charlotte Tilbury bronzer, natural skin, undone hair</li>
+        </ul>
+        <h4 style="margin-top:32px">Don'ts</h4>
+        <ul class="rule-list" style="list-style:none;padding:0">
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--sunburn)">✕</span> Jerseys — "fast fashion," hard no from Caitlin</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--sunburn)">✕</span> Trend-forward pieces that will date in 6 months</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--sunburn)">✕</span> Anything that reads as too put-together</li>
+          <li style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--sunburn)">✕</span> Costumey maximalism</li>
+          <li style="display:flex;gap:10px;padding:10px 0;font-size:0.92rem;color:var(--soot-soft)"><span style="color:var(--sunburn)">✕</span> Full head-to-toe designer / editorial looks with no casual anchor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 REFERENCES -->
+<section id="references">
+  <div class="container">
+    <span class="section-num fade-in">08 — References</span>
+    <h2 class="fade-in">In Her Words</h2>
+    <p class="lead fade-in">Every name below came directly from Caitlin. These are her references, in her voice.</p>
+
+    <div class="pillar-grid fade-in" style="margin-top:48px">
+      <div class="pillar-card" style="border-top:none">
+        <div class="pillar-num">Artist</div>
+        <h3><a href="https://www.google.com/search?q=Clairo+artist" target="_blank" style="color:var(--soot);text-decoration:underline;text-decoration-color:var(--honey)">Clairo</a></h3>
+        <p>"I'm obsessed with her. All her album covers are so sick. They all flow together so nicely. Her instagram is really aesthetic too."</p>
+      </div>
+      <div class="pillar-card" style="border-top:none">
+        <div class="pillar-num">Artist</div>
+        <h3><a href="https://www.google.com/search?q=Beabadoobee+artist" target="_blank" style="color:var(--soot);text-decoration:underline;text-decoration-color:var(--honey)">Beabadoobee</a></h3>
+        <p>"She's got that thing. There's a lot going on — very busy, very maximalist — but she's so chill and she's so cool."</p>
+      </div>
+      <div class="pillar-card" style="border-top:none">
+        <div class="pillar-num">Artist</div>
+        <h3><a href="https://www.google.com/search?q=Charli+XCX+artist" target="_blank" style="color:var(--soot);text-decoration:underline;text-decoration-color:var(--honey)">Charli XCX</a></h3>
+        <p>"She's really cool."</p>
+      </div>
+      <div class="pillar-card" style="border-top:none">
+        <div class="pillar-num">Artist</div>
+        <h3><a href="https://www.google.com/search?q=Tate+McRae+artist" target="_blank" style="color:var(--soot);text-decoration:underline;text-decoration-color:var(--honey)">Tate McRae</a></h3>
+        <p>"Super cool. Simple. A little more basic." (said approvingly)</p>
+      </div>
+      <div class="pillar-card" style="border-top:none">
+        <div class="pillar-num">Artist</div>
+        <h3><a href="https://www.google.com/search?q=Olivia+Dean+artist" target="_blank" style="color:var(--soot);text-decoration:underline;text-decoration-color:var(--honey)">Olivia Dean</a></h3>
+        <p>"Super cool and clean and simple. But I'm definitely a louder energy than her."</p>
+      </div>
+      <div class="pillar-card" style="border-top:none">
+        <div class="pillar-num">Character</div>
+        <h3><a href="https://www.google.com/search?q=Carrie+Bradshaw+Sex+and+the+City" target="_blank" style="color:var(--soot);text-decoration:underline;text-decoration-color:var(--honey)">Carrie Bradshaw</a></h3>
+        <p>"I think Carrie Bradshaw is so cool. Just that character."</p>
+      </div>
+    </div>
+
+    <h4 style="margin-top:60px" class="fade-in">Anti-References</h4>
+    <p class="fade-in">"Lola Young — trendy, like trying to be cool. That's what I think when I see her."</p>
+    <p class="fade-in">"Alex Samson — it's like choogy. Too professional, too put together. Like, what the fuck are you doing."</p>
+  </div>
+</section>
+
+<!-- 09 OPEN QUESTIONS -->
+<section id="questions">
+  <div class="container">
+    <span class="section-num fade-in">09 — Open Questions</span>
+    <h2 class="fade-in">Still Unresolved</h2>
+    <p class="lead fade-in">These can't be figured out in a deck. They come from Caitlin, from the work, from paying attention. But they need answers before the first release under Cash Money Republic.</p>
+    <div class="question-list">
+      <div class="question-item fade-in">
+        <span class="question-num">01</span>
+        <div><h3>The Sentence</h3><p>"You have to listen to Caitlin Byk — she's like ___." This doesn't exist yet. Until it does, the brand is a visual direction without a narrative engine.</p></div>
+      </div>
+      <div class="question-item fade-in">
+        <span class="question-num">02</span>
+        <div><h3>The Trademark</h3><p>What's hers? Olivia has purple. Charli has green. Billie had the hair. What is Caitlin's thing? A recurring visual motif. It has to come from her.</p></div>
+      </div>
+      <div class="question-item fade-in">
+        <span class="question-num">03</span>
+        <div><h3>The Origin Story</h3><p>Who is she and why should anyone care? Not a resume — the real version.</p></div>
+      </div>
+      <div class="question-item fade-in">
+        <span class="question-num">04</span>
+        <div><h3>The Signature Color</h3><p>Potentially Sidekick Pink (#E8368F) as the primary with Cherry (#D72638) as the depth color. Caitlin needs to gut-check both — she should see them on a single cover, on merch, on her grid, and say "that's me" before we lock one in.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Caitlin Byk</div>
+  <div class="footer-sub">Brand Guide — Source of Truth — Cash Money Republic</div>
+  <div class="footer-sub" style="margin-top:24px">v1.0 — March 2026 — Confidential</div>
+</div>
+
+<script>
+// Sticky nav on scroll
+const nav = document.getElementById('nav');
+const cover = document.getElementById('cover');
+let navVisible = false;
+
+window.addEventListener('scroll', () => {
+  const coverBottom = cover.offsetTop + cover.offsetHeight;
+  if (window.scrollY > coverBottom - 60) {
+    if (!navVisible) { nav.classList.add('visible'); navVisible = true; }
+  } else {
+    if (navVisible) { nav.classList.remove('visible'); navVisible = false; }
+  }
+});
+
+// Scroll-triggered fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Lightbox
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Copy hex on swatch click
+function copyHex(el, hex) {
+  navigator.clipboard.writeText(hex).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 1200);
+  });
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('.nav-links a, .toc-item').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

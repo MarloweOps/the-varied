@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/caitlin-byk",
+        destination: "/caitlin-byk/index.html",
+      },
+    ];
+  },
   async redirects() {
     return [
       { source: "/blog", destination: "/", permanent: false },
