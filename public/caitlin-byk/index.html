@@ -18,8 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Quicksand:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --honey: #E8368F; --honey-light: #F06BAE; --honey-dark: #C4246E;
-  --sunburn: #D72638; --sunburn-light: #E85A68; --peach: #6B8CFF;
+  --honey: #D72638; --honey-light: #E85A68; --honey-dark: #A81E2C;
+  --sunburn: #E8368F; --sunburn-light: #F06BAE; --peach: #6B8CFF;
   --datestamp: #B8E62E; --datestamp-light: #D1F06A; --datestamp-dark: #8FBF10;
   --chrome: #C0C8D4; --chrome-light: #E2E6EC;
   --parchment: #F2EDEA; --cream: #FAF7F5; --sand: #E0D6D2;
@@ -52,8 +52,8 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
 
 /* COVER */
 .cover { min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; padding:80px 48px; background:var(--soot); color:var(--parchment); position:relative; overflow:hidden; border-bottom:none; }
-.cover::before { content:''; position:absolute; top:-20%;right:-10%; width:700px;height:700px; background:radial-gradient(circle,#E8368F 0%,transparent 70%); opacity:0.15; filter:blur(80px); }
-.cover::after { content:''; position:absolute; bottom:-10%;left:-5%; width:500px;height:500px; background:radial-gradient(circle,#D72638 0%,transparent 70%); opacity:0.12; filter:blur(60px); }
+.cover::before { content:''; position:absolute; top:-20%;right:-10%; width:700px;height:700px; background:radial-gradient(circle,#D72638 0%,transparent 70%); opacity:0.15; filter:blur(80px); }
+.cover::after { content:''; position:absolute; bottom:-10%;left:-5%; width:500px;height:500px; background:radial-gradient(circle,#E8368F 0%,transparent 70%); opacity:0.12; filter:blur(60px); }
 .cover-top { position:absolute; top:48px;left:48px;right:48px; display:flex; justify-content:space-between; }
 .cover-tag { font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--warm-gray); }
 .cover-datestamp { font-family:var(--font-mono); font-size:0.72rem; color:var(--datestamp); letter-spacing:0.05em; }
@@ -338,7 +338,7 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
     <div class="divider fade-in"></div>
     <h4 class="fade-in">Find Her</h4>
     <div class="fade-in" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:16px">
-      <a href="https://www.instagram.com/caitlinbyk/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:12px 24px;background:var(--soot);border:1px solid var(--soot-soft);border-radius:10px;color:var(--parchment);text-decoration:none;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.05em;transition:border-color .2s" onmouseover="this.style.borderColor='#E8368F'" onmouseout="this.style.borderColor='var(--soot-soft)'">
+      <a href="https://www.instagram.com/caitlinbyk/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:12px 24px;background:var(--soot);border:1px solid var(--soot-soft);border-radius:10px;color:var(--parchment);text-decoration:none;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.05em;transition:border-color .2s" onmouseover="this.style.borderColor='#D72638'" onmouseout="this.style.borderColor='var(--soot-soft)'">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         @caitlinbyk
       </a>
@@ -589,14 +589,22 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
   <div class="container">
     <span class="section-num fade-in">06 — Color Palette</span>
     <h2 class="fade-in">Palette</h2>
-    <p class="lead fade-in palette-intro"><span style="font-family:var(--font-display);font-size:1.6rem;color:var(--honey)">Razr phone,</span> <span style="font-family:var(--font-body);font-style:italic;color:var(--honey-light)">lip gloss,</span> <span style="font-family:var(--font-display);font-size:1.4rem;color:var(--sunburn)">cherry red nails,</span> <span style="font-family:var(--font-mono);font-size:0.95rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--datestamp)">acid green camcorder text,</span> <span style="font-family:var(--font-body);font-size:1.1rem;color:var(--peach)">icy blue flip phone wallpaper,</span> <span style="font-family:var(--font-mono);font-size:1rem;letter-spacing:0.05em;color:var(--chrome)">chrome chain links.</span> <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--honey)">Hot pink</span> is the signature. <span style="font-family:var(--font-display);font-size:1.5rem;color:var(--sunburn)">Cherry red</span> is the heat. <span style="font-family:var(--font-body);font-weight:600;color:var(--peach)">Icy blue</span> is the cool flash. <span style="font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--datestamp)">Acid lime</span> is the era. <span style="font-family:var(--font-mono);color:var(--chrome)">Chrome</span> is the texture. Five colors that don't ask permission — grounded by <span style="font-family:var(--font-display);color:var(--soot)">a warm black</span> that keeps the whole thing from melting into candy.</p>
+    <p class="lead fade-in palette-intro"><span style="font-family:var(--font-display);font-size:1.6rem;color:var(--honey)">Razr phone,</span> <span style="font-family:var(--font-body);font-style:italic;color:var(--honey-light)">lip gloss,</span> <span style="font-family:var(--font-display);font-size:1.4rem;color:var(--sunburn)">cherry red nails,</span> <span style="font-family:var(--font-mono);font-size:0.95rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--datestamp)">acid green camcorder text,</span> <span style="font-family:var(--font-body);font-size:1.1rem;color:var(--peach)">icy blue flip phone wallpaper,</span> <span style="font-family:var(--font-mono);font-size:1rem;letter-spacing:0.05em;color:var(--chrome)">chrome chain links.</span> <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--honey)">Cherry red</span> is the signature. <span style="font-family:var(--font-display);font-size:1.5rem;color:var(--sunburn)">Hot pink</span> is the heat. <span style="font-family:var(--font-body);font-weight:600;color:var(--peach)">Icy blue</span> is the cool flash. <span style="font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--datestamp)">Acid lime</span> is the era. <span style="font-family:var(--font-mono);color:var(--chrome)">Chrome</span> is the texture. Five colors that don't ask permission — grounded by <span style="font-family:var(--font-display);color:var(--soot)">a warm black</span> that keeps the whole thing from melting into candy.</p>
     <div class="palette-grid">
-      <div class="swatch large fade-in" onclick="copyHex(this,'#E8368F')">
+      <div class="swatch large fade-in" onclick="copyHex(this,'#D72638')">
+        <div class="swatch-color" style="background:#D72638"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cherry</div>
+          <div class="swatch-hex">#D72638</div>
+          <div class="swatch-role">The color. The signature. Cherry red nails, a vintage Corvette, a stop sign at golden hour. Deeper, more dangerous. Serious.</div>
+        </div>
+      </div>
+      <div class="swatch fade-in" onclick="copyHex(this,'#E8368F')">
         <div class="swatch-color" style="background:#E8368F"></div>
         <div class="swatch-info">
           <div class="swatch-name">Sidekick Pink</div>
           <div class="swatch-hex">#E8368F</div>
-          <div class="swatch-role">The color. The signature. Think Razr phone, lip gloss, the Juicy tracksuit. Hot, loud, unapologetic.</div>
+          <div class="swatch-role">The hot pink. Razr phone, lip gloss, the Juicy tracksuit. Loud, unapologetic. The playful counterpart.</div>
         </div>
       </div>
       <div class="swatch fade-in" onclick="copyHex(this,'#F06BAE')">
@@ -605,14 +613,6 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
           <div class="swatch-name">Bubblegum</div>
           <div class="swatch-hex">#F06BAE</div>
           <div class="swatch-role">The softer pink. Still loud, just less urgent. The glow around the edges.</div>
-        </div>
-      </div>
-      <div class="swatch fade-in" onclick="copyHex(this,'#D72638')">
-        <div class="swatch-color" style="background:#D72638"></div>
-        <div class="swatch-info">
-          <div class="swatch-name">Cherry</div>
-          <div class="swatch-hex">#D72638</div>
-          <div class="swatch-role">The red. Deeper, more dangerous than the pink — cherry red nails, a vintage Corvette, a stop sign at golden hour. Pink is playful. Cherry is serious.</div>
         </div>
       </div>
       <div class="swatch fade-in" onclick="copyHex(this,'#6B8CFF')">
@@ -657,10 +657,10 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
       <div class="neutral-chip"><div class="neutral-chip-color" style="background:#332B27"></div><div class="neutral-chip-label">Soot Soft #332B27</div></div>
     </div>
     <h4 style="margin-top:48px" class="fade-in">Usage Ratios</h4>
-    <p class="fade-in">Pink dominates. Cherry punches. Icy Blue flashes. Lime disrupts. Chrome textures. Soot grounds.</p>
+    <p class="fade-in">Cherry dominates. Pink punches. Icy Blue flashes. Lime disrupts. Chrome textures. Soot grounds.</p>
     <div class="color-ratio fade-in">
-      <div style="background:#E8368F;width:26%">26% Pink</div>
-      <div style="background:#D72638;width:16%">16% Cherry</div>
+      <div style="background:#D72638;width:26%">26% Cherry</div>
+      <div style="background:#E8368F;width:16%">16% Pink</div>
       <div style="background:#1A1513;width:18%">18% Soot</div>
       <div style="background:#6B8CFF;width:12%">12% Icy Blue</div>
       <div style="background:#B8E62E;width:10%;color:#1A1513">10% Lime</div>
@@ -672,7 +672,7 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
     <div class="two-col fade-in" style="gap:48px">
       <div>
         <h3 style="font-size:1.1rem">Everyday</h3>
-        <p style="font-size:0.92rem">Sidekick Pink, Bubblegum, Datestamp, warm neutrals. Soft, sun-soaked, analog. The palette at rest.</p>
+        <p style="font-size:0.92rem">Cherry, Bubblegum, Datestamp, warm neutrals. Soft, sun-soaked, analog. The palette at rest.</p>
       </div>
       <div>
         <h3 style="font-size:1.1rem">Elevated</h3>
@@ -766,7 +766,7 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
       </div>
       <div class="question-item fade-in">
         <span class="question-num">04</span>
-        <div><h3>The Signature Color</h3><p>Potentially Sidekick Pink (#E8368F) as the primary with Cherry (#D72638) as the depth color. Caitlin needs to gut-check both — she should see them on a single cover, on merch, on her grid, and say "that's me" before we lock one in.</p></div>
+        <div><h3>The Signature Color</h3><p>Cherry (#D72638) is the primary. Sidekick Pink (#E8368F) is the depth color. Caitlin needs to gut-check both on a single cover, on merch, on her grid, and say "that's me" before we lock one in.</p></div>
       </div>
     </div>
   </div>
