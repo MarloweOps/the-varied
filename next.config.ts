@@ -2,12 +2,28 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async rewrites() {
-    return [
-      {
-        source: "/caitlin-byk",
-        destination: "/caitlin-byk/index.html",
-      },
-    ];
+    return {
+      beforeFiles: [
+        // Subdomain: caitlinbyk.thevaried.co → serve brand guide
+        {
+          source: "/:path*",
+          has: [{ type: "host", value: "caitlinbyk.thevaried.co" }],
+          destination: "/caitlin-byk/:path*",
+        },
+        {
+          source: "/",
+          has: [{ type: "host", value: "caitlinbyk.thevaried.co" }],
+          destination: "/caitlin-byk/index.html",
+        },
+      ],
+      afterFiles: [
+        {
+          source: "/caitlin-byk",
+          destination: "/caitlin-byk/index.html",
+        },
+      ],
+      fallback: [],
+    };
   },
   async redirects() {
     return [
