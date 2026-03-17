@@ -172,12 +172,6 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
 .inspo-card img { display:block; width:100%; height:auto; object-fit:contain; transition:transform 0.6s ease; }
 .inspo-card:hover img { transform:scale(1.03); }
 
-/* Photo breaks between sections */
-.photo-break { display:flex; gap:12px; padding:0; overflow:hidden; border-bottom:1px solid var(--sand); }
-.photo-break img { flex:1; min-width:0; height:320px; object-fit:cover; cursor:pointer; transition:transform 0.6s ease; }
-.photo-break img:hover { transform:scale(1.02); }
-.photo-break.tall img { height:480px; }
-
 /* SHOT LIST */
 .shot-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:48px; }
 .shot-card { background:var(--soot); border-radius:12px; padding:24px 20px; color:var(--parchment); display:flex; flex-direction:column; min-height:180px; transition:transform 0.3s ease; }
@@ -210,9 +204,6 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
   .cover-top { left:24px; right:24px; }
   .two-col,.pillar-grid,.rule-grid,.toc-grid,.wm-grid,.modes-visual { grid-template-columns:1fr; }
   .inspo-grid { columns:2; }
-  .photo-break { flex-wrap:wrap; }
-  .photo-break img { height:220px; flex:1 1 45%; }
-  .photo-break.tall img { height:300px; }
   .three-col { grid-template-columns:1fr; }
   .palette-grid { grid-template-columns:1fr 1fr; }
   .swatch.large { grid-column:span 1; }
@@ -459,6 +450,64 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
       <div class="shot-card"><div class="shot-card-num">Look 05</div><h4>Y2K Pop</h4><p>The boldest look. A crazy pair of pants or a wild jacket. Fun colors. The one that gets screenshotted.</p></div>
     </div>
 
+    <h4 style="margin-top:60px" class="fade-in">Visual Inspo</h4>
+    <div class="inspo-grid fade-in">
+      <div class="inspo-card" onclick="openLightbox('img/street-curb.jpg')"><img src="img/street-curb.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/hose-garden.jpg')"><img src="img/hose-garden.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-7.jpg')"><img src="img/inspo-7.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-8.jpg')"><img src="img/inspo-8.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-9.jpg')"><img src="img/inspo-9.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-1.jpg')"><img src="img/inspo-new-1.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-10.jpg')"><img src="img/inspo-10.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-11.jpg')"><img src="img/inspo-11.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-12.jpg')"><img src="img/inspo-12.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-13.jpg')"><img src="img/inspo-13.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-14.jpg')"><img src="img/inspo-14.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-15.jpg')"><img src="img/inspo-15.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-2.jpg')"><img src="img/inspo-new-2.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-10.jpg')"><img src="img/inspo-new-10.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-16.jpg')"><img src="img/inspo-16.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-17.jpg')"><img src="img/inspo-17.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-18.jpg')"><img src="img/inspo-18.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-19.jpg')"><img src="img/inspo-19.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-20.jpg')"><img src="img/inspo-20.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-21.jpg')"><img src="img/inspo-21.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-22.jpg')"><img src="img/inspo-22.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-3.webp')"><img src="img/inspo-new-3.webp" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-4.webp')"><img src="img/inspo-new-4.webp" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-23.jpg')"><img src="img/inspo-23.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-24.jpg')"><img src="img/inspo-24.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-25.jpg')"><img src="img/inspo-25.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-26.jpg')"><img src="img/inspo-26.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-27.jpg')"><img src="img/inspo-27.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-28.jpg')"><img src="img/inspo-28.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-29.jpg')"><img src="img/inspo-29.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-5.jpg')"><img src="img/inspo-new-5.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-7.jpg')"><img src="img/inspo-new-7.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-30.jpg')"><img src="img/inspo-30.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-31.jpg')"><img src="img/inspo-31.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-32.jpg')"><img src="img/inspo-32.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-33.jpg')"><img src="img/inspo-33.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-34.jpg')"><img src="img/inspo-34.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-35.jpg')"><img src="img/inspo-35.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-36.jpg')"><img src="img/inspo-36.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-8.jpg')"><img src="img/inspo-new-8.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-37.jpg')"><img src="img/inspo-37.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-38.jpg')"><img src="img/inspo-38.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-39.jpg')"><img src="img/inspo-39.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-40.jpg')"><img src="img/inspo-40.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-41.jpg')"><img src="img/inspo-41.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-42.jpg')"><img src="img/inspo-42.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-9.jpg')"><img src="img/inspo-new-9.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-new-11.jpg')"><img src="img/inspo-new-11.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-43.jpg')"><img src="img/inspo-43.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-44.jpg')"><img src="img/inspo-44.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-45.jpg')"><img src="img/inspo-45.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-46.jpg')"><img src="img/inspo-46.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-47.jpg')"><img src="img/inspo-47.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-48.jpg')"><img src="img/inspo-48.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+      <div class="inspo-card" onclick="openLightbox('img/inspo-49.jpg')"><img src="img/inspo-49.jpg" alt="Caitlin Byk reference" loading="lazy"></div>
+    </div>
   </div>
 </section>
 
@@ -731,73 +780,6 @@ p { max-width:680px; margin-bottom:20px; font-size:1.05rem; color:var(--soot-sof
   </div>
 </section>
 
-
-
-<!-- PHOTO REFERENCES -->
-<section id="photo-references" style="padding:80px 0;background:var(--soot)">
-  <div class="container">
-    <span class="section-num fade-in" style="color:var(--soot-soft)">Photo References</span>
-    <h2 class="fade-in" style="color:var(--parchment)">Visual Inspo</h2>
-    <div class="inspo-grid fade-in">
-    <img src="img/street-curb.jpg" alt="" loading="lazy" onclick="openLightbox('img/street-curb.jpg')">
-    <img src="img/hose-garden.jpg" alt="" loading="lazy" onclick="openLightbox('img/hose-garden.jpg')">
-    <img src="img/inspo-7.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-7.jpg')">
-    <img src="img/inspo-8.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-8.jpg')">
-    <img src="img/inspo-9.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-9.jpg')">
-    <img src="img/inspo-10.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-10.jpg')">
-    <img src="img/inspo-new-1.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-1.jpg')">
-    <img src="img/inspo-11.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-11.jpg')">
-    <img src="img/inspo-new-11.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-11.jpg')">
-    <img src="img/inspo-12.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-12.jpg')">
-    <img src="img/inspo-13.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-13.jpg')">
-    <img src="img/inspo-14.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-14.jpg')">
-    <img src="img/inspo-15.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-15.jpg')">
-    <img src="img/inspo-16.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-16.jpg')">
-    <img src="img/inspo-new-2.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-2.jpg')">
-    <img src="img/inspo-17.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-17.jpg')">
-    <img src="img/inspo-18.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-18.jpg')">
-    <img src="img/inspo-19.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-19.jpg')">
-    <img src="img/inspo-20.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-20.jpg')">
-    <img src="img/inspo-21.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-21.jpg')">
-    <img src="img/inspo-22.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-22.jpg')">
-    <img src="img/inspo-new-7.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-7.jpg')">
-    <img src="img/inspo-23.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-23.jpg')">
-    <img src="img/inspo-24.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-24.jpg')">
-    <img src="img/inspo-25.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-25.jpg')">
-    <img src="img/inspo-26.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-26.jpg')">
-    <img src="img/inspo-27.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-27.jpg')">
-    <img src="img/inspo-28.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-28.jpg')">
-    <img src="img/red-wall-blazer.webp" alt="" loading="lazy" onclick="openLightbox('img/red-wall-blazer.webp')">
-    <img src="img/inspo-29.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-29.jpg')">
-    <img src="img/inspo-30.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-30.jpg')">
-    <img src="img/inspo-31.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-31.jpg')">
-    <img src="img/inspo-32.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-32.jpg')">
-    <img src="img/inspo-33.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-33.jpg')">
-    <img src="img/inspo-new-8.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-8.jpg')">
-    <img src="img/inspo-34.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-34.jpg')">
-    <img src="img/inspo-new-3.webp" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-3.webp')">
-    <img src="img/inspo-35.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-35.jpg')">
-    <img src="img/inspo-36.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-36.jpg')">
-    <img src="img/inspo-37.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-37.jpg')">
-    <img src="img/inspo-38.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-38.jpg')">
-    <img src="img/inspo-39.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-39.jpg')">
-    <img src="img/inspo-40.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-40.jpg')">
-    <img src="img/inspo-new-9.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-9.jpg')">
-    <img src="img/inspo-new-4.webp" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-4.webp')">
-    <img src="img/inspo-41.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-41.jpg')">
-    <img src="img/inspo-42.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-42.jpg')">
-    <img src="img/inspo-43.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-43.jpg')">
-    <img src="img/inspo-44.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-44.jpg')">
-    <img src="img/inspo-45.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-45.jpg')">
-    <img src="img/inspo-46.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-46.jpg')">
-    <img src="img/inspo-new-5.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-5.jpg')">
-    <img src="img/inspo-47.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-47.jpg')">
-    <img src="img/inspo-48.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-48.jpg')">
-    <img src="img/inspo-new-10.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-new-10.jpg')">
-    <img src="img/inspo-49.jpg" alt="" loading="lazy" onclick="openLightbox('img/inspo-49.jpg')">
-    </div>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <div class="footer">
